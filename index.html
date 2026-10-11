@@ -3,176 +3,128 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tesla Robotaxi Fleet Owners — Join the fleet owner list</title>
-<meta name="description" content="An X community of 685+ future Tesla robotaxi fleet owners learning from each other how to build and operate a fleet.">
+<title>Tesla Robotaxi Fleet Owners</title>
+<meta name="description" content="An independent X community of 685+ future robotaxi fleet owners. The golden age of mobility.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050505;--panel:#111214;--line:#26282c;--silver:#c9ccd1;--muted:#8a8f97;--text:#f2f3f5;--accent:#e31937;--gold:#d4af37}
+:root{--gold:#d4af6a;--gold2:#f1d9a0;--w:#fff;--m:#9a9a9a;--line:rgba(212,175,106,.35)}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-nav{position:sticky;top:0;z-index:10;background:rgba(5,5,5,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:13px;color:var(--silver);text-decoration:none}
-.logo span{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:14px 28px;border-radius:4px;border:0;font-size:15px;cursor:pointer;letter-spacing:.02em;transition:background .2s,transform .2s}
-.btn:hover{background:#ff2a4a;transform:translateY(-1px)}
-.btn.ghost{background:transparent;border:1px solid var(--silver);color:var(--silver)}
-.btn.ghost:hover{background:rgba(255,255,255,.06)}
-.btn.sm{padding:9px 18px;font-size:13px}
-.hero{position:relative;padding:120px 0 110px;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(201,204,209,.16),transparent 70%),linear-gradient(180deg,#000 0%,#0b0c0e 100%)}
-.hero::after{content:"";position:absolute;left:50%;bottom:0;width:70%;height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,var(--silver),transparent)}
-.eyebrow{display:inline-block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
-.eyebrow b{color:var(--accent);font-weight:600}
-h1{font-size:clamp(38px,6.4vw,72px);line-height:1.05;font-weight:700;letter-spacing:-.02em;max-width:900px;background:linear-gradient(180deg,#fff 30%,#9da1a8);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{font-size:clamp(17px,2vw,20px);color:var(--silver);max-width:640px;margin:24px 0 38px}
-.cta-row{display:flex;gap:14px;flex-wrap:wrap}
-.stats{display:flex;gap:48px;margin-top:64px;flex-wrap:wrap}
-.stat .n{font-size:30px;font-weight:700}
-.stat .l{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
-section{padding:96px 0;border-bottom:1px solid var(--line)}
-h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.01em;margin-bottom:14px}
-.lead{color:var(--muted);max-width:620px;margin-bottom:48px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:28px 24px;transition:border-color .2s}
-.card:hover{border-color:#44474d}
-.card .ic{font-size:24px;margin-bottom:16px}
-.card h3{font-size:17px;margin-bottom:8px}
-.card p{color:var(--muted);font-size:15px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
-.step{padding:28px 0 0;border-top:2px solid var(--line);position:relative}
-.step::before{counter-increment:s;content:"0" counter(s);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.15em;display:block;margin-bottom:12px}
-.step h3{font-size:19px;margin-bottom:8px}
-.step p{color:var(--muted);font-size:15px}
-.rhythm{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
-.pill{border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px;color:var(--silver);background:var(--panel)}
-.pill b{color:var(--gold);margin-right:6px}
-.signup{background:linear-gradient(180deg,#0b0c0e,#050505)}
-.form-wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:start}
-form{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:32px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.f{margin-bottom:18px}
-label{display:block;font-size:13px;color:var(--silver);margin-bottom:6px;font-weight:500}
-label .req{color:var(--accent)}
-input[type=text],input[type=email],select{width:100%;background:#08090a;border:1px solid var(--line);border-radius:5px;color:var(--text);padding:12px 14px;font-size:15px;font-family:inherit;appearance:none;-webkit-appearance:none}
-select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 18px) 52%,calc(100% - 13px) 52%;background-size:5px 5px;background-repeat:no-repeat}
-input:focus,select:focus{outline:none;border-color:var(--silver)}
-.check{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--muted);margin:6px 0 22px}
-.check input{margin-top:3px;accent-color:var(--accent);width:16px;height:16px;flex:none}
-.check label{color:var(--muted);font-weight:400;margin:0}
-form .btn{width:100%}
-.msg{display:none;padding:16px;border-radius:6px;margin-top:16px;font-size:14px}
-.msg.ok{display:block;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.4);color:#ecd98f}
-.msg.err{display:block;background:rgba(227,25,55,.08);border:1px solid rgba(227,25,55,.4);color:#ff9aa8}
-.demo{font-size:12px;color:var(--gold);border:1px dashed rgba(212,175,55,.5);padding:8px 12px;border-radius:5px;margin-bottom:20px}
-.side ul{list-style:none;margin-top:24px}
-.side li{padding:12px 0;border-bottom:1px solid var(--line);color:var(--silver);font-size:15px}
-.side li::before{content:"—";color:var(--accent);margin-right:10px}
-.links{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.link-card{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:32px;transition:border-color .2s,transform .2s}
-.link-card:hover{border-color:var(--silver);transform:translateY(-2px)}
-.link-card .k{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.link-card h3{font-size:22px;margin:10px 0 8px}
-.link-card p{color:var(--muted);font-size:15px}
-.link-card .go{color:var(--accent);font-weight:600;font-size:14px;margin-top:16px;display:inline-block}
-footer{padding:48px 0 60px;color:var(--muted);font-size:13px}
-.privacy{border:1px dashed #3a3d42;border-radius:8px;padding:18px 20px;margin-bottom:28px;max-width:760px}
-.privacy .tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--gold);color:#000;padding:2px 8px;border-radius:3px;margin-bottom:8px;font-weight:700}
-.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.form-wrap{grid-template-columns:1fr;gap:32px}}
-@media(max-width:640px){.wrap{padding:0 20px}.hero{padding:72px 0 64px}.grid,.steps,.links,.row{grid-template-columns:1fr}.row{gap:0}section{padding:64px 0}.stats{gap:28px;margin-top:44px}form{padding:22px}.cta-row .btn{width:100%;text-align:center}nav .btn{display:none}}
-.embed{background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
-.embed iframe{display:block;width:100%;height:1400px;border:0}
-@media(max-width:640px){.embed iframe{height:1600px}}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+body{background:#000;color:var(--w);font-family:Inter,system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;inset:0 0 auto;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:22px 40px;background:linear-gradient(#000c,#0000)}
+.brand{font-weight:500;font-size:13px;letter-spacing:.32em;text-transform:uppercase}
+.brand b{color:var(--gold);font-weight:500}
+nav .links{display:flex;gap:28px;font-size:14px;font-weight:400}
+nav .links a{opacity:.85}nav .links a:hover{color:var(--gold2)}
+.snap{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:110px 24px 80px;position:relative;overflow:hidden;scroll-snap-align:start}
+.kicker{font-size:12px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:22px}
+h1{font-size:clamp(46px,9vw,124px);font-weight:200;letter-spacing:-.035em;line-height:.98}
+h2{font-size:clamp(38px,6.5vw,84px);font-weight:200;letter-spacing:-.03em;line-height:1.02}
+.gold{background:linear-gradient(100deg,var(--gold2),var(--gold) 55%,#a8823e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin-top:22px;font-size:clamp(16px,1.6vw,19px);color:#c9c9c9;max-width:560px;line-height:1.55}
+.btns{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+.pill{display:inline-block;min-width:220px;padding:12px 28px;border-radius:999px;font-size:14px;font-weight:500;letter-spacing:.02em;transition:.25s}
+.pill.g{background:var(--gold);color:#000}.pill.g:hover{background:var(--gold2);box-shadow:0 0 30px rgba(212,175,106,.35)}
+.pill.o{border:1px solid rgba(255,255,255,.55)}.pill.o:hover{border-color:var(--gold);color:var(--gold2)}
+/* hero art: abstract gold glow + light streaks */
+.hero{background:radial-gradient(ellipse 60% 45% at 50% 105%,rgba(212,175,106,.28),transparent 70%),#000}
+.hero svg{position:absolute;left:0;right:0;bottom:6%;width:100%;height:42%;opacity:.9;pointer-events:none}
+.hero .content{position:relative;z-index:1}
+.stats{display:flex;gap:64px;margin-top:64px;justify-content:center;flex-wrap:wrap}
+.stat .n{font-size:clamp(28px,3.4vw,40px);font-weight:200}
+.stat .l{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--m);margin-top:4px}
+.rule{width:64px;height:1px;background:var(--gold);margin:30px auto 0;opacity:.8}
+.white{background:#f5f5f3;color:#111}.white .sub{color:#555}.white .kicker{color:#a8823e}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:72px;max-width:1040px;width:100%}
+.three div{padding:8px 32px;border-left:1px solid var(--line)}.three div:first-child{border-left:0}
+.three .d{font-size:12px;letter-spacing:.3em;color:var(--gold);font-weight:500}
+.white .three .d{color:#a8823e}
+.three h3{font-size:24px;font-weight:300;margin:12px 0 8px}
+.three p{font-size:15px;color:var(--m);line-height:1.5}
+.white .three p{color:#666}
+.join{background:radial-gradient(ellipse 50% 35% at 50% 0%,rgba(212,175,106,.16),transparent 70%),#000}
+.formbox{margin-top:48px;width:100%;max-width:680px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(212,175,106,.12)}
+.formbox iframe{display:block;width:100%;height:1250px;border:0}
+.small{margin-top:18px;font-size:13px;color:var(--m)}.small a{color:var(--gold2);border-bottom:1px solid var(--line)}
+.people{margin-top:24px;font-size:16px;color:#c9c9c9}.people a{color:var(--gold2)}
+footer{padding:48px 24px 56px;text-align:center;font-size:12px;color:#777;border-top:1px solid #151515;line-height:1.7}
+footer .pv{max-width:640px;margin:0 auto 18px;padding:14px 18px;border:1px dashed #333;border-radius:12px}
+footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-size:10px;display:block;margin-bottom:6px}
+.fade{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease}
+.fade.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media(max-width:760px){nav{padding:18px 20px}nav .links a:not(.cta){display:none}.three{grid-template-columns:1fr;gap:36px;margin-top:48px}.three div{border-left:0;border-top:1px solid var(--line);padding:24px 8px 0}.stats{gap:36px}.pill{min-width:0;width:100%;max-width:320px}.formbox iframe{height:1450px}}
 </style>
 </head>
 <body>
-<nav><div class="wrap">
-  <a class="logo" href="#">Robotaxi <span>Fleet</span> Owners</a>
-  <a class="btn sm" href="#signup">Join the list</a>
-</div></nav>
+<nav>
+  <a class="brand" href="#top">Robotaxi <b>Fleet</b> Owners</a>
+  <div class="links"><a href="#why">Community</a><a href="#rhythm">Weekly</a><a href="#watch">Watch</a><a class="cta" href="#join" style="color:var(--gold)">Join</a></div>
+</nav>
 
-<header class="hero"><div class="wrap">
-  <div class="eyebrow"><b>●</b>&nbsp; X Community · 685+ members</div>
-  <h1>Build your Tesla robotaxi fleet. Together.</h1>
-  <p class="sub">Tesla Robotaxi Fleet Owners is where future fleet owners learn from each other how to build and operate a fleet of Tesla robotaxis. Get on the list and be ready when the Cybercab rolls out.</p>
-  <div class="cta-row">
-    <a class="btn" href="#signup">Join the fleet owner list</a>
-    <a class="btn ghost" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Visit the X community</a>
+<section class="snap hero" id="top">
+  <!-- Abstract light streaks, drawn in SVG (original artwork, no external imagery) -->
+  <svg viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="s" x1="0" x2="1"><stop offset="0" stop-color="#d4af6a" stop-opacity="0"/><stop offset=".5" stop-color="#f1d9a0"/><stop offset="1" stop-color="#d4af6a" stop-opacity="0"/></linearGradient></defs>
+    <path d="M0 250 C 300 170, 900 170, 1200 250" stroke="url(#s)" stroke-width="1.4" fill="none"/>
+    <path d="M0 270 C 320 200, 880 200, 1200 270" stroke="url(#s)" stroke-width=".8" fill="none" opacity=".6"/>
+    <path d="M100 290 C 400 235, 800 235, 1100 290" stroke="url(#s)" stroke-width=".5" fill="none" opacity=".4"/>
+  </svg>
+  <div class="content">
+    <div class="kicker fade">The golden age of mobility</div>
+    <h1 class="fade">Own the <span class="gold">fleet</span>.</h1>
+    <p class="sub fade" style="margin-left:auto;margin-right:auto">Tesla Robotaxi Fleet Owners. Learn from each other how to build and operate a fleet of Tesla robotaxis.</p>
+    <div class="btns fade"><a class="pill g" href="#join">Join the fleet owner list</a><a class="pill o" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Visit the X community</a></div>
   </div>
-  <div class="stats">
-    <div class="stat"><div class="n">685+</div><div class="l">Members</div></div>
-    <div class="stat"><div class="n">3×</div><div class="l">Posts per week</div></div>
-    <div class="stat"><div class="n">1</div><div class="l">Shared ambition</div></div>
-  </div>
-</div></header>
+</section>
 
-<section id="why"><div class="wrap">
-  <h2>Why join</h2>
-  <p class="lead">Owning a robotaxi fleet raises real questions about money, operations and timing. Here you work them out with people facing the same ones.</p>
-  <div class="grid">
-    <div class="card"><div class="ic">🚕</div><h3>Learn from peers</h3><p>Swap plans, numbers and lessons with others preparing to run Tesla robotaxi fleets.</p></div>
-    <div class="card"><div class="ic">💶</div><h3>Fleet economics</h3><p>Weekly discussion on financing, costs and returns, plus deep dives like our episode on financing fleets.</p></div>
-    <div class="card"><div class="ic">📰</div><h3>Stay current</h3><p>A weekly roundup of Cybercab and robotaxi news, so you never miss what matters for owners.</p></div>
-    <div class="card"><div class="ic">⚡</div><h3>Be ready early</h3><p>Join a pipeline of ready, qualified fleet owners: our ambition is to help Tesla grow the robotaxi fleet faster.</p></div>
+<section class="snap" id="why">
+  <div class="kicker fade">The community</div>
+  <h2 class="fade">685+ future<br>fleet owners.</h2>
+  <div class="rule fade"></div>
+  <div class="three fade">
+    <div><div class="d">LEARN</div><h3>From peers</h3><p>Plans, numbers and lessons from people preparing the same thing.</p></div>
+    <div><div class="d">PLAN</div><h3>Fleet economics</h3><p>Financing, costs and returns, discussed openly every week.</p></div>
+    <div><div class="d">READY</div><h3>Built to scale</h3><p>Our ambition: a pipeline of ready owners to help grow the robotaxi fleet faster.</p></div>
   </div>
-</div></section>
+</section>
 
-<section id="how"><div class="wrap">
-  <h2>How it works</h2>
-  <p class="lead">Three simple steps from curious to fleet-ready.</p>
-  <div class="steps">
-    <div class="step"><h3>Join the list</h3><p>Tell us where you'd operate, how many cars you're planning and when you'd like to start.</p></div>
-    <div class="step"><h3>Join the conversation</h3><p>Hop into the X community, say hi and share your plan with other future fleet owners.</p></div>
-    <div class="step"><h3>Get fleet-ready</h3><p>Use the weekly content and the Tesla to Mars episodes to sharpen your plan and financing.</p></div>
+<section class="snap white" id="rhythm">
+  <div class="kicker fade">Every week</div>
+  <h2 class="fade">A rhythm,<br>not noise.</h2>
+  <div class="three fade">
+    <div><div class="d">MON</div><h3>News roundup</h3><p>What moved in Cybercab and robotaxi this week.</p></div>
+    <div><div class="d">WED</div><h3>Fleet economics</h3><p>One question on the money side of ownership.</p></div>
+    <div><div class="d">FRI</div><h3>Show your plan</h3><p>Members share their city, fleet size and timeline.</p></div>
   </div>
-  <div class="rhythm">
-    <span class="pill"><b>MON</b>News roundup</span>
-    <span class="pill"><b>WED</b>Fleet-economics question</span>
-    <span class="pill"><b>FRI</b>Show your plan</span>
-  </div>
-</div></section>
+</section>
 
-<section id="signup" class="signup"><div class="wrap form-wrap">
-  <div class="side">
-    <h2>Join the fleet owner list</h2>
-    <p class="lead" style="margin-bottom:0">Takes about two minutes. Tell us where you'd operate, how many cars you're planning and when you'd start.</p>
-    <ul>
-      <li>Connect with fleet owners in your region</li>
-      <li>Hear first about community updates and results</li>
-      <li>Help show how much demand there is for robotaxi fleets</li>
-    </ul>
-    <a class="btn" style="margin-top:28px" href="https://docs.google.com/forms/d/e/1FAIpQLSdklaaM8AmxVCLVMfKgcd-y-hM-APU7JGkHle2SePnujAr1DA/viewform" target="_blank" rel="noopener">Open the form in a new tab →</a>
-  </div>
-  <div class="embed"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdklaaM8AmxVCLVMfKgcd-y-hM-APU7JGkHle2SePnujAr1DA/viewform?embedded=true" title="Fleet owner sign-up form" loading="lazy">Loading…</iframe></div>
-</div></section>
+<section class="snap" id="watch">
+  <div class="kicker fade">Tesla to Mars</div>
+  <h2 class="fade">Listen in.</h2>
+  <p class="sub fade">The companion podcast. Start with episode #39 on financing fleets.</p>
+  <div class="btns fade"><a class="pill g" href="https://youtu.be/2GpLG7RqqTk" target="_blank" rel="noopener">Watch episode #39</a><a class="pill o" href="https://www.youtube.com/@teslatomars" target="_blank" rel="noopener">YouTube channel</a></div>
+  <p class="people fade">Hosted by Florian Minderop <a href="https://x.com/fminderop" target="_blank" rel="noopener">@fminderop</a> · Moderator Kees Roelandschap <a href="https://x.com/KRoelandschap" target="_blank" rel="noopener">@KRoelandschap</a></p>
+</section>
 
-<section id="links"><div class="wrap">
-  <h2>Find us</h2>
-  <p class="lead">Run by Florian Minderop (<a href="https://x.com/fminderop" target="_blank" rel="noopener">@fminderop</a>) with moderator Kees Roelandschap (<a href="https://x.com/KRoelandschap" target="_blank" rel="noopener">@KRoelandschap</a>).</p>
-  <div class="links">
-    <a class="link-card" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">
-      <div class="k">X Community</div><h3>Tesla Robotaxi Fleet Owners</h3>
-      <p>Learn from each other how to build and operate a fleet of Tesla robotaxis.</p><span class="go">Join on X →</span></a>
-    <a class="link-card" href="https://www.youtube.com/@teslatomars" target="_blank" rel="noopener">
-      <div class="k">Podcast · YouTube</div><h3>Tesla to Mars</h3>
-      <p>The companion show. Start with episode #39 on financing fleets.</p><span class="go">Watch on YouTube →</span></a>
-  </div>
-  <p style="margin-top:20px;font-size:14px;color:var(--muted)">Starter episode: <a href="https://youtu.be/2GpLG7RqqTk" target="_blank" rel="noopener" style="color:var(--silver)">#39 — Financing fleets</a></p>
-</div></section>
+<section class="snap join" id="join">
+  <div class="kicker fade">Join the list</div>
+  <h2 class="fade">Be <span class="gold">first</span> in line.</h2>
+  <p class="sub fade">Where you'd operate, how many cars, and when. Two minutes.</p>
+  <div class="formbox"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdklaaM8AmxVCLVMfKgcd-y-hM-APU7JGkHle2SePnujAr1DA/viewform?embedded=true" title="Fleet owner sign-up form" loading="lazy">Loading…</iframe></div>
+  <p class="small">Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdklaaM8AmxVCLVMfKgcd-y-hM-APU7JGkHle2SePnujAr1DA/viewform" target="_blank" rel="noopener">Open it in a new tab</a></p>
+</section>
 
-<footer><div class="wrap">
-  <div class="privacy">
-    <span class="tag">Placeholder · review for GDPR</span>
-    <p><strong style="color:var(--silver)">Privacy.</strong> We use your details only to connect fleet owners and keep you informed about the community. Your data is never sold. Any information shared with third parties such as Tesla is aggregated and anonymous. You can unsubscribe or ask us to delete your data at any time.</p>
-  </div>
-  <div class="foot">
-    <span>© 2026 Tesla Robotaxi Fleet Owners · An independent community, not affiliated with or endorsed by Tesla, Inc.</span>
-    <span><a href="https://x.com/fminderop" target="_blank" rel="noopener">@fminderop</a></span>
-  </div>
-</div></footer>
+<footer>
+  <div class="pv"><span class="tag">Placeholder · review for GDPR</span>We use your details only to connect fleet owners and keep you informed. Your data is never sold; anything shared with third parties such as Tesla is aggregated and anonymous. Unsubscribe or request deletion anytime.</div>
+  © 2026 Tesla Robotaxi Fleet Owners · Independent community, not affiliated with Tesla, Inc.
+</footer>
 
-
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>
