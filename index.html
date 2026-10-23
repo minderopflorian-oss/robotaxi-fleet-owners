@@ -60,7 +60,7 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
 .fade{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease}
 .fade.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-@media(max-width:760px){nav{padding:18px 20px}nav .links a:not(.cta){display:none}.three{grid-template-columns:1fr;gap:36px;margin-top:48px}.three div{border-left:0;border-top:1px solid var(--line);padding:24px 8px 0}.stats{gap:36px}.pill{min-width:0;width:100%;max-width:320px}}
+@media(max-width:760px){#cyberfund .topics{grid-template-columns:1fr!important}nav{padding:18px 20px}nav .links a:not(.cta){display:none}.three{grid-template-columns:1fr;gap:36px;margin-top:48px}.three div{border-left:0;border-top:1px solid var(--line);padding:24px 8px 0}.stats{gap:36px}.pill{min-width:0;width:100%;max-width:320px}}
 .topics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:56px;max-width:1040px;width:100%;text-align:left}
 .topics div{background:#f5f5f3;padding:26px 24px}.topics h3{font-size:19px;font-weight:400;margin-bottom:6px}.topics p{font-size:14px;color:#666;line-height:1.5}
 .faq{max-width:760px;width:100%;margin-top:48px;text-align:left}.faq details{border-top:1px solid #222;padding:18px 4px}.faq details:last-child{border-bottom:1px solid #222}
@@ -82,7 +82,7 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
 <body>
 <nav>
   <a class="brand" href="#top">Robotaxi <b>Fleet</b> Owners</a>
-  <div class="links"><a href="#why">Community</a><a href="#figure">Topics</a><a href="#fund">Funding</a><a href="#bot">Bot</a><a href="#review">Review</a><a href="#europe">Europe</a><a href="#semi">Semi</a><a href="#energy">Energy</a><a href="#faq">FAQ</a><a href="#watch">Watch</a><a href="https://x.com/intent/post?text=I%27d%20love%20to%20be%20a%20guest%20on%20the%20Tesla%20to%20Mars%20podcast%20%F0%9F%8E%99%EF%B8%8F%F0%9F%9A%80%20Here%27s%20my%20robotaxi%20fleet%20story%3A%20%40fminderop%20%40KRoelandschap" target="_blank" rel="noopener">Podcast guest</a><a class="cta" href="https://x.com/intent/post?text=I%27m%20joining%20the%20Tesla%20Robotaxi%20Fleet%20Owners%20community%20%F0%9F%9A%95%20Future%20fleet%20owners%2C%20come%20along%21%20%40fminderop%20https%3A%2F%2Fx.com%2Fi%2Fcommunities%2F1912893645050511710" target="_blank" rel="noopener" style="color:var(--gold)">Join</a></div>
+  <div class="links"><a href="#why">Community</a><a href="#figure">Topics</a><a href="#fund">Funding</a><a href="#cyberfund">CyberFund</a><a href="#bot">Bot</a><a href="#review">Review</a><a href="#europe">Europe</a><a href="#semi">Semi</a><a href="#energy">Energy</a><a href="#faq">FAQ</a><a href="#watch">Watch</a><a href="https://x.com/intent/post?text=I%27d%20love%20to%20be%20a%20guest%20on%20the%20Tesla%20to%20Mars%20podcast%20%F0%9F%8E%99%EF%B8%8F%F0%9F%9A%80%20Here%27s%20my%20robotaxi%20fleet%20story%3A%20%40fminderop%20%40KRoelandschap" target="_blank" rel="noopener">Podcast guest</a><a class="cta" href="https://x.com/intent/post?text=I%27m%20joining%20the%20Tesla%20Robotaxi%20Fleet%20Owners%20community%20%F0%9F%9A%95%20Future%20fleet%20owners%2C%20come%20along%21%20%40fminderop%20https%3A%2F%2Fx.com%2Fi%2Fcommunities%2F1912893645050511710" target="_blank" rel="noopener" style="color:var(--gold)">Join</a></div>
 </nav>
 
 <section class="snap hero" id="top">
@@ -148,6 +148,21 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   </div>
   <p class="src fade" style="max-width:700px">Not financial advice. This is general information shared by an independent community. Check your own situation with a qualified adviser, lender or accountant before you commit.</p>
   <div class="btns fade"><a class="pill g" href="https://x.com/intent/post?text=How%20I%27d%20fund%20my%20robotaxi%20fleet%20%F0%9F%9A%95%F0%9F%92%B0%20Route%3A%20%E2%80%A6%20%C2%B7%20Cars%20to%20start%3A%20%E2%80%A6%20%C2%B7%20Biggest%20unknown%3A%20%E2%80%A6%20%40fminderop%20%23RobotaxiFleetOwners%20https%3A//x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Share how you'd fund your fleet</a><a class="pill o" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Discuss in the X Community</a></div>
+</section>
+
+<section class="snap auto" id="cyberfund" style="background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(212,175,106,.18),transparent 70%),#000">
+  <div class="kicker fade">An idea in development</div>
+  <h2 class="fade">The <span class="gold">CyberFund</span>.</h2>
+  <p class="sub fade" style="margin-left:auto;margin-right:auto">Co-own a robotaxi fleet without running it yourself. The CyberFund is a pooled fund that would buy and operate robotaxis, with fleet operators ("shepherds") running the cars day to day.</p>
+  <div class="topics fade" style="background:#222;grid-template-columns:repeat(2,1fr);max-width:900px"><div style="background:#0b0b0b"><div class="d" style="font-size:12px;letter-spacing:.3em;color:var(--gold);font-weight:500;margin-bottom:8px">POOL</div><h3>A shared fund</h3><p style="color:#9a9a9a">Many people put money into one fund instead of each buying and running their own car.</p></div><div style="background:#0b0b0b"><div class="d" style="font-size:12px;letter-spacing:.3em;color:var(--gold);font-weight:500;margin-bottom:8px">BUY</div><h3>The fund buys robotaxis</h3><p style="color:#9a9a9a">The fund owns a fleet, so you co-own part of it without running a car yourself.</p></div><div style="background:#0b0b0b"><div class="d" style="font-size:12px;letter-spacing:.3em;color:var(--gold);font-weight:500;margin-bottom:8px">OPERATE</div><h3>Shepherds run the cars</h3><p style="color:#9a9a9a">Local fleet operators, called shepherds, handle charging, cleaning and keeping the cars on the road.</p></div><div style="background:#0b0b0b"><div class="d" style="font-size:12px;letter-spacing:.3em;color:var(--gold);font-weight:500;margin-bottom:8px">SHARE</div><h3>Co-own the future</h3><p style="color:#9a9a9a">Cities, investors and communities could co-own autonomous fleets together.</p></div></div>
+  <div class="faq fade" style="max-width:760px">
+    <details open><summary>Why a fund?</summary><p>Robotaxis could flip how car value works: instead of only losing value, a car that earns money while it drives can stay productive for years. A fund lets more people take part, and spreads the work across experienced operators.</p></details>
+    <details><summary>Where does the idea come from?</summary><p>From Tesla to Mars episode #39, a deep dive with Michiel, a former MisterGreen executive and financial architect behind early FSD funding strategies. It covers how MisterGreen financed 5,000+ Teslas with FSD, the economics of leasing FSD, and a new class of investors and shepherds.</p></details>
+    <details><summary>Is it available?</summary><p>Not yet. Our team is still developing the idea. There are no returns, fees, minimums or launch dates yet.</p></details>
+  </div>
+  <div class="btns fade"><a class="pill g" href="#contact" data-topic="CyberFund interest">Join the CyberFund interest list</a><a class="pill o" href="https://youtu.be/2GpLG7RqqTk" target="_blank" rel="noopener">Watch the episode</a></div>
+  <p class="small">or email <a href="mailto:florianminderop@mail.grokbot.com">florianminderop@mail.grokbot.com</a> · <a href="https://x.com/fminderop" target="_blank" rel="noopener">DM @fminderop</a></p>
+  <p class="src fade" style="max-width:700px">The CyberFund is not yet available. Registering interest is not an investment and no money is requested. Any future offer will only be made with the required licences and a prospectus or information document. Independent, not affiliated with Tesla, Inc.</p>
 </section>
 
 <section class="snap white auto" id="bot">
@@ -310,7 +325,7 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   <form id="cform" novalidate>
     <label for="cf-name">Name</label><input id="cf-name" name="name" required autocomplete="name">
     <label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required autocomplete="email">
-    <label for="cf-topic">Topic</label><select id="cf-topic" name="topic"><option>Funding call</option><option>Fleet funding newsletter</option><option>Fleet plan review</option><option>Fleet Pro founding seat</option><option>Semi as a Service</option><option>Energy as a Service</option><option>Partnership</option></select>
+    <label for="cf-topic">Topic</label><select id="cf-topic" name="topic"><option>Funding call</option><option>Fleet funding newsletter</option><option>Fleet plan review</option><option>Fleet Pro founding seat</option><option>Semi as a Service</option><option>Energy as a Service</option><option>Partnership</option><option>CyberFund interest</option></select>
     <label for="cf-when">Preferred day/time (optional)</label><input id="cf-when" name="preferred_time" placeholder="e.g. Tue or Thu afternoon">
     <label for="cf-msg">Message (optional)</label><textarea id="cf-msg" name="message" rows="4" placeholder="City, number of vehicles, timing..."></textarea>
     <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
