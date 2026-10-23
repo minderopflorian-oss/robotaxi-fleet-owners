@@ -69,6 +69,14 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
 .auto{min-height:auto;padding-top:120px;padding-bottom:120px}
 .eu .src a{color:var(--gold2);border-bottom:1px solid var(--line)}
 @media(max-width:760px){#energy .topics{grid-template-columns:1fr!important}#semi .topics{grid-template-columns:1fr!important}.ivs{grid-template-columns:1fr!important}#fund .faq{grid-template-columns:1fr!important}.topics{grid-template-columns:1fr}}
+#contact{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.78);padding:16px}
+#contact.open{display:flex}
+#contact .box{background:#0b0b0b;border:1px solid var(--gold);border-radius:20px;width:100%;max-width:520px;max-height:92vh;overflow:auto;padding:28px 22px;text-align:left;position:relative}
+#contact h3{font-weight:300;font-size:26px;margin-bottom:6px}#contact label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--m);margin:16px 0 6px}
+#contact input,#contact select,#contact textarea{width:100%;background:#000;border:1px solid #333;border-radius:10px;color:#fff;font:inherit;font-size:16px;padding:12px}
+#contact input:focus,#contact select:focus,#contact textarea:focus{outline:none;border-color:var(--gold)}
+#contact .x{position:absolute;top:12px;right:16px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}
+#contact button.pill{border:0;cursor:pointer;margin-top:22px;width:100%}#contact .msg{margin-top:14px;font-size:14px}#contact .hp{position:absolute;left:-9999px}
 </style>
 </head>
 <body>
@@ -134,8 +142,8 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   </div>
   <div class="fade" style="max-width:760px;width:100%;margin:64px auto 0;padding:36px 28px;border:1px solid var(--gold);border-radius:20px;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(212,175,106,.14),transparent 70%)">
     <h3 style="font-weight:300;font-size:clamp(22px,3vw,30px);line-height:1.3">Want personal advice on funding your fleet? Florian (founder of Mister Green, EV leasing) can help.</h3>
-    <div class="btns"><a class="pill g" href="mailto:minderopflorian@gmail.com?subject=Fleet%20funding%20call%20request&body=Hi%20Florian%2C%0A%0AI%27d%20like%20a%20call%20about%20funding%20my%20fleet.%0A%0AName%3A%0ACity%3A%0ANumber%20of%20cars%3A%0ATiming%3A%0APreferred%20days%2Ftimes%3A%0A">Book a funding call</a><a class="pill o" href="mailto:minderopflorian@gmail.com?subject=Subscribe%3A%20fleet%20funding%20newsletter&body=Please%20add%20me%20to%20the%20fleet%20funding%20updates.%20Name%20%2F%20city%20%2F%20planned%20fleet%20size%3A">Join the fleet funding newsletter</a></div>
-    <p class="small"><a href="https://x.com/fminderop" target="_blank" rel="noopener">Or DM @fminderop on X</a></p>
+    <div class="btns"><a class="pill g" href="#contact" data-topic="Funding call">Book a funding call</a><a class="pill o" href="#contact" data-topic="Fleet funding newsletter">Join the fleet funding newsletter</a></div>
+    <p class="small"><a href="https://x.com/fminderop" target="_blank" rel="noopener">Or DM @fminderop on X</a></p><span style="display:block;margin-top:10px;font-size:12px;color:#888">or email <a href="mailto:minderopflorian@gmail.com" style="color:inherit;border-bottom:1px solid var(--line)">minderopflorian@gmail.com</a></span>
     <p class="src" style="margin-top:10px">Emails are only used to reply and send funding updates.</p>
   </div>
   <p class="src fade" style="max-width:700px">Not financial advice. This is general information shared by an independent community. Check your own situation with a qualified adviser, lender or accountant before you commit.</p>
@@ -166,7 +174,8 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   <p class="fade" style="margin-top:20px;font-size:18px;color:#fff">Your robotaxi fleet plan, stress-tested in 60 minutes.</p>
   <p class="fade" style="margin-top:18px"><span class="gold" style="font-size:44px;font-weight:200">€249</span> <span style="color:#9a9a9a;font-size:14px">incl. VAT · founding price, first 10 reviews</span></p>
   <p class="small fade" style="margin-top:6px">Later €349 · €199 for founding Fleet Pro members</p>
-  <div class="btns fade"><a class="pill g" href="mailto:minderopflorian@gmail.com?subject=Fleet%20plan%20review%20request&body=Hi%20Florian%2C%0A%0AI%27d%20like%20my%20fleet%20plan%20reviewed.%0A%0ACity%3A%0ANumber%20of%20vehicles%3A%0AStart%20date%3A%0AFunding%20route%3A%0ALink%20to%20my%20plan%20%28or%20attach%20it%29%3A%0A">Request a fleet plan review</a></div>
+  <div class="btns fade"><a class="pill g" href="#contact" data-topic="Fleet plan review">Request a fleet plan review</a></div>
+  <p class="small">or email <a href="mailto:minderopflorian@gmail.com">minderopflorian@gmail.com</a> · <a href="https://x.com/fminderop" target="_blank" rel="noopener">DM @fminderop</a></p>
   <p class="small fade">Online payment coming soon</p>
   <div class="fade" style="max-width:760px;width:100%;margin:48px auto 0;padding:36px 28px;border:1px solid var(--gold);border-radius:20px;text-align:left">
     <div class="d" style="font-size:12px;letter-spacing:.3em;color:var(--gold);font-weight:500">FLEET PRO · FOUNDING MEMBERS</div>
@@ -174,7 +183,8 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
     <p style="color:#c9c9c9;margin-bottom:14px">The numbers behind a robotaxi fleet, every month.</p>
     <p style="margin-bottom:16px"><span class="gold" style="font-size:40px;font-weight:200">€19</span><span style="color:#c9c9c9">/mo</span> <span style="color:#777;text-decoration:line-through;margin-left:6px">€29/mo</span> <span style="color:#9a9a9a;margin:0 8px">or</span><span class="gold" style="font-size:28px;font-weight:200">€190</span><span style="color:#c9c9c9">/yr</span> <span style="color:#777;text-decoration:line-through;margin-left:6px">€290/yr</span><br><span style="font-size:13px;color:#9a9a9a">incl. VAT · founding price for the first 100 members, locked for life</span></p>
     <ul style="margin-left:18px;color:#c9c9c9;line-height:1.9;font-size:15px"><li>Monthly fleet-economics report</li><li>Calculators and templates</li><li>Monthly live Q&amp;A call</li><li>Help setting up the Fleet Advisor bot</li></ul>
-    <div class="btns" style="justify-content:flex-start"><a class="pill g" href="mailto:minderopflorian@gmail.com?subject=Fleet%20Pro%20waitlist&body=Hi%20Florian%2C%0A%0APlease%20add%20me%20to%20the%20Fleet%20Pro%20waitlist.%0A%0AName%3A%0ACity%3A%0APlanned%20fleet%20size%3A%0A">Reserve a founding seat</a></div>
+    <div class="btns" style="justify-content:flex-start"><a class="pill g" href="#contact" data-topic="Fleet Pro founding seat">Reserve a founding seat</a></div>
+  <p class="small">or email <a href="mailto:minderopflorian@gmail.com">minderopflorian@gmail.com</a> · <a href="https://x.com/fminderop" target="_blank" rel="noopener">DM @fminderop</a></p>
     <p class="small">Online payment coming soon. The community stays free.</p>
   </div>
   <p class="src fade" style="max-width:700px">Independent, not affiliated with Tesla, Inc. Not financial advice: reviews cover business planning, not advice on loans, leases or insurance products. Emails are only used to reply.<br>Refunds: Fleet Pro has a 14-day refund and you can cancel anytime. Reviews are fully refunded if cancelled 48 hours or more before the call.</p>
@@ -212,7 +222,8 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
     <div style="background:#0b0b0b"><h3>Residual value</h3><p style="color:#9a9a9a">What an electric truck is worth after years of pay-per-mile use, and who carries that risk.</p></div>
   </div>
   <a class="fade" href="https://youtu.be/7LOjDZOX6nE" target="_blank" rel="noopener" style="display:block;max-width:640px;width:100%;margin:72px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:left;background:#0b0b0b"><img src="https://i.ytimg.com/vi/7LOjDZOX6nE/hqdefault.jpg" alt="TESLA'S EUROPE TAKEOVER interview thumbnail" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover"><div style="padding:16px 18px"><div style="font-size:16px;line-height:1.4">🚨 TESLA'S EUROPE TAKEOVER: FSD, CYBERCAB &amp; ROBOTRUCKS | Over The Horizon</div><div class="src" style="margin-top:6px">17 Oct 2026 · Florian explains Semi as a Service with Royden D'Souza</div></div></a>
-  <div class="btns fade"><a class="pill g" href="mailto:minderopflorian@gmail.com?subject=Semi%20as%20a%20Service%20interest&body=Hi%20Florian%2C%0A%0AI%27m%20interested%20in%20Semi%20as%20a%20Service.%0A%0ACompany%3A%0ACountry%3A%0ANumber%20of%20trucks%3A%0ATypical%20daily%20km%20per%20truck%3A%0A">Interested in Semi as a Service? Get in touch</a><a class="pill o" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Discuss in the community</a></div>
+  <div class="btns fade"><a class="pill g" href="#contact" data-topic="Semi as a Service">Interested in Semi as a Service? Get in touch</a><a class="pill o" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Discuss in the community</a></div>
+  <p class="small">or email <a href="mailto:minderopflorian@gmail.com">minderopflorian@gmail.com</a> · <a href="https://x.com/fminderop" target="_blank" rel="noopener">DM @fminderop</a></p>
   <p class="src fade">Emails are only used to reply about Semi as a Service.</p>
 </section>
 
@@ -231,7 +242,8 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   </div>
   <h3 class="fade" style="font-weight:200;font-size:clamp(26px,3.6vw,40px);margin-top:72px">Open questions</h3>
   <div class="topics fade" style="max-width:1040px"><div style="background:#f5f5f3"><h3>Grid connection waits</h3><p style="color:#666">How long until a depot gets the capacity it needs?</p></div><div style="background:#f5f5f3"><h3>Permits</h3><p style="color:#666">Building, fire safety and local rules for batteries and chargers.</p></div><div style="background:#f5f5f3"><h3>Contract length</h3><p style="color:#666">How many years would a fee-based deal need to run?</p></div><div style="background:#f5f5f3"><h3>Who owns the hardware</h3><p style="color:#666">The provider, the fleet owner, or a transfer at the end?</p></div><div style="background:#f5f5f3"><h3>Energy prices</h3><p style="color:#666">How volatile prices change the business case. No pricing exists yet.</p></div></div>
-  <div class="btns fade"><a class="pill g" href="mailto:minderopflorian@gmail.com?subject=Energy%20as%20a%20Service%20interest&body=Hi%20Florian%2C%0A%0AI%27m%20interested%20in%20Energy%20as%20a%20Service.%0A%0ACompany%20%2F%20fleet%3A%0ACountry%3A%0ANumber%20of%20vehicles%3A%0ADepot%20location%3A%0ACurrent%20grid%20connection%3A%0A">Interested in Energy as a Service? Get in touch</a><a class="pill o" style="border-color:#111;color:#111" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Discuss in the community</a></div>
+  <div class="btns fade"><a class="pill g" href="#contact" data-topic="Energy as a Service">Interested in Energy as a Service? Get in touch</a><a class="pill o" style="border-color:#111;color:#111" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Discuss in the community</a></div>
+  <p class="small">or email <a href="mailto:minderopflorian@gmail.com">minderopflorian@gmail.com</a> · <a href="https://x.com/fminderop" target="_blank" rel="noopener">DM @fminderop</a></p>
   <p class="src fade" style="color:#666">Emails are only used to reply about Energy as a Service.</p>
 </section>
 
@@ -288,10 +300,26 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   <div class="three fade"><div><div class="d">COMMUNITY</div><h3>~705 members on X</h3><p>The Tesla Robotaxi Fleet Owners community, growing toward 1,000.</p></div><div><div class="d">SITE</div><h3>cybercabfleetowners.com</h3><p>Guides on funding, Europe, Semi and Energy as a Service.</p></div><div><div class="d">INTERVIEWS</div><h3>Podcast &amp; video</h3><p>The Tesla to Mars podcast and Florian's interviews with <a href="https://x.com/roydendsouza" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line)">@roydendsouza</a> on Over The Horizon.</p></div></div>
   <div class="topics fade" style="max-width:1040px"><div><h3>Newsletter main slot</h3><p><span style="font-size:28px;color:#111;font-weight:200">€150</span> per issue</p></div><div><h3>Site sponsor strip</h3><p><span style="font-size:28px;color:#111;font-weight:200">€250</span> per month · max 2 sponsors</p></div><div><h3>Founding sponsor package</h3><p><span style="font-size:28px;color:#111;font-weight:200">€900</span> per quarter · first 2 sponsors</p></div></div>
   <p class="small fade" style="color:#666">All partner prices excl. VAT.</p>
-  <div class="btns fade"><a class="pill g" href="mailto:minderopflorian@gmail.com?subject=Partnership%20enquiry&body=Hi%20Florian%2C%0A%0AWe%27d%20like%20to%20talk%20about%20a%20partnership.%0A%0ACompany%3A%0ACategory%20%28insurance%2C%20charging%2C%20energy%2C%20fleet%20services%2C%20other%29%3A%0AWhat%20you%20have%20in%20mind%3A%0A">Partnership enquiry</a></div>
+  <div class="btns fade"><a class="pill g" href="#contact" data-topic="Partnership">Partnership enquiry</a></div>
+  <p class="small">or email <a href="mailto:minderopflorian@gmail.com">minderopflorian@gmail.com</a> · <a href="https://x.com/fminderop" target="_blank" rel="noopener">DM @fminderop</a></p>
   <p class="src fade" style="color:#666">Partners are clearly labelled. The community stays independent and is not affiliated with Tesla, Inc.</p>
 </section>
 
+<div id="contact" role="dialog" aria-modal="true" aria-labelledby="ctitle"><div class="box">
+  <button class="x" type="button" aria-label="Close">×</button>
+  <h3 id="ctitle">Get in touch</h3><p class="small" style="margin-top:0">Florian replies by email, usually within a few days.</p>
+  <form id="cform" novalidate>
+    <label for="cf-name">Name</label><input id="cf-name" name="name" required autocomplete="name">
+    <label for="cf-email">Email</label><input id="cf-email" name="email" type="email" required autocomplete="email">
+    <label for="cf-topic">Topic</label><select id="cf-topic" name="topic"><option>Funding call</option><option>Fleet funding newsletter</option><option>Fleet plan review</option><option>Fleet Pro founding seat</option><option>Semi as a Service</option><option>Energy as a Service</option><option>Partnership</option></select>
+    <label for="cf-when">Preferred day/time (optional)</label><input id="cf-when" name="preferred_time" placeholder="e.g. Tue or Thu afternoon">
+    <label for="cf-msg">Message (optional)</label><textarea id="cf-msg" name="message" rows="4" placeholder="City, number of vehicles, timing..."></textarea>
+    <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="pill g" type="submit">Send request</button>
+    <p class="msg" id="cf-status" role="status"></p>
+  </form>
+  <p class="src" style="margin-top:14px">Privacy: your details are sent by email to Florian (via FormSubmit) and only used to reply and, if you ask, send updates. No tracking. Or email <a href="mailto:minderopflorian@gmail.com" style="color:var(--gold2)">minderopflorian@gmail.com</a> · <a href="https://x.com/fminderop" target="_blank" rel="noopener" style="color:var(--gold2)">DM @fminderop</a></p>
+</div></div>
 <footer>
   <div class="pv">This site collects no personal data and uses no tracking. Joining happens on X, under X's own privacy terms.</div>
   <a href="#partners" style="color:var(--gold2)">Partner with us</a><br>© 2026 Tesla Robotaxi Fleet Owners · Independent community, not affiliated with Tesla, Inc.
@@ -300,6 +328,21 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+<script>
+(()=>{const m=document.getElementById('contact'),f=document.getElementById('cform'),st=document.getElementById('cf-status'),t=document.getElementById('cf-topic');
+const open=tp=>{if(tp)t.value=tp;st.textContent='';m.classList.add('open');setTimeout(()=>document.getElementById('cf-name').focus(),50)};
+const close=()=>m.classList.remove('open');
+document.querySelectorAll('[data-topic]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();open(a.dataset.topic)}));
+m.querySelector('.x').onclick=close;m.addEventListener('click',e=>{if(e.target===m)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+if(location.hash==='#contact')open();
+f.addEventListener('submit',async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));
+if(d._honey)return;if(!d.name||!/^\S+@\S+\.\S+$/.test(d.email)){st.style.color='#e88';st.textContent='Please fill in your name and a valid email.';return}
+const b=f.querySelector('button[type=submit]');b.disabled=true;st.style.color='#aaa';st.textContent='Sending...';
+d._subject='Website request: '+d.topic;d._template='table';d._captcha='false';
+try{const r=await fetch('https://formsubmit.co/ajax/minderopflorian@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));
+if(r.ok&&String(j.success)==='true'){st.style.color='var(--gold2)';st.textContent='Thanks! Your request was sent. Florian will reply by email.';f.reset();t.value=d.topic}else throw 0}
+catch(_){st.style.color='#e88';st.innerHTML='Sorry, that didn\'t go through. Please email <a href="mailto:minderopflorian@gmail.com" style="color:var(--gold2)">minderopflorian@gmail.com</a> or DM @fminderop.'}b.disabled=false})})();
 </script>
 </body>
 </html>
