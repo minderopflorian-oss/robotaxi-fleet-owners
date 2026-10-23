@@ -341,7 +341,7 @@ if(d._honey)return;if(!d.name||!/^\S+@\S+\.\S+$/.test(d.email)){st.style.color='
 const b=f.querySelector('button[type=submit]');b.disabled=true;st.style.color='#aaa';st.textContent='Sending...';
 d._subject='Website request: '+d.topic;d._template='table';d._captcha='false';
 try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));
-if(r.ok&&String(j.success)==='true'){st.style.color='var(--gold2)';st.textContent='Thanks! Your request was sent. We'll reply by email.';f.reset();t.value=d.topic}else throw 0}
+if(r.ok&&String(j.success)==='true'){st.style.color='var(--gold2)';st.textContent='Thanks! Your request was sent. We will reply by email.';f.reset();t.value=d.topic}else throw 0}
 catch(_){st.style.color='#e88';st.innerHTML='Sorry, that didn\'t go through. Please email <a href="mailto:florianminderop@mail.grokbot.com" style="color:var(--gold2)">florianminderop@mail.grokbot.com</a> or DM @fminderop.'}b.disabled=false})})();
 </script>
 </body>
