@@ -140,6 +140,11 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
 <section class="snap auto" id="cities">
   <div class="kicker fade">Where the swarm drives</div>
   <h2 class="fade">Share of driverless miles <span class="gold">by city</span>.</h2>
+  <div class="fade" style="max-width:640px;width:100%;margin:32px auto 0">
+    <svg id="cs-map" viewBox="-10 -10 680 370" width="100%" role="img" aria-label="Map of Robotaxi cities in the US"><polygon points="3,15 22,46 9,105 7,127 29,172 48,209 87,238 113,235 154,255 185,255 204,248 226,279 242,287 260,276 280,308 304,330 304,304 333,281 343,277 375,286 394,283 389,270 412,269 437,277 451,272 465,301 475,328 491,340 495,319 488,295 480,263 485,244 512,218 539,200 543,190 539,172 549,153 561,126 584,115 605,109 598,97 603,81 638,66 629,34 614,29 588,63 551,63 530,83 505,87 469,109 456,104 468,91 469,59 444,42 403,17 389,21 334,11 328,7 19,7" fill="#0d0d0d" stroke="#3a3a3a" stroke-width="1.5" stroke-linejoin="round"/><g id="cs-pins"></g></svg>
+    <div style="display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:12px;color:#aaa;margin-top:8px"><span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#fff"/></svg> Driverless (size = share of miles)</span><span><svg width="12" height="12"><circle cx="6" cy="6" r="4.5" fill="none" stroke="#fff" stroke-width="1.5"/></svg> Supervised</span><span><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#d4af6a"/></svg> Upcoming markets</span></div>
+    <!-- Europe map can be added here later (same projection approach, separate svg) -->
+  </div>
   <div class="fade" id="cs-bars" style="max-width:560px;width:100%;margin:32px auto 0;text-align:left"></div>
   <div class="fade" id="cs-tags" style="max-width:560px;width:100%;margin:28px auto 0;text-align:left"></div>
   <p class="src fade" id="cs-src" style="margin-top:18px"></p>
@@ -572,6 +577,12 @@ const st=document.getElementById('mt-strip');if(st){st.insertAdjacentHTML('befor
 <script>
 (async()=>{let d;try{d=await (await fetch('data/cybercab-stats.json',{cache:'no-store'})).json()}catch(e){return}const C=d.city_share,$=i=>document.getElementById(i);if(!C){$('cities').hidden=true;return}
 const U=C.unsupervised.slice().sort((a,b)=>b.pct-a.pct),mx=U[0].pct;
+const G={'Austin, TX':[-97.74,30.27],'Dallas, TX':[-96.8,32.78],'Houston, TX':[-95.37,29.76],'Miami, FL':[-80.19,25.76],'Orlando, FL':[-81.38,28.54],'Tampa, FL':[-82.46,27.95],'San Francisco, CA':[-122.42,37.77],'San Antonio, TX':[-98.49,29.42],'Phoenix, AZ':[-112.07,33.45],'Las Vegas, NV':[-115.14,36.17],'Jacksonville, FL':[-81.66,30.33]},px=c=>[(c[0]+125)*11,(49.5-c[1])*14];let m='';
+const lbl=(n,x,y,dx,anc,col)=>`<text x="${x+dx}" y="${y+(n.startsWith('San A')?20:5)}" fill="${col}" font-size="17" text-anchor="${anc}">${n.split(',')[0]}</text>`;
+C.upcoming.forEach(n=>{if(!G[n])return;const[x,y]=px(G[n]);m+=`<circle cx="${x}" cy="${y}" r="5" fill="#d4af6a"/>`+lbl(n,x,y,n.startsWith('San A')?-6:9,n.startsWith('San A')?'end':'start','#d4af6a')});
+C.supervised.forEach(n=>{if(!G[n])return;const[x,y]=px(G[n]);m+=`<circle cx="${x}" cy="${y}" r="6" fill="none" stroke="#fff" stroke-width="2"/>`+lbl(n,x,y,10,'start','#ddd')});
+U.forEach(c=>{if(!G[c.city])return;const[x,y]=px(G[c.city]),r=4+Math.sqrt(c.pct)*2.2,L={'Austin, TX':[-r-4,'end'],'Dallas, TX':[r+4,'start'],'Houston, TX':[r+4,'start'],'Miami, FL':[-r-4,'end'],'Orlando, FL':[r+4,'start'],'Tampa, FL':[-r-4,'end']}[c.city]||[r+4,'start'];m+=`<circle cx="${x}" cy="${y}" r="${r}" fill="#fff" fill-opacity=".9" stroke="#000" stroke-width="1"/>`+lbl(c.city,x,y,L[0],L[1],'#fff')});
+$('cs-pins').innerHTML=m;
 $('cs-bars').innerHTML=U.map(c=>`<div style="display:grid;grid-template-columns:110px 1fr 44px;align-items:center;gap:10px;margin:10px 0;font-size:14px"><span style="color:#ddd">${c.city}</span><span style="height:12px;background:#1a1a1a;border-radius:6px;overflow:hidden"><span style="display:block;height:100%;width:${c.pct/mx*100}%;background:linear-gradient(90deg,#d4af6a,#f1d9a0);border-radius:6px"></span></span><span class="gold" style="text-align:right">~${c.pct}%</span></div>`).join('');
 const tag=(t,b)=>`<span style="display:inline-block;margin:4px 6px 4px 0;padding:5px 12px;border-radius:999px;font-size:13px;${b}">${t}</span>`,lab=t=>`<div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9a9a9a;margin:10px 0 4px">${t}</div>`;
 $('cs-tags').innerHTML=lab('Supervised')+C.supervised.map(t=>tag(t,'border:1px solid #f1d9a0;color:#f1d9a0')).join('')+lab('Coming soon')+C.upcoming.map(t=>tag(t,'border:1px dashed #666;color:#bbb')).join('');
