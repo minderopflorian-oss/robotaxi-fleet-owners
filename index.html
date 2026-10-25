@@ -121,7 +121,12 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   <div class="fade" style="max-width:760px;width:100%;margin:28px auto 0"><svg id="cc-chart" viewBox="0 0 700 320" width="100%" role="img" aria-label="Line chart of registered Cybercabs in Texas"></svg></div>
   <p class="fade" id="cc-latest" style="margin-top:14px;font-size:17px;color:#fff"></p>
   <div class="fade" id="cc-miles" hidden style="margin-top:28px"><div class="stat"><div class="n" id="cc-miles-n"></div><div class="l">Cumulative autonomous miles</div></div><p class="src" id="cc-miles-d"></p></div>
-  <p class="src fade" style="max-width:700px">Source: public Texas registration data via <a href="https://x.com/joehansen/status/2114242963572232632" target="_blank" rel="noopener" style="color:var(--gold2)">@joehansen</a> (https://x.com/joehansen/status/2114242963572232632). Independent community tracker, not affiliated with Tesla.</p>
+  <h3 class="fade" style="font-weight:200;font-size:clamp(24px,3.4vw,34px);margin-top:72px">Our community is growing</h3>
+  <p class="small fade">Members of the Tesla Cybercab Fleet Owners X Community · bars show new members per day</p>
+  <div class="fade" style="max-width:760px;width:100%;margin:20px auto 0"><svg id="mb-chart" viewBox="0 0 700 280" width="100%" role="img" aria-label="Community members over time"></svg></div>
+  <p class="fade" id="mb-latest" style="margin-top:14px;font-size:17px;color:#fff"></p>
+  <p class="small fade"><a href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Join the community</a></p>
+  <p class="src fade" style="max-width:700px">Cybercab source: public Texas registration data via <a href="https://x.com/joehansen/status/2114242963572232632" target="_blank" rel="noopener" style="color:var(--gold2)">@joehansen</a> (https://x.com/joehansen/status/2114242963572232632). Independent community tracker, not affiliated with Tesla.</p>
 </section>
 
 <section class="snap auto" id="earn">
@@ -462,6 +467,20 @@ document.getElementById('er-how').innerHTML=`How: ${Math.round(perDay).toLocaleS
 const draw=()=>{const n=+sl.value;document.getElementById('er-cars-v').textContent=n;document.getElementById('er-total').textContent=usd(month*n);
 const W=600,H=180,L=8,B=22,bw=(W-L*2)/20;let g='';for(let k=1;k<=20;k++){const h=(k/20)*(H-B-10),x=L+(k-1)*bw;g+=`<rect x="${x+2}" y="${H-B-h}" width="${bw-4}" height="${h}" rx="3" fill="${k<=n?'#d4af6a':'#222'}"/>`;if(k===1||k===10||k===20)g+=`<text x="${x+bw/2}" y="${H-6}" fill="#777" font-size="12" text-anchor="middle">${k}</text>`}svg.innerHTML=g};
 sl.addEventListener('input',draw);draw()})();
+</script>
+<script>
+(async()=>{const svg=document.getElementById('mb-chart');let d;try{d=await (await fetch('data/cybercab-stats.json',{cache:'no-store'})).json()}catch(e){return}
+const P=(d.members||[]).map(x=>({t:Date.parse(x.date),v:x.count})).sort((a,b)=>a.t-b.t);if(!P.length){svg.parentElement.hidden=true;return}
+const W=700,H=280,L=56,R=24,T=24,B=40,t0=P[0].t,t1=P[P.length-1].t||t0+1;
+const vmin=Math.floor((Math.min(...P.map(p=>p.v))-10)/10)*10,vmax=Math.ceil((Math.max(...P.map(p=>p.v))+10)/10)*10;
+const x=t=>L+(t-t0)/((t1-t0)||1)*(W-L-R),y=v=>T+(1-(v-vmin)/(vmax-vmin))*(H-T-B);
+const D=P.map((p,k)=>k?Math.max(0,p.v-P[k-1].v):0),dmax=Math.max(1,...D),bh=70,bw=Math.min(30,(W-L-R)/P.length*.5);
+const f=t=>new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short'});let g='';
+const st=Math.max(5,Math.ceil((vmax-vmin)/4/5)*5);for(let v=vmin;v<=vmax;v+=st)g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#222"/><text x="${L-10}" y="${y(v)+4}" fill="#777" font-size="12" text-anchor="end">${v}</text>`;
+P.forEach((p,k)=>{if(k&&D[k]>0){const h=D[k]/dmax*bh;g+=`<rect x="${x(p.t)-bw/2}" y="${H-B-h}" width="${bw}" height="${h}" rx="3" fill="rgba(212,175,106,.35)"/><text x="${x(p.t)}" y="${H-B-h-5}" fill="#aaa" font-size="11" text-anchor="middle">+${D[k]}</text>`}});
+g+=`<polyline points="${P.map(p=>x(p.t)+','+y(p.v)).join(' ')}" fill="none" stroke="#f1d9a0" stroke-width="3" stroke-linejoin="round"/>`;
+P.forEach((p,k)=>{g+=`<circle cx="${x(p.t)}" cy="${y(p.v)}" r="4" fill="#000" stroke="#f1d9a0" stroke-width="2"/>`;if(k===0||k===P.length-1)g+=`<text x="${x(p.t)}" y="${y(p.v)-12}" fill="#fff" font-size="14" text-anchor="${k?'end':'start'}">${p.v}</text>`;g+=`<text x="${x(p.t)}" y="${H-B+20}" fill="#777" font-size="11" text-anchor="middle">${f(p.t)}</text>`});
+svg.innerHTML=g;const l=P[P.length-1];document.getElementById('mb-latest').innerHTML=`<span class="gold" style="font-size:28px;font-weight:300">${l.v}</span> members on ${new Date(l.t).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`})();
 </script>
 </body>
 </html>
