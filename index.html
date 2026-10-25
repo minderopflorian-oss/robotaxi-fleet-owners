@@ -84,7 +84,7 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
 <body>
 <nav>
   <a class="brand" href="#top">Cybercab <b>Fleet</b> Owners</a>
-  <div class="links"><a href="#swarm">Swarm</a><a href="#why">Community</a><a href="#figure">Topics</a><a href="#fund">Funding</a><a href="#cyberfund">CyberFund</a><a href="#stake">Own a stake</a><a href="#masterplan">Masterplan</a><a href="#bot">Bot</a><a href="#review">Review</a><a href="#europe">Europe</a><a href="#semi">Semi</a><a href="#energy">Energy</a><a href="#faq">FAQ</a><a href="#watch">Watch</a><a href="https://x.com/intent/post?text=I%27d%20love%20to%20be%20a%20guest%20on%20the%20Tesla%20to%20Mars%20podcast%20%F0%9F%8E%99%EF%B8%8F%F0%9F%9A%80%20Here%27s%20my%20robotaxi%20fleet%20story%3A%20%40fminderop%20%40KRoelandschap" target="_blank" rel="noopener">Podcast guest</a><a class="cta" href="https://x.com/intent/post?text=I%27m%20joining%20the%20Tesla%20Cybercab%20Fleet%20Owners%20community%20%F0%9F%9A%95%20Future%20fleet%20owners%2C%20come%20along%21%20%40fminderop%20https%3A%2F%2Fx.com%2Fi%2Fcommunities%2F1912893645050511710" target="_blank" rel="noopener" style="color:var(--gold)">Join</a></div>
+  <div class="links"><a href="#swarm">Swarm</a><a href="#miles">Miles</a><a href="#why">Community</a><a href="#figure">Topics</a><a href="#fund">Funding</a><a href="#cyberfund">CyberFund</a><a href="#stake">Own a stake</a><a href="#masterplan">Masterplan</a><a href="#bot">Bot</a><a href="#review">Review</a><a href="#europe">Europe</a><a href="#semi">Semi</a><a href="#energy">Energy</a><a href="#faq">FAQ</a><a href="#watch">Watch</a><a href="https://x.com/intent/post?text=I%27d%20love%20to%20be%20a%20guest%20on%20the%20Tesla%20to%20Mars%20podcast%20%F0%9F%8E%99%EF%B8%8F%F0%9F%9A%80%20Here%27s%20my%20robotaxi%20fleet%20story%3A%20%40fminderop%20%40KRoelandschap" target="_blank" rel="noopener">Podcast guest</a><a class="cta" href="https://x.com/intent/post?text=I%27m%20joining%20the%20Tesla%20Cybercab%20Fleet%20Owners%20community%20%F0%9F%9A%95%20Future%20fleet%20owners%2C%20come%20along%21%20%40fminderop%20https%3A%2F%2Fx.com%2Fi%2Fcommunities%2F1912893645050511710" target="_blank" rel="noopener" style="color:var(--gold)">Join</a></div>
 </nav>
 
 <section class="snap hero" id="top">
@@ -149,6 +149,26 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   <p class="fade" style="max-width:640px;margin:20px auto 0;padding:14px 18px;border:1px solid #444;border-radius:12px;font-size:13px;line-height:1.6;color:#ccc">Illustration of gross fare revenue only, based on public Tesla data and fares. Not a return, profit or offer. Excludes vehicle cost, charging, insurance, cleaning, Tesla's platform share and taxes. Actual results will differ. Nothing is offered or sold here.</p>
 </section>
 
+<section class="snap auto" id="miles">
+  <div class="kicker fade">Miles tracker</div>
+  <h2 class="fade">Miles driven by <span class="gold">the software</span>.</h2>
+  <p class="small fade">Live counters, ticking at Tesla's published fleet pace.</p>
+  <div class="stats fade" style="margin-top:40px;gap:48px">
+    <div class="stat"><div class="n gold" id="mt-sup">–</div><div class="l">FSD (Supervised) miles</div><div class="src" id="mt-supc" style="margin-top:6px"></div></div>
+    <div class="stat"><div class="n gold" id="mt-uns">–</div><div class="l">FSD (Unsupervised) Robotaxi miles</div><div class="src" id="mt-unsc" style="margin-top:6px"></div></div>
+  </div>
+  <div class="fade" style="max-width:760px;width:100%;margin:44px auto 0">
+    <p class="small" style="margin-bottom:6px">Robotaxi (unsupervised) miles: history and forecast to 31 Dec</p>
+    <svg id="mt-chu" viewBox="0 0 700 300" width="100%" role="img" aria-label="Unsupervised miles history and forecast"></svg>
+    <p class="small" style="margin:26px 0 6px">FSD (Supervised) miles: history and forecast to 31 Dec</p>
+    <svg id="mt-chs" viewBox="0 0 700 300" width="100%" role="img" aria-label="Supervised miles history and forecast"></svg>
+    <p class="src" id="mt-fnote" style="margin-top:8px"></p>
+  </div>
+  <div class="fade" style="max-width:640px;width:100%;margin:36px auto 0;overflow-x:auto">
+    <table id="mt-tab" style="width:100%;border-collapse:collapse;font-size:14px;color:#ddd;text-align:right"></table>
+  </div>
+  <p class="src fade" style="margin-top:18px">Source: Tesla (<a href="https://www.tesla.com/fsd/safety" target="_blank" rel="noopener" style="color:var(--gold2)">FSD safety report</a>, <a href="https://www.tesla.com/robotaxi/safety" target="_blank" rel="noopener" style="color:var(--gold2)">Robotaxi safety report</a>). Not affiliated with Tesla. Forecasts are illustrations, not predictions.</p>
+</section>
 <section class="snap" id="why">
   <div class="kicker fade">The community</div>
   <h2 class="fade">700+ future<br>fleet owners.</h2>
@@ -500,6 +520,30 @@ if(fleet)items.push([Math.round(fleet.count/fleet.total_robotaxis*100)+'%','Cybe
 if(!items.length)return;
 el.innerHTML=items.map(([v,l,s])=>`<div class="stat"><div class="n gold">${v}</div><div class="l">${l}</div>${s?`<div class="src" style="margin-top:4px">${s}</div>`:''}</div>`).join('');
 el.hidden=false;document.getElementById('mt-note').hidden=false})();
+</script>
+<script>
+(async()=>{let d;try{d=await (await fetch('data/cybercab-stats.json',{cache:'no-store'})).json()}catch(e){return}const K=d.tracker;if(!K)return;
+const S=K.supervised,U=K.unsupervised,ts=Date.parse(S.ts),tu=Date.parse(U.ts),$=i=>document.getElementById(i),n=v=>Math.round(v).toLocaleString('en-US');
+const tick=()=>{const now=Date.now(),a=S.miles+S.rate_s*(now-ts)/1e3,c=S.city+S.city_rate_s*(now-ts)/1e3;$('mt-sup').textContent=n(a);$('mt-supc').textContent=`City ${n(c)} · Highway ${n(a-c)}`;$('mt-uns').textContent=n(U.miles+U.rate_s*(now-tu)/1e3);$('mt-unsc').textContent='Driverless, all Robotaxi cities'};tick();setInterval(tick,100);
+const day=864e5,tE=Date.parse('2026-12-31'),f=t=>new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+const ab=v=>v>=1e9?(v/1e9).toFixed(v>=1e10?1:2)+'B':v>=1e6?(v/1e6).toFixed(v>=1e7?0:1)+'M':Math.round(v/1e3)+'K';
+function chart(svg,H0,last,fc,lab,v0){const W=700,H=300,L=62,R=20,T=30,B=40,P=H0.map(p=>({t:Date.parse(p.date),v:p.miles}));const t0=Math.min(P[0].t,last.t-60*day),t1=tE;
+const F=[];for(let t=last.t;t<=tE+1;t+=day)F.push({t,v:fc(t)});const fe=F[F.length-1];
+const hi=Math.max(fe.v,...P.map(p=>p.v)),vmin=v0||0,vmax=vmin+(hi-vmin)*1.08;const x=t=>L+(t-t0)/(t1-t0)*(W-L-R),y=v=>T+(1-(v-vmin)/(vmax-vmin))*(H-T-B);let g='';
+for(let k=0;k<=4;k++){const v=vmin+(vmax-vmin)/4*k;g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#222"/><text x="${L-8}" y="${y(v)+4}" fill="#777" font-size="13" text-anchor="end">${v?ab(v):0}</text>`}
+[t0,Date.parse('2026-11-01'),Date.parse('2026-12-01'),tE].forEach((t,i)=>{if(i&&i<3&&x(t)-x(t0)<60)return;g+=`<text x="${x(t)}" y="${H-B+22}" fill="#777" font-size="13" text-anchor="${i==0?'start':i==3?'end':'middle'}">${f(t)}</text>`});
+g+=`<polyline points="${F.map(p=>x(p.t)+','+y(p.v)).join(' ')}" fill="none" stroke="#d4af6a" stroke-width="2.5" stroke-dasharray="3 6" stroke-linecap="round"/>`;
+if(P.length>1)g+=`<polyline points="${P.map(p=>x(p.t)+','+y(p.v)).join(' ')}" fill="none" stroke="#f1d9a0" stroke-width="3" stroke-linejoin="round"/>`;
+P.forEach(p=>g+=`<circle cx="${x(p.t)}" cy="${y(p.v)}" r="3.5" fill="#000" stroke="#f1d9a0" stroke-width="2"/>`);
+g+=`<text x="${x(last.t)+8}" y="${y(last.v)-12}" fill="#fff" font-size="14">${ab(last.v)} now</text><text x="${W-R-4}" y="${y(fe.v)-12}" fill="#d4af6a" font-size="14" text-anchor="end">~${ab(fe.v)} by 31 Dec</text><text x="${W-R-4}" y="${y(fe.v)+22}" fill="#d4af6a" font-size="12" text-anchor="end">${lab}</text>`;svg.innerHTML=g;return fe.v}
+const now=Date.now(),uNow={t:now,v:U.miles+U.rate_s*(now-tu)/1e3},sNow={t:now,v:S.miles+S.rate_s*(now-ts)/1e3};
+const uH=K.unsup_history.filter(p=>Date.parse(p.date)<now).concat([{date:new Date(now).toISOString(),miles:uNow.v}]);
+const wk=U.rate_s*7*86400;chart($('mt-chu'),uH,uNow,t=>{const w=(t-now)/(7*day);return uNow.v+wk*(Math.pow(1+U.wow,w)-1)/U.wow},'forecast: +'+Math.round(U.wow*100)+'%/week');
+const sH=K.sup_history.concat([{date:new Date(now).toISOString(),miles:sNow.v}]);chart($('mt-chs'),sH,sNow,t=>sNow.v+S.rate_s*(t-now)/1e3,'forecast: current pace',Math.floor(sNow.v*0.98/1e8)*1e8);
+$('mt-fnote').textContent='Dashed = forecast. Supervised held at the current Tesla counter pace; unsupervised compounding at '+U.wow_note+'. History: '+K.unsup_history.slice(0,-1).map(p=>p.date+' '+p.note).join('; ')+'.';
+const th='padding:9px 6px;border-bottom:1px solid #333',c=v=>v==null?'–':v>=1e6?(v/1e6).toFixed(1)+'M':Math.round(v/1e3)+'K';
+$('mt-tab').innerHTML=`<tr style="color:#9a9a9a;font-size:10px;letter-spacing:.08em;text-transform:uppercase"><th style="${th};text-align:left">Week to</th><th style="${th}">Supervised<br>mi/wk</th><th style="${th}">of which<br>city</th><th style="${th}">Unsupervised<br>mi/wk</th></tr>`+K.weekly.slice().reverse().map(r=>`<tr><td style="${th};text-align:left">${f(Date.parse(r.date))}</td><td style="${th}">${c(r.sup_wk)}</td><td style="${th}">${c(r.city_wk)}</td><td style="${th};color:#f1d9a0">${c(r.unsup_wk)}</td></tr>`).join('');
+})();
 </script>
 </body>
 </html>
