@@ -121,7 +121,13 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   <div class="fade" style="max-width:760px;width:100%;margin:28px auto 0"><svg id="cc-chart" viewBox="0 0 700 320" width="100%" role="img" aria-label="Line chart of registered Cybercabs in Texas"></svg></div>
   <p class="fade" id="cc-latest" style="margin-top:14px;font-size:17px;color:#fff"></p>
   <div class="stats fade" id="mt-strip" hidden style="margin-top:36px;gap:40px"></div>
-  <p class="src fade" id="mt-note" hidden style="max-width:640px">Miles cover all Tesla Robotaxi cities, fleet count is Texas registrations, so per-car figures are approximate.</p>
+  <p class="src fade" id="mt-note" hidden style="max-width:640px">Miles cover all Tesla Robotaxi cities, fleet count is Texas registrations, so per-car figures are approximate. The Texas figure matches Texas miles to the Texas fleet.</p>
+  <div class="fade" style="max-width:760px;width:100%;margin:40px auto 0">
+    <p class="small" style="margin-bottom:6px">Miles per Robotaxi per day (Texas, weekly average)</p>
+    <svg id="tx-chart" viewBox="0 0 700 260" width="100%" role="img" aria-label="Texas driverless miles per Robotaxi per day"></svg>
+    <p class="fade" id="tx-latest" style="margin-top:10px;font-size:17px;color:#fff"></p>
+    <p class="src" id="tx-src"></p>
+  </div>
   <h3 class="fade" style="font-weight:200;font-size:clamp(24px,3.4vw,34px);margin-top:72px">Our community is growing</h3>
   <p class="small fade">Members of the Tesla Cybercab Fleet Owners X Community · bars show new members per day</p>
   <div class="fade" style="max-width:760px;width:100%;margin:20px auto 0"><svg id="mb-chart" viewBox="0 0 700 320" width="100%" role="img" aria-label="Community members over time"></svg></div>
@@ -544,6 +550,17 @@ $('mt-fnote').textContent='Dashed = forecast. Supervised held at the current Tes
 const th='padding:9px 6px;border-bottom:1px solid #333',c=v=>v==null?'–':v>=1e6?(v/1e6).toFixed(1)+'M':Math.round(v/1e3)+'K';
 $('mt-tab').innerHTML=`<tr style="color:#9a9a9a;font-size:10px;letter-spacing:.08em;text-transform:uppercase"><th style="${th};text-align:left">Week to</th><th style="${th}">Supervised<br>mi/wk</th><th style="${th}">of which<br>city</th><th style="${th}">Unsupervised<br>mi/wk</th></tr>`+K.weekly.slice().reverse().map(r=>`<tr><td style="${th};text-align:left">${f(Date.parse(r.date))}</td><td style="${th}">${c(r.sup_wk)}</td><td style="${th}">${c(r.city_wk)}</td><td style="${th};color:#f1d9a0">${c(r.unsup_wk)}</td></tr>`).join('');
 })();
+</script>
+<script>
+(async()=>{let d;try{d=await (await fetch('data/cybercab-stats.json',{cache:'no-store'})).json()}catch(e){return}const P=(d.texas_mpd||[]).map(p=>({t:Date.parse(p.week_end),v:p.mpd})).sort((a,b)=>a.t-b.t),svg=document.getElementById('tx-chart');if(P.length<2){svg.parentElement.hidden=true;return}
+const W=700,H=260,L=44,R=20,T=34,B=36,t0=P[0].t,t1=P[P.length-1].t,vmax=Math.ceil(Math.max(...P.map(p=>p.v))*1.15/25)*25,x=t=>L+(t-t0)/(t1-t0)*(W-L-R),y=v=>T+(1-v/vmax)*(H-T-B);let g='';
+for(let v=0;v<=vmax;v+=25)g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#222"/><text x="${L-8}" y="${y(v)+4}" fill="#777" font-size="13" text-anchor="end">${v}</text>`;
+const f=t=>new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short'});[0,Math.floor(P.length/2),P.length-1].forEach((k,i)=>g+=`<text x="${x(P[k].t)}" y="${H-B+22}" fill="#777" font-size="13" text-anchor="${['start','middle','end'][i]}">${f(P[k].t)}</text>`);
+g+=`<polyline points="${P.map(p=>x(p.t)+','+y(p.v)).join(' ')}" fill="none" stroke="#f1d9a0" stroke-width="3" stroke-linejoin="round"/>`;P.forEach(p=>g+=`<circle cx="${x(p.t)}" cy="${y(p.v)}" r="3" fill="#000" stroke="#f1d9a0" stroke-width="2"/>`);
+const l=P[P.length-1],s=P.find(p=>p.t>=Date.parse('2026-09-01'));g+=`<text x="${x(l.t)}" y="${y(l.v)-12}" fill="#fff" font-size="15" text-anchor="end">${l.v}</text>`;if(s)g+=`<text x="${x(s.t)}" y="${y(s.v)+24}" fill="#aaa" font-size="13" text-anchor="middle">${s.v}</text>`;svg.innerHTML=g;
+document.getElementById('tx-latest').innerHTML=`<span class="gold" style="font-size:28px;font-weight:300">${l.v}</span> driverless miles per Texas Robotaxi per day, week to ${f(l.t)}`+(s?` · up from ${s.v} in early September`:'');
+const S=d.texas_mpd_source||{},TM=(d.texas_miles||[]).slice(-1)[0];document.getElementById('tx-src').innerHTML=(TM?`Texas-city driverless miles (Austin, Dallas, Houston): ${TM.miles.toLocaleString('en-US')} as of ${f(Date.parse(TM.date))}. `:'')+`Source: <a href="${S.url}" target="_blank" rel="noopener" style="color:var(--gold2)">@teslayoda</a>, from Tesla's Robotaxi safety report and Texas DMV registrations. Points between start and end read from the published chart (approx.). Registered is not the same as in service.`;
+const st=document.getElementById('mt-strip');if(st){st.insertAdjacentHTML('beforeend',`<div class="stat"><div class="n gold">${l.v}</div><div class="l">Miles per Robotaxi per day (Texas)</div><div class="src" style="margin-top:4px">Texas-only, week to ${f(l.t)}</div></div>`);st.hidden=false}})();
 </script>
 </body>
 </html>
