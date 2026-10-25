@@ -124,6 +124,24 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
   <p class="src fade" style="max-width:700px">Source: public Texas registration data via <a href="https://x.com/joehansen/status/2114242963572232632" target="_blank" rel="noopener" style="color:var(--gold2)">@joehansen</a> (https://x.com/joehansen/status/2114242963572232632). Independent community tracker, not affiliated with Tesla.</p>
 </section>
 
+<section class="snap auto" id="earn">
+  <div class="kicker fade">Illustration</div>
+  <h2 class="fade">What could one <span class="gold">Cybercab</span> earn?</h2>
+  <p class="small fade">Estimated gross fare revenue per month, based on public Tesla data</p>
+  <div class="fade" style="max-width:640px;width:100%;margin:28px auto 0;padding:28px 22px;border:1px solid var(--line);border-radius:20px">
+    <p id="er-wait" style="color:#c9c9c9;font-size:16px">Live estimate starts once we have a few days of Tesla miles data.</p>
+    <div id="er-live" hidden>
+      <label for="er-cars" style="display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--m)">Number of cars: <span id="er-cars-v" style="color:#fff">1</span></label>
+      <input id="er-cars" type="range" min="1" max="20" value="1" style="width:100%;accent-color:#d4af6a;margin:12px 0 20px">
+      <div class="gold" id="er-total" style="font-size:44px;font-weight:200"></div>
+      <p class="small" style="margin-top:4px">gross fares per month, illustration</p>
+      <svg id="er-chart" viewBox="0 0 600 180" width="100%" style="margin-top:18px" role="img" aria-label="Gross fare illustration by number of cars"></svg>
+      <p class="src" id="er-how" style="text-align:left"></p>
+    </div>
+  </div>
+  <p class="fade" style="max-width:640px;margin:20px auto 0;padding:14px 18px;border:1px solid #444;border-radius:12px;font-size:13px;line-height:1.6;color:#ccc">Illustration of gross fare revenue only, based on public Tesla data and fares. Not a return, profit or offer. Excludes vehicle cost, charging, insurance, cleaning, Tesla's platform share and taxes. Actual results will differ. Nothing is offered or sold here.</p>
+</section>
+
 <section class="snap" id="why">
   <div class="kicker fade">The community</div>
   <h2 class="fade">700+ future<br>fleet owners.</h2>
@@ -429,6 +447,21 @@ const lp=d.cybercabs.find(c=>c.date===last.date);
 document.getElementById('cc-latest').innerHTML=`<span class="gold" style="font-size:28px;font-weight:300">${last.v}</span> registered Cybercabs on ${new Date(last.t).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`+(lp&&lp.total_robotaxis?` · ${lp.total_robotaxis} robotaxis in total`:'');
 const M=(d.miles||[]).slice().sort((a,b)=>a.date<b.date?-1:1);if(M.length>=2){const m=M[M.length-1];document.getElementById('cc-miles').hidden=false;document.getElementById('cc-miles-n').textContent=Number(m.miles).toLocaleString('en-US');document.getElementById('cc-miles-d').textContent='as of '+m.date}
 })();
+</script>
+<script>
+(async()=>{let d;try{d=await (await fetch('data/cybercab-stats.json',{cache:'no-store'})).json()}catch(e){return}
+const M=(d.miles||[]).slice().sort((a,b)=>a.date<b.date?-1:1),fare=d.fare_per_mile,C=d.cybercabs.filter(c=>c.total_robotaxis).sort((a,b)=>a.date<b.date?-1:1);
+if(M.length<2||!fare||!C.length)return;
+const last=M[M.length-1],tl=Date.parse(last.date),day=864e5;let base=M[0];for(const m of M){if(tl-Date.parse(m.date)>=7*day)base=m}
+const days=(tl-Date.parse(base.date))/day;if(days<=0)return;const perDay=(last.miles-base.miles)/days,fleet=C[C.length-1].total_robotaxis;
+const mpc=perDay/fleet,month=mpc*fare*30;if(!(month>0))return;
+document.getElementById('er-wait').hidden=true;document.getElementById('er-live').hidden=false;
+const usd=v=>'$'+Math.round(v).toLocaleString('en-US');const sl=document.getElementById('er-cars'),svg=document.getElementById('er-chart');
+const src=d.fare_source||{};
+document.getElementById('er-how').innerHTML=`How: ${Math.round(perDay).toLocaleString('en-US')} Robotaxi miles a day (${Math.round(days)}-day average from the <a href="https://www.tesla.com/robotaxi" target="_blank" rel="noopener" style="color:var(--gold2)">Tesla Robotaxi miles counter</a>, ${base.date} to ${last.date}) ÷ ${fleet} robotaxis = ${mpc.toFixed(1)} miles per car per day × $${fare.toFixed(2)} per mile (<a href="${src.url||'#'}" target="_blank" rel="noopener" style="color:var(--gold2)">${src.text||'fare source'}</a>) × 30 days. Base fares not included.`;
+const draw=()=>{const n=+sl.value;document.getElementById('er-cars-v').textContent=n;document.getElementById('er-total').textContent=usd(month*n);
+const W=600,H=180,L=8,B=22,bw=(W-L*2)/20;let g='';for(let k=1;k<=20;k++){const h=(k/20)*(H-B-10),x=L+(k-1)*bw;g+=`<rect x="${x+2}" y="${H-B-h}" width="${bw-4}" height="${h}" rx="3" fill="${k<=n?'#d4af6a':'#222'}"/>`;if(k===1||k===10||k===20)g+=`<text x="${x+bw/2}" y="${H-6}" fill="#777" font-size="12" text-anchor="middle">${k}</text>`}svg.innerHTML=g};
+sl.addEventListener('input',draw);draw()})();
 </script>
 </body>
 </html>
