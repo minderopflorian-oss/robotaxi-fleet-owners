@@ -182,11 +182,32 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
     <button class="pill g" type="submit">Count me in</button>
     <p class="msg small" id="sw-status" role="status"></p>
   </form>
+  <div class="topics fade" style="background:#222;grid-template-columns:repeat(2,1fr);max-width:900px;margin-top:28px">
+    <div style="background:#0b0b0b"><h3>FSD taxi and experience rides</h3><p style="color:#9a9a9a">Rides run with licensed taxi partners and taxi drivers who already own a Tesla with FSD. An early step towards a robotaxi fleet.</p></div>
+    <div style="background:#0b0b0b"><h3>We are looking for partners</h3><p style="color:#9a9a9a">Taxi companies and independent taxi drivers with a Tesla, car-sharing and rental platforms, driving schools and instructors, and insurers.</p></div>
+  </div>
+  <form id="swarm-partner" class="fade" novalidate style="max-width:460px;width:100%;text-align:left;margin-top:28px">
+    <style>#swarm-partner label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--m);margin:14px 0 6px}#swarm-partner input:not([type=checkbox]),#swarm-partner select,#swarm-partner textarea{width:100%;background:#000;border:1px solid #333;border-radius:10px;color:#fff;font:inherit;font-size:16px;padding:12px}#swarm-partner .ck{display:flex;gap:10px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:13px;color:#bbb}#swarm-partner .hp{position:absolute;left:-9999px}#swarm-partner button{border:0;cursor:pointer;margin-top:20px;width:100%}</style>
+    <div class="kicker" style="margin:0">Partner with the Swarm</div>
+    <label for="sp-type">Partner type</label><select id="sp-type" name="partner_type" required><option value="">Choose one</option><option>Taxi company</option><option>Independent taxi driver with a Tesla</option><option>Car-sharing or rental platform</option><option>Driving school or instructor</option><option>Insurer</option><option>Other</option></select>
+    <label for="sp-co">Company name</label><input id="sp-co" name="company" required>
+    <label for="sp-name">Contact name</label><input id="sp-name" name="name" required autocomplete="name">
+    <label for="sp-email">Email</label><input id="sp-email" name="email" type="email" required autocomplete="email">
+    <label for="sp-city">Country and city</label><input id="sp-city" name="city_country" required>
+    <label for="sp-fleet">Fleet size (optional)</label><input id="sp-fleet" name="fleet_size">
+    <label for="sp-msg">Message</label><textarea id="sp-msg" name="message" rows="3"></textarea>
+    <label class="ck"><input type="checkbox" name="consent" value="yes" required> I agree that my details are stored to contact me about a partnership.</label>
+    <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="pill g" type="submit">Become a partner</button>
+    <p class="msg small" id="sp-status" role="status"></p>
+  </form>
   <p class="src fade" style="color:#666">An idea in testing, not a live service. No partner is signed. Not affiliated with Tesla, Inc. Your details go to our team via FormSubmit, only used for this.</p>
 </section>
 <script>(()=>{const f=document.getElementById('swarm-form'),st=document.getElementById('sw-status');f.addEventListener('submit',async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d._honey)return;if(!d.segment||!d.name||!/\S+@\S+\.\S+/.test(d.email)||!d.city_country||!f.consent.checked){st.style.color='#e88';st.textContent='Please fill in all fields and tick consent.';return}
 d.topic='swarm-interest';d.robotaxi_updates=d.robotaxi_updates||'no';d._subject='swarm-interest: '+d.segment;d._template='table';d._captcha='false';st.style.color='var(--m)';st.textContent='Sending...';
-try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));if(r.ok&&String(j.success)==='true'){st.style.color='var(--gold2)';st.textContent='Thanks ! You are on the list.';f.reset()}else throw 0}catch(_){st.style.color='#e88';st.textContent='Sending failed. Please email florianminderop@mail.grokbot.com.'}})})()</script>
+try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));if(r.ok&&String(j.success)==='true'){st.style.color='var(--gold2)';st.textContent='Thanks ! You are on the list.';f.reset()}else throw 0}catch(_){st.style.color='#e88';st.textContent='Sending failed. Please email florianminderop@mail.grokbot.com.'}})})()</script><script>(()=>{const f=document.getElementById('swarm-partner'),st=document.getElementById('sp-status');f.addEventListener('submit',async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d._honey)return;if(!d.partner_type||!d.company||!d.name||!/\S+@\S+\.\S+/.test(d.email)||!d.city_country||!f.consent.checked){st.style.color='#e88';st.textContent='Please fill in all required fields and tick consent.';return}
+d.topic='swarm-partner';d._subject='swarm-partner: '+d.partner_type+' - '+d.company;d._template='table';d._captcha='false';st.style.color='var(--m)';st.textContent='Sending...';
+try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));if(r.ok&&String(j.success)==='true'){st.style.color='var(--gold2)';st.textContent='Thanks ! We will be in touch.';f.reset()}else throw 0}catch(_){st.style.color='#e88';st.textContent='Sending failed. Please email florianminderop@mail.grokbot.com.'}})})()</script>
 <section class="snap auto" id="earn">
   <div class="kicker fade">Illustration</div>
   <h2 class="fade">What could one <span class="gold">Cybercab</span> earn?</h2>
