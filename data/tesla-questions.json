@@ -1,0 +1,110 @@
+[
+ {
+  "id": "Q001",
+  "question": "Will Tesla cap how many owner robotaxis can be added to the network per area/region/town to avoid oversaturation and idle cars?",
+  "theme": "Ownership & caps",
+  "asked_by": "@Gillesie",
+  "source": "https://x.com/Gillesie/status/2115372712214278517",
+  "date": "2026-10-28",
+  "status": "Open",
+  "community_pick": true,
+  "options": [
+   "Yes, hard cap per city",
+   "Soft cap via demand",
+   "No cap, open network",
+   "Only in launch phase"
+  ]
+ },
+ {
+  "id": "Q002",
+  "question": "Will Tesla exclude areas (big cities) from owner Robotaxi ownership where Tesla operates its own fleet?",
+  "theme": "Cities & geofence",
+  "asked_by": "@Gillesie",
+  "source": "https://x.com/Gillesie/status/2115372712214278517",
+  "date": "2026-10-28",
+  "status": "Open",
+  "community_pick": false,
+  "options": [
+   "Yes",
+   "No",
+   "Not sure"
+  ]
+ },
+ {
+  "id": "Q003",
+  "question": "Will Tesla favour bigger fleet owners who commit to large numbers of cars and quality (cleaning) before small owners?",
+  "theme": "Onboarding & cleaning",
+  "asked_by": "@Gillesie",
+  "source": "https://x.com/Gillesie/status/2115373552111079803",
+  "date": "2026-10-28",
+  "status": "Open",
+  "community_pick": false,
+  "options": [
+   "Yes",
+   "No",
+   "Not sure"
+  ]
+ },
+ {
+  "id": "Q004",
+  "question": "Given this is a disruptive product (for other taxi firms), is it desirable to be a first mover in a city or best to wait for any noise to quieten down?",
+  "theme": "Cities & geofence",
+  "asked_by": "@brad47004137",
+  "source": "https://x.com/brad47004137/status/2115124783327097216",
+  "date": "2026-10-27",
+  "status": "Open",
+  "community_pick": true,
+  "options": [
+   "Go first, grab demand",
+   "Wait 6-12 months",
+   "Join once Tesla scales",
+   "Depends on the city"
+  ]
+ },
+ {
+  "id": "Q005",
+  "question": "Is the bottleneck for new cities now validation miles per city, or depot and charging capacity?",
+  "theme": "Cities & geofence",
+  "asked_by": "@hquake0519",
+  "source": "https://x.com/hquake0519/status/2115073336921526317",
+  "date": "2026-10-27",
+  "status": "Open",
+  "community_pick": false,
+  "options": [
+   "Yes",
+   "No",
+   "Not sure"
+  ]
+ },
+ {
+  "id": "Q006",
+  "question": "How will the owner model (owning a piece of the fleet) actually work in practice?",
+  "theme": "Ownership & caps",
+  "asked_by": "@milaniqlab",
+  "source": "https://x.com/milaniqlab/status/2114702127998075070",
+  "date": "2026-10-26",
+  "status": "Open",
+  "community_pick": false,
+  "options": [
+   "Yes",
+   "No",
+   "Not sure"
+  ]
+ },
+ {
+  "id": "Q007",
+  "question": "What will the revenue split between owner and Tesla be — 50/50 or skewed towards the asset owner?",
+  "theme": "Earnings split",
+  "asked_by": "@pitreinc",
+  "source": "https://x.com/pitreinc/status/2114069021436043403",
+  "date": "2026-10-24",
+  "status": "Open",
+  "community_pick": true,
+  "options": [
+   "Leans to owner",
+   "Even split",
+   "Leans to Tesla",
+   "Varies by city"
+  ]
+ }
+]
