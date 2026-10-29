@@ -16,7 +16,7 @@ h1{font-weight:300;font-size:clamp(30px,5vw,54px);margin:0 0 12px}h1 span{color:
 .g{background:var(--gold);color:#000}.o{border:1px solid #fff;color:#fff}
 .legend{display:flex;gap:18px;color:#bbb;font-size:14px;margin-top:12px}.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#111;color:#fff}.small{color:#777;font-size:13px}
-</style></head><body>
+.leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) grayscale(.6)}</style></head><body>
 <header><a class="brand" href="index.html">Cybercab <b>Fleet</b> Owners</a><a href="index.html">Back to site</a></header>
 <main>
 <h1>Where future Cybercab fleets <span>will be built</span></h1>
@@ -30,7 +30,7 @@ h1{font-weight:300;font-size:clamp(30px,5vw,54px);margin:0 0 12px}h1 span{color:
 <script>
 const C={3:'#c9a54c',2:'#ffffff',1:'#666666'},L3={3:'Concrete plan',2:'Clear wish',1:'Casual remark'};
 const m=L.map('map',{worldCopyJump:true}).setView([35,-40],2);
-L.tileLayer('https://{s}.basemap.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(m);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(m);
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 fetch('data/fleet-map.json').then(r=>r.json()).then(d=>{
  const seen={},pl=new Set();
