@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fleet owners map · Cybercab Fleet Owners</title>
+<meta name="description" content="Where future Cybercab fleets will be built: a community map of people planning their own robotaxi fleet.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--gold:#c9a54c;--gold2:#e2c477}
+*{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid #222}
+a{color:var(--gold2)}.brand{color:#fff;text-decoration:none;letter-spacing:.04em}.brand b{color:var(--gold)}
+main{max-width:1200px;margin:0 auto;padding:32px 24px}
+h1{font-weight:300;font-size:clamp(30px,5vw,54px);margin:0 0 12px}h1 span{color:var(--gold)}
+.count{font-size:18px;color:#bbb;margin-bottom:20px}.count b{color:var(--gold);font-size:28px}
+#map{height:62vh;min-height:420px;border:1px solid #333;border-radius:12px}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
+.pill{padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:600}
+.g{background:var(--gold);color:#000}.o{border:1px solid #fff;color:#fff}
+.legend{display:flex;gap:18px;color:#bbb;font-size:14px;margin-top:12px}.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#111;color:#fff}.small{color:#777;font-size:13px}
+</style></head><body>
+<header><a class="brand" href="index.html">Cybercab <b>Fleet</b> Owners</a><a href="index.html">Back to site</a></header>
+<main>
+<h1>Where future Cybercab fleets <span>will be built</span></h1>
+<div class="count"><b id="n">0</b> future fleet owners pinned in <b id="p">0</b> places</div>
+<div id="map"></div>
+<div class="legend"><span><i class="dot" style="background:#c9a54c"></i>Concrete plan</span><span><i class="dot" style="background:#fff"></i>Clear wish</span><span><i class="dot" style="background:#666"></i>Casual remark</span></div>
+<div class="btns"><a class="pill g" href="https://x.com/fminderop/status/2115888380357890242" target="_blank" rel="noopener">Add your pin : reply with your city</a><a class="pill o" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Join the X Community</a></div>
+<p class="small">Based on public posts on X. Pins are placed at city or region level. Want your pin removed ? Reply on the post above.</p>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const C={3:'#c9a54c',2:'#ffffff',1:'#666666'},L3={3:'Concrete plan',2:'Clear wish',1:'Casual remark'};
+const m=L.map('map',{worldCopyJump:true}).setView([35,-40],2);
+L.tileLayer('https://{s}.basemap.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors &copy; CARTO'}).addTo(m);
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+fetch('data/fleet-map.json').then(r=>r.json()).then(d=>{
+ const seen={},pl=new Set();
+ d.forEach(x=>{const k=x.lat+','+x.lon;const o=(seen[k]=(seen[k]||0)+1)-1;pl.add(x.place);
+  L.circleMarker([x.lat+o*0.15,x.lon+o*0.15],{radius:8,color:'#000',weight:1,fillColor:C[x.score]||'#666',fillOpacity:.95}).addTo(m)
+  .bindPopup(`<b>${esc(x.handle)}</b><br>${esc(x.place)}${x.fleet?'<br>Fleet: '+esc(x.fleet):''}<br>${L3[x.score]||''}<br><a href="${esc(x.post)}" target="_blank" rel="noopener">View post</a>`)});
+ document.getElementById('n').textContent=d.length;document.getElementById('p').textContent=pl.size;});
+</script></body></html>
