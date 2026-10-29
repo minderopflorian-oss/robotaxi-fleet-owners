@@ -80,6 +80,24 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
 #contact .x{position:absolute;top:12px;right:16px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}
 #contact button.pill{border:0;cursor:pointer;margin-top:22px;width:100%}#contact .msg{margin-top:14px;font-size:14px}#contact .hp{position:absolute;left:-9999px}
 </style>
+<script>/* Form fallback: 10s timeout + mailto when FormSubmit fails */
+(()=>{const TO='florianminderop@mail.grokbot.com',FS='formsubmit.co';let last=null;
+document.addEventListener('submit',e=>{last=e.target},true);
+const skip=k=>k[0]==='_'||k==='consent';
+function mailto(d){const s=d._subject||'Website form';const body=Object.keys(d).filter(k=>!skip(k)&&d[k]!=='').map(k=>k+': '+d[k]).join('\n');return 'mailto:'+TO+'?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(body)}
+function show(f,d){if(!f)return;let b=f.querySelector('.fs-fb');if(!b){b=document.createElement('div');b.className='fs-fb';b.setAttribute('role','alert');b.style.cssText='margin-top:12px;padding:12px 14px;border:1px solid #d4af6a;border-radius:10px;background:#000;color:#fff;font-size:.9em;line-height:1.45';f.appendChild(b)}
+b.innerHTML='Our form service is not responding right now, so nothing was sent yet. <a class="fs-ml" style="color:#d4af6a;font-weight:600">Send it by email instead</a> : your answers are already filled in. Or email <span style="color:#d4af6a">'+TO+'</span>.';b.querySelector('.fs-ml').href=mailto(d)}
+const of=window.fetch.bind(window);
+window.fetch=function(u,o){if(typeof u!=='string'||u.indexOf(FS)<0)return of(u,o);const f=last;let d={};try{d=JSON.parse(o&&o.body||'{}')}catch(_){}
+const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);
+return of(u,Object.assign({},o,{signal:c.signal})).then(async r=>{clearTimeout(t);const j=await r.clone().json().catch(()=>({}));if(!(r.ok&&String(j.success)==='true'))show(f,d);return r},err=>{clearTimeout(t);show(f,d);throw err})};
+/* Plain HTML forms posting to FormSubmit (votes, questions): send via AJAX so failures are caught */
+document.addEventListener('submit',async e=>{const f=e.target;if(!f.action||f.action.indexOf(FS)<0||f.id)return;e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d._honey)return;
+const b=f.querySelector('button[type=submit]'),bt=b&&b.textContent;if(b){b.disabled=true;b.textContent='Sending...'}
+try{const r=await window.fetch(f.action.replace(FS+'/',FS+'/ajax/'),{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));
+if(r.ok&&String(j.success)==='true'){location.href=d._next||'?voted=1#questions-for-tesla';return}}catch(_){}
+if(b){b.disabled=false;b.textContent=bt}})})();</script>
+
 </head>
 <body>
 <nav>
