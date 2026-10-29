@@ -20,11 +20,11 @@ h1{font-weight:300;font-size:clamp(30px,5vw,54px);margin:0 0 12px}h1 span{color:
 <header><a class="brand" href="index.html">Cybercab <b>Fleet</b> Owners</a><a href="index.html">Back to site</a></header>
 <main>
 <h1>Where future Cybercab fleets <span>will be built</span></h1>
-<div class="count"><b id="n">0</b> future fleet owners pinned in <b id="p">0</b> places</div>
+<div class="count"><b id="n">0</b> future fleet owners pinned in <b id="p">0</b> places · <b id="cm">0</b> community members in <b id="cp">0</b> places</div>
 <div id="map"></div>
-<div class="legend"><span><i class="dot" style="background:#c9a54c"></i>Concrete plan</span><span><i class="dot" style="background:#fff"></i>Clear wish</span><span><i class="dot" style="background:#666"></i>Casual remark</span></div>
+<div class="legend"><span><i class="dot" style="background:#c9a54c"></i>Concrete plan</span><span><i class="dot" style="background:#fff"></i>Clear wish</span><span><i class="dot" style="background:#666"></i>Casual remark</span><span><i class="dot" style="background:#4a7fa8;width:8px;height:8px"></i>Community member (home location)</span></div>
 <div class="btns"><a class="pill g" href="https://x.com/fminderop/status/2115888380357890242" target="_blank" rel="noopener">Add your pin : reply with your city</a><a class="pill o" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Join the X Community</a></div>
-<p class="small">Based on public posts on X. Pins are placed at city or region level. Want your pin removed ? Reply on the post above.</p>
+<p class="small">Based on public posts on X. Pins are placed at city or region level. Community member dots show the home location from public X profiles, not a fleet plan. Want your pin removed ? Reply on the post above.</p>
 </main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -32,10 +32,17 @@ const C={3:'#c9a54c',2:'#ffffff',1:'#666666'},L3={3:'Concrete plan',2:'Clear wis
 const m=L.map('map',{worldCopyJump:true}).setView([35,-40],2);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(m);
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const F=L.layerGroup().addTo(m),M=L.layerGroup().addTo(m);
+L.control.layers(null,{'Future fleet owners':F,'Community members (home location)':M},{collapsed:false}).addTo(m);
 fetch('data/fleet-map.json').then(r=>r.json()).then(d=>{
  const seen={},pl=new Set();
  d.forEach(x=>{const k=x.lat+','+x.lon;const o=(seen[k]=(seen[k]||0)+1)-1;pl.add(x.place);
-  L.circleMarker([x.lat+o*0.15,x.lon+o*0.15],{radius:8,color:'#000',weight:1,fillColor:C[x.score]||'#666',fillOpacity:.95}).addTo(m)
+  L.circleMarker([x.lat+o*0.15,x.lon+o*0.15],{radius:8,color:'#000',weight:1,fillColor:C[x.score]||'#666',fillOpacity:.95}).addTo(F)
   .bindPopup(`<b>${esc(x.handle)}</b><br>${esc(x.place)}${x.fleet?'<br>Fleet: '+esc(x.fleet):''}<br>${L3[x.score]||''}<br><a href="${esc(x.post)}" target="_blank" rel="noopener">View post</a>`)});
  document.getElementById('n').textContent=d.length;document.getElementById('p').textContent=pl.size;});
+fetch('data/community-members.json').then(r=>r.json()).then(d=>{
+ const g={};d.forEach(x=>{const k=x.lat+','+x.lon;(g[k]=g[k]||{lat:x.lat,lon:x.lon,place:x.place,h:[]}).h.push(x.handle)});
+ Object.values(g).forEach(c=>{L.circleMarker([c.lat,c.lon],{radius:Math.min(4+Math.sqrt(c.h.length)*2,14),color:'#4a7fa8',weight:1,fillColor:'#4a7fa8',fillOpacity:.45}).addTo(M)
+  .bindPopup(`<b>${esc(c.place)}</b><br>${c.h.length} member${c.h.length>1?'s':''}<br>${c.h.map(esc).join(', ')}`)});
+ document.getElementById('cm').textContent=d.length;document.getElementById('cp').textContent=Object.keys(g).length;F.eachLayer(l=>l.bringToFront());});
 </script></body></html>
