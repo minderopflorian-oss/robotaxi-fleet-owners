@@ -108,7 +108,19 @@ function mailto(d){const s=d._subject||'Website form';const body=Object.keys(d).
 function show(f,d){if(!f)return;let b=f.querySelector('.fs-fb');if(!b){b=document.createElement('div');b.className='fs-fb';b.setAttribute('role','alert');b.style.cssText='margin-top:12px;padding:12px 14px;border:1px solid #d4af6a;border-radius:10px;background:#000;color:#fff;font-size:.9em;line-height:1.45';f.appendChild(b)}
 b.innerHTML='Our form service is not responding right now, so nothing was sent yet. <a class="fs-ml" style="color:#d4af6a;font-weight:600">Send it by email instead</a> : your answers are already filled in. Or email <span style="color:#d4af6a">'+TO+'</span>.';b.querySelector('.fs-ml').href=mailto(d)}
 const of=window.fetch.bind(window);
+const SHEET='https://script.google.com/macros/s/AKfycbxhYfw0kB2aZunwYvkgv-Xv-JltvO_qcbn6mvn_WROXXqHjoGz5TAffLegkTMnz2sUAAw/exec';
+const TOPIC={'swarm-form':'swarm-join','swarm-partner':'swarm-partner','caas-form':'caas','cform':'contact'};
+const CORE=['name','email','x_handle','city','fleet_size','topic','ref','consent'];
+function toSheet(f,d){const sub=d._subject||'';const p={};p.topic=d.topic||(f&&TOPIC[f.id])||(sub.indexOf('tesla-vote')==0?'tesla-vote':sub.indexOf('tesla-question')==0?'tesla-question':'site-form');
+p.name=d.name||'';p.email=d.email||'';p.x_handle=d.x_handle||d.x||d.handle||'';p.city=d.city||d.city_country||'';p.fleet_size=d.fleet_size||d.fleet||d.cars||'';
+let r=d.ref||'';try{r=r||localStorage.getItem('cfo_ref')||''}catch(_){}p.ref=r;p.consent=d.consent||'';
+const ex=Object.keys(d).filter(k=>k[0]!=='_'&&!CORE.includes(k)&&!['x','handle','city_country','fleet','cars'].includes(k)&&d[k]!=='').map(k=>k+': '+d[k]).join('; ');
+if(sub)p.page=location.pathname+' | '+sub+(ex?' | '+ex:'');else p.page=location.pathname+(ex?' | '+ex:'');
+return of(SHEET,{method:'POST',mode:'no-cors',body:new URLSearchParams(p)})}
+
 window.fetch=function(u,o){if(typeof u!=='string'||u.indexOf(FS)<0)return of(u,o);const f=last;let d={};try{d=JSON.parse(o&&o.body||'{}')}catch(_){}
+/* Primary: Google Sheet via Apps Script web app; FormSubmit + mailto stay as fallback */
+if(!toSheet._skip)return toSheet(f,d).then(()=>new Response('{"success":"true"}',{status:200,headers:{'Content-Type':'application/json'}}),()=>{toSheet._skip=1;const r=window.fetch(u,o);toSheet._skip=0;return r});
 const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);
 return of(u,Object.assign({},o,{signal:c.signal})).then(async r=>{clearTimeout(t);const j=await r.clone().json().catch(()=>({}));if(!(r.ok&&String(j.success)==='true'))show(f,d);return r},err=>{clearTimeout(t);show(f,d);throw err})};
 /* Plain HTML forms posting to FormSubmit (votes, questions): send via AJAX so failures are caught */

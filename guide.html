@@ -51,7 +51,7 @@ button{margin-top:20px;width:100%;padding:14px;border-radius:999px;border:0;back
 <p>Next steps :</p><ul><li><a href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Join the X community</a></li><li><a href="fleet-map.html">Put yourself on the fleet map</a></li><li><a href="/#caas">Cybercab as a Service</a></li></ul></div>
 </div></div>
 <script src="ref.js"></script>
-<script>(()=>{const SHEET='';/* Apps Script web app /exec URL for sheet 'Guide signups' */const TO='florianminderop@mail.grokbot.com',f=document.getElementById('gform'),st=document.getElementById('st');
+<script>(()=>{const SHEET='https://script.google.com/macros/s/AKfycbxhYfw0kB2aZunwYvkgv-Xv-JltvO_qcbn6mvn_WROXXqHjoGz5TAffLegkTMnz2sUAAw/exec';/* Apps Script web app /exec URL for sheet 'Guide signups' */const TO='florianminderop@mail.grokbot.com',f=document.getElementById('gform'),st=document.getElementById('st');
 let r='';try{r=new URLSearchParams(location.search).get('ref')||localStorage.getItem('cfo_ref')||''}catch(_){}document.getElementById('refin').value=r;
 const done=()=>{document.getElementById('formbox').style.display='none';document.getElementById('thanks').style.display='block'};
 function mailto(d){const b=Object.keys(d).filter(k=>k[0]!=='_'&&d[k]!=='').map(k=>k+': '+d[k]).join('\n');return 'mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(b)}
