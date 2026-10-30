@@ -51,13 +51,13 @@ button{margin-top:20px;width:100%;padding:14px;border-radius:999px;border:0;back
 <p>Next steps :</p><ul><li><a href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Join the X community</a></li><li><a href="fleet-map.html">Put yourself on the fleet map</a></li><li><a href="/#caas">Cybercab as a Service</a></li></ul></div>
 </div></div>
 <script src="ref.js"></script>
-<script>(()=>{const TO='florianminderop@mail.grokbot.com',f=document.getElementById('gform'),st=document.getElementById('st');
+<script>(()=>{const SHEET='';/* Apps Script web app /exec URL for sheet 'Guide signups' */const TO='florianminderop@mail.grokbot.com',f=document.getElementById('gform'),st=document.getElementById('st');
 let r='';try{r=new URLSearchParams(location.search).get('ref')||localStorage.getItem('cfo_ref')||''}catch(_){}document.getElementById('refin').value=r;
 const done=()=>{document.getElementById('formbox').style.display='none';document.getElementById('thanks').style.display='block'};
 function mailto(d){const b=Object.keys(d).filter(k=>k[0]!=='_'&&d[k]!=='').map(k=>k+': '+d[k]).join('\n');return 'mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(b)}
 f.addEventListener('submit',async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d._honey)return;
 if(!d.name||!/\S+@\S+\.\S+/.test(d.email)||!d.city||!d.fleet_size||!f.consent.checked){st.style.color='#e88';st.textContent='Please fill in all required fields and tick consent .';return}
-st.style.color='#999';st.textContent='Sending…';const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);
+st.style.color='#999';st.textContent='Sending…';d.page=location.pathname;if(SHEET){try{await fetch(SHEET,{method:'POST',mode:'no-cors',body:new URLSearchParams(d)});done();return}catch(_){}}const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);
 try{const x=await fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',signal:c.signal,headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});clearTimeout(t);const j=await x.json().catch(()=>({}));if(x.ok&&String(j.success)==='true'){done();return}throw 0}
 catch(_){clearTimeout(t);done();const p=document.createElement('p');p.className='small';p.innerHTML='Our form service is not responding , so your signup was not registered yet . <a id="ml">Send it by email</a> (prefilled) so we can keep you posted .';document.getElementById('thanks').appendChild(p);document.getElementById('ml').href=mailto(d)}})})()</script>
 </body></html>
