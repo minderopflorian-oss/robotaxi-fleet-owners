@@ -64,7 +64,9 @@ d["updated"]=max(d["updated"],a.date)
 open(f,"w").write(json.dumps(d,separators=(",",":"))+"\n"); print("saved",a.date,", ".join(msg))
 if not a.no_push:
     g=lambda *c: subprocess.run(["git","-C",root,*c],check=True)
-    g("add","data/cybercab-stats.json")
+    try: subprocess.run(["python3",os.path.join(root,"scripts","network-revenue.py")],check=True)
+    except Exception as e: print("network-revenue skipped:",e)
+    g("add","data/cybercab-stats.json","data/network-revenue.json")
     if subprocess.run(["git","-C",root,"diff","--cached","--quiet"]).returncode==0: print("no change"); raise SystemExit
     g("-c","user.name=minderopflorian-oss","-c","user.email=minderopflorian@gmail.com","commit","-qm",f"Stats {a.date}: "+", ".join(msg))
     g("-c","credential.helper=","-c","credential.helper=!/usr/local/bin/gh auth git-credential","push","-q"); print("pushed")
