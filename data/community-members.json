@@ -2392,5 +2392,17 @@
 "place": "Golden, United States",
 "lat": 39.75,
 "lon": -105.22
+},
+{
+"handle": "@GajanNagaraj",
+"place": "San Francisco, United States",
+"lat": 37.77,
+"lon": -122.42
+},
+{
+"handle": "@avipat_",
+"place": "New York, United States",
+"lat": 40.71,
+"lon": -74.01
 }
 ]
