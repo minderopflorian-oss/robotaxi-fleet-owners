@@ -329,7 +329,7 @@ let P={},mode=1;const reset=()=>{P={r:D.rate_per_day,mi:D.miles_per_car_day,f:D.
 const cars=t=>D.count+(t-t0)/DAY*P.r,rev=c=>c*P.mi*P.f*365,fmt=v=>v>=1e9?'$'+(v/1e9).toFixed(2)+'B':'$'+Math.round(v/1e6)+'M',fd=t=>new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
 const s0=Math.max(today,t0);$('nr-d').max=Math.round((end-s0)/DAY);$('nr-d').value=Math.round((Date.parse('2026-12-31')-s0)/DAY);
 const Q=['2026-12-31','2027-03-31','2027-06-30','2027-09-30','2027-12-31','2028-03-31','2028-06-30','2028-09-30','2028-12-31'],QL=['Q4 26','Q1 27','Q2 27','Q3 27','Q4 27','Q1 28','Q2 28','Q3 28','Q4 28'];
-function chart(mt){const W=700,H=260,L=50,R=10,T=10,B=40,mx=Math.max(rev(cars(end)),1.2e9),x=t=>L+(t-s0)/(end-s0)*(W-L-R),y=v=>H-B-v/mx*(H-T-B);
+function chart(mt){const W=700,H=260,L=50,R=30,T=10,B=40,mx=Math.max(rev(cars(end)),1.2e9),x=t=>L+(t-s0)/(end-s0)*(W-L-R),y=v=>H-B-v/mx*(H-T-B);
 let g=`<line x1="${L}" y1="${y(1e9)}" x2="${W-R}" y2="${y(1e9)}" stroke="#d4af6a" stroke-dasharray="5 4"/><text x="${L+4}" y="${y(1e9)-4}" style="fill:#d4af6a">$1B</text>`;
 Q.forEach((q,i)=>{const t=Date.parse(q);if(t<s0)return;g+=`<line x1="${x(t)}" y1="${T}" x2="${x(t)}" y2="${H-B}" stroke="#333"/><text x="${x(t)}" y="${H-B+14+(i%2)*12}" text-anchor="middle">${QL[i]}</text>`});
 g+=`<polyline fill="none" stroke="#fff" stroke-width="2" points="${x(s0)},${y(rev(cars(s0)))} ${x(end)},${y(rev(cars(end)))}"/>`;
