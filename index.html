@@ -157,19 +157,37 @@ if(b){b.disabled=false;b.textContent=bt}})})();</script>
  <div class="gcta">
   <div class="kicker">Free · independent</div>
   <h2>Join the community and get every guide</h2>
-  <p>800+ future fleet owners on X compare cities , costs and timelines . The starter guide is free to download . The full guides are coming soon for members .</p>
+  <p>800+ future fleet owners on X compare cities , costs and timelines . The starter guide is free to download . Want one of the full guides ? Request it below and we send it to you by email .</p>
   <a class="gb" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Join the community on X</a>
   <a class="go" href="files/cybercab-2027-readiness-guide.pdf" download>Download the free guide</a>
  </div>
  <div>
   <h2 style="margin:0 0 16px;color:#fff">All guides</h2>
   <ol>
-   <li><div><h3>The Cybercab Fleet Implementation Guide</h3><p>The full plan : city choice , depot , charging , cleaning , insurance , rules and funding routes .</p><div class="meta">v2.2 · 63 pages · PDF</div></div><div class="dl"><span class="s" style="opacity:.7">Available soon for members</span></div></li>
-   <li><div><h3>Cybercab Economics Guide</h3><p>How the cost of running one robotaxi adds up , per km and per mile .</p><div class="meta">v2.2 · 24 pages · Credit @CernBasher and AJ @alojoh</div></div><div class="dl"><span class="s" style="opacity:.7">Available soon for members</span></div></li>
-   <li><div><h3>Cybercab Funding &amp; Depreciation Guide</h3><p>Ways to fund a fleet and keep depreciation under control .</p><div class="meta">v1.2 · 18 pages · Credit Michiel van Duijn , Tesla to Mars episode 39</div></div><div class="dl"><span class="s" style="opacity:.7">Available soon for members</span></div></li>
-   <li><div><h3>Cybercab Charging &amp; Depot Hubs Guide</h3><p>How to size , build , staff and finance a hub that charges , cleans and parks robotaxis .</p><div class="meta">v1.2 · 13 pages · Based on a real hub financial model built with MAKE and Partners</div></div><div class="dl"><span class="s" style="opacity:.7">Available soon for members</span></div></li>
+   <li><div><h3>The Cybercab Fleet Implementation Guide</h3><p>The full plan : city choice , depot , charging , cleaning , insurance , rules and funding routes .</p><div class="meta">v2.2 · 63 pages · PDF</div></div><div class="dl"><a href="#guide-request" class="greq" data-guide="Implementation Guide">Request by email</a></div></li>
+   <li><div><h3>Cybercab Economics Guide</h3><p>How the cost of running one robotaxi adds up , per km and per mile .</p><div class="meta">v2.2 · 24 pages · Credit @CernBasher and AJ @alojoh</div></div><div class="dl"><a href="#guide-request" class="greq" data-guide="Economics Guide">Request by email</a></div></li>
+   <li><div><h3>Cybercab Funding &amp; Depreciation Guide</h3><p>Ways to fund a fleet and keep depreciation under control .</p><div class="meta">v1.2 · 18 pages · Credit Michiel van Duijn , Tesla to Mars episode 39</div></div><div class="dl"><a href="#guide-request" class="greq" data-guide="Funding & Depreciation Guide">Request by email</a></div></li>
+   <li><div><h3>Cybercab Charging &amp; Depot Hubs Guide</h3><p>How to size , build , staff and finance a hub that charges , cleans and parks robotaxis .</p><div class="meta">v1.2 · 13 pages · Based on a real hub financial model built with MAKE and Partners</div></div><div class="dl"><a href="#guide-request" class="greq" data-guide="Charging & Depot Hubs Guide">Request by email</a></div></li>
    <li><div><h3>Starting a Cybercab Fleet : The 2027 Readiness Guide</h3><p>The short starter : what is known , fleet size and a readiness checklist .</p><div class="meta">9 pages · PDF</div></div><div class="dl"><a href="files/cybercab-2027-readiness-guide.pdf" download>Download</a><a class="s" href="guide.html">About this guide</a></div></li>
   </ol>
+  <form id="guide-request" novalidate style="max-width:460px;margin-top:28px">
+   <h3 style="color:#fff;margin:0 0 6px">Request a guide by email</h3>
+   <p class="small" style="color:#9a9a9a;margin:0 0 10px">Tell us which guide you want and we send it to you by email .</p>
+   <style>#guide-request label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin:12px 0 6px}#guide-request input:not([type=checkbox]),#guide-request select{width:100%;box-sizing:border-box;background:#000;border:1px solid #333;border-radius:10px;color:#fff;font:inherit;font-size:16px;padding:12px}#guide-request .ck{text-transform:none;letter-spacing:0;font-size:13px}#guide-request .hp{display:none}#guide-request button{margin-top:16px;background:#d4af6a;color:#000;border:0;border-radius:999px;padding:12px 22px;font:inherit;font-weight:600;cursor:pointer}</style>
+   <label for="gr-guide">Guide</label><select id="gr-guide" name="guide" required><option value="">Choose one</option><option>Implementation Guide</option><option>Economics Guide</option><option>Funding &amp; Depreciation Guide</option><option>Charging &amp; Depot Hubs Guide</option><option>All guides</option></select>
+   <label for="gr-name">Name</label><input id="gr-name" name="name" required autocomplete="name">
+   <label for="gr-email">Email</label><input id="gr-email" name="email" type="email" required autocomplete="email">
+   <label class="ck"><input type="checkbox" name="consent" value="yes" required> I agree that my details are stored to send me the guide .</label>
+   <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+   <button type="submit">Request the guide</button>
+   <p class="small" id="gr-status" role="status" style="color:#d4af6a"></p>
+  </form>
+  <script>(()=>{const f=document.getElementById('guide-request'),st=document.getElementById('gr-status');
+document.querySelectorAll('.greq').forEach(a=>a.addEventListener('click',()=>{document.getElementById('gr-guide').value=a.dataset.guide}));
+f.addEventListener('submit',async e=>{e.preventDefault();if(!f.checkValidity()){f.reportValidity();return}const d=Object.fromEntries(new FormData(f));if(d._honey)return;
+d.topic='guide-request';d._subject='guide-request : '+d.guide;const b=f.querySelector('button');b.disabled=true;b.textContent='Sending ...';
+try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});if(r.ok){f.reset();st.textContent='Thanks ! We will send the guide to your email soon .';b.textContent='Sent';return}}catch(_){}
+b.disabled=false;b.textContent='Request the guide'})})();</script>
  </div>
 </div>
 </section>
