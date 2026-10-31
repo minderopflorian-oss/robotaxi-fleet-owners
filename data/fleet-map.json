@@ -1,236 +1,245 @@
 [
- {
-  "handle": "@TeslaStars",
-  "post": "https://x.com/TeslaStars/status/2115428282346656001",
-  "place": "Bordeaux, France",
-  "lat": 44.84,
-  "lon": -0.58,
-  "fleet": "1, then 2, 3, 4",
-  "score": 3
- },
- {
-  "handle": "@YoKeenan10",
-  "post": "https://x.com/YoKeenan10/status/2113402937313497520",
-  "place": "Texas",
-  "lat": 31.0,
-  "lon": -99.0,
-  "fleet": "several",
-  "score": 3
- },
- {
-  "handle": "@boston_drives",
-  "post": "https://x.com/boston_drives/status/2105777337446920656",
-  "place": "Boston, MA",
-  "lat": 42.36,
-  "lon": -71.06,
-  "fleet": "several + own Tesla",
-  "score": 3
- },
- {
-  "handle": "@napersveryown",
-  "post": "https://x.com/napersveryown/status/2115050993817968829",
-  "place": "Denver, CO",
-  "lat": 39.74,
-  "lon": -104.99,
-  "fleet": "start with 1, then grow",
-  "score": 3
- },
- {
-  "handle": "@LanceWade",
-  "post": "https://x.com/LanceWade/status/2111208502500696289",
-  "place": "Austin, TX",
-  "lat": 30.27,
-  "lon": -97.74,
-  "fleet": "",
-  "score": 3
- },
- {
-  "handle": "@mikeg0",
-  "post": "https://x.com/mikeg0/status/2108569144291631492",
-  "place": "Salt Lake City, UT",
-  "lat": 40.76,
-  "lon": -111.89,
-  "fleet": "",
-  "score": 3
- },
- {
-  "handle": "@TotallyLocoMoto",
-  "post": "https://x.com/TotallyLocoMoto/status/2105369328644141351",
-  "place": "Plano, TX",
-  "lat": 33.02,
-  "lon": -96.7,
-  "fleet": "3 at launch",
-  "score": 3
- },
- {
-  "handle": "@JSMobilityNJ",
-  "post": "https://x.com/JSMobilityNJ/status/2113999906771710274",
-  "place": "Farmingdale, NJ",
-  "lat": 40.2,
-  "lon": -74.17,
-  "fleet": "",
-  "score": 3
- },
- {
-  "handle": "@NIK4NIKAM",
-  "post": "https://x.com/NIK4NIKAM/status/2106895820725383469",
-  "place": "Houston, TX",
-  "lat": 29.76,
-  "lon": -95.37,
-  "fleet": "",
-  "score": 3
- },
- {
-  "handle": "@SouthernHayes70",
-  "post": "https://x.com/SouthernHayes70/status/2115093659200716862",
-  "place": "Myrtle Beach, SC",
-  "lat": 33.69,
-  "lon": -78.89,
-  "fleet": "3",
-  "score": 3
- },
- {
-  "handle": "@Paul_Gravette",
-  "post": "https://x.com/Paul_Gravette/status/2106448219811234192",
-  "place": "Florida",
-  "lat": 28.0,
-  "lon": -81.7,
-  "fleet": "",
-  "score": 2
- },
- {
-  "handle": "@Tgretski",
-  "post": "https://x.com/Tgretski/status/2105384548284661767",
-  "place": "Colorado/Wyoming",
-  "lat": 41.0,
-  "lon": -105.5,
-  "fleet": "",
-  "score": 2
- },
- {
-  "handle": "@Terranatura4",
-  "post": "https://x.com/Terranatura4/status/2108315023231930711",
-  "place": "San Antonio, TX",
-  "lat": 29.42,
-  "lon": -98.49,
-  "fleet": "",
-  "score": 2
- },
- {
-  "handle": "@ChrisMacFarland",
-  "post": "https://x.com/ChrisMacFarland/status/2115540273208168686",
-  "place": "Trophy Club, TX",
-  "lat": 33.0,
-  "lon": -97.18,
-  "fleet": "small",
-  "score": 2
- },
- {
-  "handle": "@SpaceXobsessed",
-  "post": "https://x.com/SpaceXobsessed/status/2110852104608702467",
-  "place": "Upstate New York",
-  "lat": 43.0,
-  "lon": -75.5,
-  "fleet": "10",
-  "score": 2
- },
- {
-  "handle": "@ericwynnus",
-  "post": "https://x.com/ericwynnus/status/2114859027159024017",
-  "place": "Minneapolis, MN",
-  "lat": 44.98,
-  "lon": -93.27,
-  "fleet": "",
-  "score": 2
- },
- {
-  "handle": "@JoergWeisner",
-  "post": "https://x.com/JoergWeisner/status/2115825084124533113",
-  "place": "Hamburg, Germany",
-  "lat": 53.55,
-  "lon": 9.99,
-  "fleet": "quite a few (with partners)",
-  "score": 2
- },
- {
-  "handle": "@Jourik_",
-  "post": "https://x.com/Jourik_/status/2110074498397651133",
-  "place": "New Hampshire",
-  "lat": 43.7,
-  "lon": -71.6,
-  "fleet": "",
-  "score": 2
- },
- {
-  "handle": "@shaytolly",
-  "post": "https://x.com/shaytolly/status/2115087122462027791",
-  "place": "North Carolina",
-  "lat": 35.5,
-  "lon": -79.4,
-  "fleet": "",
-  "score": 2
- },
- {
-  "handle": "@jchap2017",
-  "post": "https://x.com/jchap2017/status/2114903151132479662",
-  "place": "San Jose, CA",
-  "lat": 37.34,
-  "lon": -121.89,
-  "fleet": "1-2, then reinvest",
-  "score": 2
- },
- {
-  "handle": "@GrindeOptions",
-  "post": "https://x.com/GrindeOptions/status/2106577513535414447",
-  "place": "Seattle, WA",
-  "lat": 47.61,
-  "lon": -122.33,
-  "fleet": "full fleet",
-  "score": 1
- },
- {
-  "handle": "@vcdxnz001",
-  "post": "https://x.com/vcdxnz001/status/2115366500596896017",
-  "place": "Auckland, New Zealand",
-  "lat": -36.85,
-  "lon": 174.76,
-  "fleet": "",
-  "score": 1
- },
- {
-  "handle": "@CybertruckTexan",
-  "post": "https://x.com/CybertruckTexan/status/2113377001167855743",
-  "place": "Texas",
-  "lat": 31.5,
-  "lon": -97.5,
-  "fleet": "a bunch",
-  "score": 1
- },
- {
-  "handle": "@T33ngeDirtbg",
-  "post": "https://x.com/T33ngeDirtbg/status/2115093564493566405",
-  "place": "Colorado",
-  "lat": 39.0,
-  "lon": -105.5,
-  "fleet": "",
-  "score": 1
- },
- {
-  "handle": "@sebaonwheels",
-  "post": "https://x.com/sebaonwheels/status/2114799455123722353",
-  "place": "Germany",
-  "lat": 51.2,
-  "lon": 10.4,
-  "fleet": "",
-  "score": 1
- },
- {
-  "handle": "@MiddleAgeRules",
-  "post": "https://x.com/MiddleAgeRules/status/2114895226976526837",
-  "place": "California",
-  "lat": 36.8,
-  "lon": -119.4,
-  "fleet": "as many as possible",
-  "score": 1
- }
+  {
+    "handle": "@TeslaStars",
+    "post": "https://x.com/TeslaStars/status/2115428282346656001",
+    "place": "Bordeaux, France",
+    "lat": 44.84,
+    "lon": -0.58,
+    "fleet": "1, then 2, 3, 4",
+    "score": 3
+  },
+  {
+    "handle": "@YoKeenan10",
+    "post": "https://x.com/YoKeenan10/status/2113402937313497520",
+    "place": "Texas",
+    "lat": 31.0,
+    "lon": -99.0,
+    "fleet": "several",
+    "score": 3
+  },
+  {
+    "handle": "@boston_drives",
+    "post": "https://x.com/boston_drives/status/2105777337446920656",
+    "place": "Boston, MA",
+    "lat": 42.36,
+    "lon": -71.06,
+    "fleet": "several + own Tesla",
+    "score": 3
+  },
+  {
+    "handle": "@napersveryown",
+    "post": "https://x.com/napersveryown/status/2115050993817968829",
+    "place": "Denver, CO",
+    "lat": 39.74,
+    "lon": -104.99,
+    "fleet": "start with 1, then grow",
+    "score": 3
+  },
+  {
+    "handle": "@LanceWade",
+    "post": "https://x.com/LanceWade/status/2111208502500696289",
+    "place": "Austin, TX",
+    "lat": 30.27,
+    "lon": -97.74,
+    "fleet": "",
+    "score": 3
+  },
+  {
+    "handle": "@mikeg0",
+    "post": "https://x.com/mikeg0/status/2108569144291631492",
+    "place": "Salt Lake City, UT",
+    "lat": 40.76,
+    "lon": -111.89,
+    "fleet": "",
+    "score": 3
+  },
+  {
+    "handle": "@TotallyLocoMoto",
+    "post": "https://x.com/TotallyLocoMoto/status/2105369328644141351",
+    "place": "Plano, TX",
+    "lat": 33.02,
+    "lon": -96.7,
+    "fleet": "3 at launch",
+    "score": 3
+  },
+  {
+    "handle": "@JSMobilityNJ",
+    "post": "https://x.com/JSMobilityNJ/status/2113999906771710274",
+    "place": "Farmingdale, NJ",
+    "lat": 40.2,
+    "lon": -74.17,
+    "fleet": "",
+    "score": 3
+  },
+  {
+    "handle": "@NIK4NIKAM",
+    "post": "https://x.com/NIK4NIKAM/status/2106895820725383469",
+    "place": "Houston, TX",
+    "lat": 29.76,
+    "lon": -95.37,
+    "fleet": "",
+    "score": 3
+  },
+  {
+    "handle": "@SouthernHayes70",
+    "post": "https://x.com/SouthernHayes70/status/2115093659200716862",
+    "place": "Myrtle Beach, SC",
+    "lat": 33.69,
+    "lon": -78.89,
+    "fleet": "3",
+    "score": 3
+  },
+  {
+    "handle": "@Paul_Gravette",
+    "post": "https://x.com/Paul_Gravette/status/2106448219811234192",
+    "place": "Florida",
+    "lat": 28.0,
+    "lon": -81.7,
+    "fleet": "",
+    "score": 2
+  },
+  {
+    "handle": "@Tgretski",
+    "post": "https://x.com/Tgretski/status/2105384548284661767",
+    "place": "Colorado/Wyoming",
+    "lat": 41.0,
+    "lon": -105.5,
+    "fleet": "",
+    "score": 2
+  },
+  {
+    "handle": "@Terranatura4",
+    "post": "https://x.com/Terranatura4/status/2108315023231930711",
+    "place": "San Antonio, TX",
+    "lat": 29.42,
+    "lon": -98.49,
+    "fleet": "",
+    "score": 2
+  },
+  {
+    "handle": "@ChrisMacFarland",
+    "post": "https://x.com/ChrisMacFarland/status/2115540273208168686",
+    "place": "Trophy Club, TX",
+    "lat": 33.0,
+    "lon": -97.18,
+    "fleet": "small",
+    "score": 2
+  },
+  {
+    "handle": "@SpaceXobsessed",
+    "post": "https://x.com/SpaceXobsessed/status/2110852104608702467",
+    "place": "Upstate New York",
+    "lat": 43.0,
+    "lon": -75.5,
+    "fleet": "10",
+    "score": 2
+  },
+  {
+    "handle": "@ericwynnus",
+    "post": "https://x.com/ericwynnus/status/2114859027159024017",
+    "place": "Minneapolis, MN",
+    "lat": 44.98,
+    "lon": -93.27,
+    "fleet": "",
+    "score": 2
+  },
+  {
+    "handle": "@JoergWeisner",
+    "post": "https://x.com/JoergWeisner/status/2115825084124533113",
+    "place": "Hamburg, Germany",
+    "lat": 53.55,
+    "lon": 9.99,
+    "fleet": "quite a few (with partners)",
+    "score": 2
+  },
+  {
+    "handle": "@Jourik_",
+    "post": "https://x.com/Jourik_/status/2110074498397651133",
+    "place": "New Hampshire",
+    "lat": 43.7,
+    "lon": -71.6,
+    "fleet": "",
+    "score": 2
+  },
+  {
+    "handle": "@shaytolly",
+    "post": "https://x.com/shaytolly/status/2115087122462027791",
+    "place": "North Carolina",
+    "lat": 35.5,
+    "lon": -79.4,
+    "fleet": "",
+    "score": 2
+  },
+  {
+    "handle": "@jchap2017",
+    "post": "https://x.com/jchap2017/status/2114903151132479662",
+    "place": "San Jose, CA",
+    "lat": 37.34,
+    "lon": -121.89,
+    "fleet": "1-2, then reinvest",
+    "score": 2
+  },
+  {
+    "handle": "@GrindeOptions",
+    "post": "https://x.com/GrindeOptions/status/2106577513535414447",
+    "place": "Seattle, WA",
+    "lat": 47.61,
+    "lon": -122.33,
+    "fleet": "full fleet",
+    "score": 1
+  },
+  {
+    "handle": "@vcdxnz001",
+    "post": "https://x.com/vcdxnz001/status/2115366500596896017",
+    "place": "Auckland, New Zealand",
+    "lat": -36.85,
+    "lon": 174.76,
+    "fleet": "",
+    "score": 1
+  },
+  {
+    "handle": "@CybertruckTexan",
+    "post": "https://x.com/CybertruckTexan/status/2113377001167855743",
+    "place": "Texas",
+    "lat": 31.5,
+    "lon": -97.5,
+    "fleet": "a bunch",
+    "score": 1
+  },
+  {
+    "handle": "@T33ngeDirtbg",
+    "post": "https://x.com/T33ngeDirtbg/status/2115093564493566405",
+    "place": "Colorado",
+    "lat": 39.0,
+    "lon": -105.5,
+    "fleet": "",
+    "score": 1
+  },
+  {
+    "handle": "@sebaonwheels",
+    "post": "https://x.com/sebaonwheels/status/2114799455123722353",
+    "place": "Germany",
+    "lat": 51.2,
+    "lon": 10.4,
+    "fleet": "",
+    "score": 1
+  },
+  {
+    "handle": "@MiddleAgeRules",
+    "post": "https://x.com/MiddleAgeRules/status/2114895226976526837",
+    "place": "California",
+    "lat": 36.8,
+    "lon": -119.4,
+    "fleet": "as many as possible",
+    "score": 1
+  },
+  {
+    "handle": "@conradpruijssen",
+    "post": "https://x.com/conradpruijssen/status/2116563943284183273",
+    "place": "Almere, Netherlands",
+    "lat": 52.37,
+    "lon": 5.22,
+    "fleet": "10",
+    "score": 2
+  }
 ]
