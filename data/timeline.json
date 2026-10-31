@@ -1,0 +1,15 @@
+{"updated":"2026-10-31","owner_golive_estimate":"2027-04-01","plan_start":"2027-01-01",
+"milestones":[
+{"date":"Jan 2026","title":"UNECE working party adopts draft global rule for driverless cars (ADS)","status":"done","by":"Regulator","src":"https://unece.org/media/transport/Vehicle-Regulations/press/411317"},
+{"date":"Apr 2026","title":"RDW (Netherlands) approves FSD Supervised , driver still in charge","status":"done","by":"Regulator","src":"https://www.rdw.nl/en/news/2026/rdw-explanation-of-european-type-approval-tesla-with-provisional-validity-in-the-netherlands"},
+{"date":"Q3 2026","title":"Cybercab rides launch in Austin , fleet grows 10x in the first month","status":"done","by":"Tesla","src":"https://www.fool.com/earnings/call-transcripts/2026/10/22/tesla-tsla-q3-2026-earnings-call-transcript/"},
+{"date":"Oct 31, 2026","title":"Today : Cybercabs built in Texas all go to Tesla's own Robotaxi fleet","status":"done","by":"Tesla","src":"https://evwire.com/p/tesla-robotaxi-cybercab-dallas-24-7-service-q3-2026-earnings-call"},
+{"date":"Nov 2026","title":"Cybercab launches in Dallas , same software scales to more cities","status":"announced","by":"Tesla","src":"https://evwire.com/p/tesla-robotaxi-cybercab-dallas-24-7-service-q3-2026-earnings-call"},
+{"date":"Dec 2026","title":"EU committee (TCMV) may vote on EU-wide FSD Supervised , vote not yet confirmed","status":"expected","by":"Regulator","src":"https://teslant.com/en/news/tesla-assisted-driving-lateral-acceleration-exemption-dropped-eu-vote-uncertain-2026-10"},
+{"date":"End of 2026","title":"First Cybercabs delivered to customers , small scale","status":"announced","by":"Tesla","src":"https://www.engadget.com/2293810/tesla-plans-selling-cybercabs-by-end-of-2026/"},
+{"date":"Jan 2027","title":"Start your 90-Day Fleet Plan here : city , depot , cost per km , funding , rules","status":"estimate","by":"Our estimate","src":"","plan":true},
+{"date":"Early 2027","title":"FSD v15 released to customers , same software as Cybercab","status":"announced","by":"Tesla","src":"https://www.theverge.com/transportation/1016118/tesla-robotaxi-customer-owned-vehicle-fleet-network-q3-2026-earnings"},
+{"date":"Q2 2027","title":"First customer cars switched on in the Robotaxi network (US geofences)","status":"announced","by":"Tesla","src":"https://www.notateslaapp.com/news/4879/tesla-to-launch-unsupervised-fsd-let-owners-join-robotaxi-network-in-q2-2027"},
+{"date":"H2 2027","title":"More US cities open for owner cars , local permits and insurance decide the pace","status":"estimate","by":"Our estimate","src":"https://www.theverge.com/transportation/1016118/tesla-robotaxi-customer-owned-vehicle-fleet-network-q3-2026-earnings"},
+{"date":"2028+","title":"Europe and the Netherlands : driverless fleets need an ADS approval on top of FSD Supervised","status":"estimate","by":"Our estimate","src":"https://www.electrive.com/2026/09/28/eu-vote-on-tesla-fsd-not-expected-before-december/"}
+]}
