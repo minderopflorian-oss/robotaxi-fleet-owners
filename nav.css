@@ -1,0 +1,27 @@
+:root{--cfg:#d4af6a;--cfg2:#e8c98a}
+.cfn{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:12px 32px;background:rgba(0,0,0,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(212,175,106,.35);font-family:Inter,system-ui,sans-serif;font-weight:300}
+.cfn a{color:#fff;text-decoration:none;margin:0}
+.cfn .brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.cfn .brand img{height:34px;width:auto}.cfn .brand b{color:var(--cfg);font-weight:500}
+.cfn .links{display:flex;align-items:center;gap:18px;font-size:14px}
+.cfn .mnu{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.cfn .mnu>li{position:relative}
+.cfn .mnu>li>a,.cfn .mnu>li>button{display:block;background:none;border:0;color:#fff;font:inherit;padding:8px 12px;cursor:pointer}
+.cfn .dd>button::after{content:"";display:inline-block;margin-left:7px;width:5px;height:5px;border-right:1px solid var(--cfg);border-bottom:1px solid var(--cfg);transform:translateY(-3px) rotate(45deg)}
+.cfn .mnu>li>a:hover,.cfn .mnu>li>button:hover,.cfn .dd.open>button{color:var(--cfg2)}
+.cfn .dd ul{display:none;position:absolute;left:0;top:100%;min-width:240px;list-style:none;margin:0;padding:10px 0;background:#000;border:1px solid var(--cfg);border-radius:12px}
+.cfn .dd.open ul{display:block}
+@media(hover:hover) and (min-width:1001px){.cfn .dd:hover ul,.cfn .dd:focus-within ul{display:block}}
+.cfn .dd ul a{display:block;padding:9px 18px;opacity:.85;font-size:14px}.cfn .dd ul a:hover{color:var(--cfg2);opacity:1}
+.cfn .cta{background:var(--cfg);color:#000!important;border-radius:999px;padding:10px 20px;font-weight:600;white-space:nowrap}
+.cfn .cta:hover{background:var(--cfg2)}
+.cfn .burger{display:none;background:none;border:0;padding:8px;cursor:pointer}
+.cfn .burger span{display:block;width:24px;height:2px;margin:5px 0;background:var(--cfg)}
+.cfn a:focus-visible,.cfn button:focus-visible{outline:2px solid var(--cfg);outline-offset:2px}
+body.cfn-pad{padding-top:64px}
+@media(max-width:1000px){.cfn{padding:10px 18px}.cfn .burger{display:block}.cfn .brand{font-size:11px;letter-spacing:.2em}
+.cfn .links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 20px;background:#000;border-bottom:1px solid var(--cfg);max-height:calc(100vh - 60px);overflow:auto}
+.cfn.open .links{display:flex}.cfn .mnu{flex-direction:column}
+.cfn .mnu>li>a,.cfn .mnu>li>button{width:100%;text-align:left;padding:14px 0;border-bottom:1px solid #222;font-size:16px}
+.cfn .dd ul{position:static;border:0;padding:0 0 8px 14px;min-width:0}
+.cfn .cta{order:-1;margin:8px 0 12px;text-align:center}}
