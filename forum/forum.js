@@ -263,7 +263,7 @@ function renderAbout(){
  <p><b>${st.profiles.length}</b> forum members · <b>${st.posts.filter(p=>!p.hidden).length}</b> posts · Free to join with Google or email . The community on X stays open too : <a href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">join the X Community</a> .</p>
  <h3 style="margin-top:20px">House rules</h3><ul><li>Be respectful . Debate ideas , not people .</li><li>No financial advice and no promises of returns .</li><li>No spam , no selling and no self-promotion .</li><li>Keep personal data out : no phone numbers , addresses or ID details .</li><li>Post in the right category . Off-topic is for everything else .</li></ul>
  <h3 style="margin-top:20px">Moderation</h3><p>Moderators can pin , hide , lock or remove posts and block members who break the rules . Use Report on any post or comment . New members can post once a minute .</p>
- <h3 style="margin-top:20px">Privacy</h3><p>We store your display name , profile photo , the city and plan you choose to share , and your posts . Your email address is used only to sign in and is never shown . Ask a moderator to delete your account and posts at any time .</p>
+ <h3 style="margin-top:20px">Privacy</h3><p>We store your display name , profile photo , the city and plan you choose to share , and your posts . Your email address is used only to sign in and is never shown . If you save a readiness check , admins can see saved readiness answers and may use them to offer relevant help or resources . Ask a moderator to delete your account and posts at any time .</p>
  <p class="tiny">Independent community , not affiliated with Tesla , Inc . Nothing in this forum is financial advice .</p></div>`;
 }
 

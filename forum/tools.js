@@ -25,7 +25,8 @@ export async function renderReadiness(el,C){
  <div class="card tool-hero"><span class="tag">Tool</span><h2>Readiness check</h2><p class="muted">15 questions , about 5 minutes . You get a readiness score out of 100 , your 3 weakest areas with the lesson for each , and your next 3 steps .${C.U?'':' Sign in to save your result and earn '+READY_POINTS+' points .'}</p>
  <div class="bar"><i id="rqbar" style="width:0%"></i></div><div class="pct" id="rqn">0 / 15 answered</div></div>
  ${groups.map(g=>`<div class="card rq-area"><h4>${esc(AREAS[g].name)}</h4>${READINESS.filter(q=>q.area===g).map(q=>`<div class="rq" data-q="${q.id}"><div class="rqt">${esc(q.t)}</div><div class="opts">${q.o.map((o,i)=>`<button type="button" class="opt ${ANS[q.id]===i?'on':''}" data-v="${i}">${esc(o)}</button>`).join('')}</div></div>`).join('')}</div>`).join('')}
- <div class="row" style="justify-content:center;margin:20px 0"><button class="gbtn" id="rqgo" style="max-width:320px" disabled>See my readiness score</button></div>`;
+ <div class="row" style="justify-content:center;margin:20px 0"><button class="gbtn" id="rqgo" style="max-width:320px" disabled>See my readiness score</button></div>
+ <p class="tiny" style="text-align:center;margin-top:-8px">Admins can see saved readiness answers and may use them to offer relevant help or resources .</p>`;
  const upd=()=>{const n=Object.keys(ANS).length;$('rqbar').style.width=(100*n/15)+'%';$('rqn').textContent=`${n} / 15 answered`;$('rqgo').disabled=n<15};
  el.querySelectorAll('.rq').forEach(r=>r.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ANS[r.dataset.q]=+b.dataset.v;r.querySelectorAll('.opt').forEach(x=>x.classList.toggle('on',x===b));upd()}));
  upd();
@@ -40,7 +41,7 @@ function showResult(el,C,r,saved,at,pending){
  el.innerHTML=`<p><a href="#classroom/start">← Start here</a></p>
  <div class="card tool-hero res"><div class="ring">${ring(r.score)}</div><div><span class="tag">Your readiness</span><h2>${esc(r.level)}</h2>
  <p class="muted">${saved?`Saved to your profile${at?' on '+new Date(at).toLocaleDateString('en-GB',{day:'numeric',month:'short'}):''} . Completing the check earns ${READY_POINTS} points once .`:pending?'Sign in to save this result to your profile and earn '+READY_POINTS+' points .':'Not saved .'}</p>
- <div class="row">${pending?'<button class="gbtn" id="rqsign">Sign in to save</button>':''}<a class="gbtn o" style="text-decoration:none;text-align:center" href="#tools/readiness?retake=1" id="rqre">Retake the check</a></div></div></div>
+ <div class="row">${pending?'<button class="gbtn" id="rqsign">Sign in to save</button>':''}<a class="gbtn o" style="text-decoration:none;text-align:center" href="#tools/readiness?retake=1" id="rqre">Retake the check</a></div><p class="tiny">Admins can see saved readiness answers and may use them to offer relevant help or resources .</p></div></div>
  ${Object.keys(per).length&&r.answers&&Object.keys(r.answers).length?`<div class="card" style="padding:18px;margin-top:14px"><h4 style="margin:0 0 12px">By area</h4>${Object.keys(AREAS).map(k=>`<div class="arow"><span>${esc(AREAS[k].name)}</span><div class="bar"><i style="width:${Math.round(per[k]*100)}%"></i></div><b>${Math.round(per[k]*100)}</b></div>`).join('')}</div>`:''}
  <div class="two"><div class="card" style="padding:18px"><h4 style="margin:0 0 10px">Your 3 weakest areas</h4><ol class="steps">${r.weak.map(k=>{const L=AREAS[k].lesson;return `<li><b>${esc(AREAS[k].name)}</b><br><span class="muted">Lesson : </span><a href="#classroom/${L[0]}">${esc(L[2])}</a></li>`}).join('')}</ol></div>
  <div class="card" style="padding:18px"><h4 style="margin:0 0 10px">Your next 3 steps</h4><ol class="steps">${r.weak.map(k=>`<li>${esc(AREAS[k].step)}</li>`).join('')}</ol></div></div>
