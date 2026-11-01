@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Forum · Cybercab Fleet Owners</title>
+<meta name="description" content="The forum of the Cybercab Fleet Owners community : meet other future robotaxi fleet owners, share your city and plan, learn in the classroom and join the weekly calendar.">
+<link rel="canonical" href="https://cybercabfleetowners.com/forum/"><meta name="theme-color" content="#000000"><meta property="og:type" content="website"><meta property="og:url" content="https://cybercabfleetowners.com/forum/"><meta property="og:site_name" content="Cybercab Fleet Owners"><meta property="og:title" content="Cybercab Fleet Owners forum"><meta property="og:description" content="Meet other future robotaxi fleet owners and build your fleet plan together."><meta property="og:image" content="https://cybercabfleetowners.com/og.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@fminderop">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon-180.png"><link rel="stylesheet" href="/nav.css"><link rel="stylesheet" href="/forum/forum.css"><script src="/ref.js"></script></head><body class="cfn-pad">
+<nav id="cfn" class="cfn" aria-label="Main"><a class="brand" href="/"><img src="/img/logo-mark-wide.png" alt="Cybercab Fleet Owners logo">Cybercab <b>Fleet</b> Owners</a><button class="burger" type="button" aria-expanded="false" aria-controls="cfmenu" aria-label="Menu"><span></span><span></span><span></span></button><div class="links" id="cfmenu"><ul class="mnu"><li class="top"><a href="/fleet-map.html">Fleet map</a></li><li class="top"><a href="/forum/">Forum</a></li><li class="dd"><button type="button" aria-expanded="false" aria-controls="cfm1">Guides</button><ul id="cfm1"><li><a href="/#guides">All guides</a></li><li><a href="/guide.html">Free guide : 2027 Readiness</a></li><li><a href="/timeline.html">Timeline</a></li><li><a href="/#questions-for-tesla">Questions for Tesla</a></li><li><a href="/#faq">FAQ</a></li></ul></li><li class="dd"><button type="button" aria-expanded="false" aria-controls="cfm2">Plan</button><ul id="cfm2"><li><a href="/#masterplan">90-Day Fleet Plan</a></li><li><a href="/#caas">Cybercab as a Service</a></li><li><a href="/#waitlists">Waitlist</a></li><li><a href="/#earn">Calculator : what one car could do</a></li><li><a href="/#network-revenue">Network revenue slider</a></li><li><a href="/#fund">Funding</a></li><li><a href="/#cyberfund">CyberFund</a></li><li><a href="/#stake">Own a stake</a></li><li><a href="/#bot">Fleet bot</a></li><li><a href="/#review">Fleet plan review</a></li></ul></li><li class="dd"><button type="button" aria-expanded="false" aria-controls="cfm3">Community</button><ul id="cfm3"><li><a href="/#why">Why join</a></li><li><a href="/#growing">Members</a></li><li><a href="/#invite">Invite a friend</a></li><li><a href="/#swarm">Build the Hub : the swarm</a></li><li><a href="/#join-the-swarm">Join the swarm</a></li><li><a href="/#figure">Topics</a></li><li><a href="/#rhythm">Weekly rhythm</a></li><li><a href="/#watch">Watch</a></li><li><a href="https://www.youtube.com/@CybercabFleetOwners" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://x.com/intent/post?text=I%27d%20love%20to%20be%20a%20guest%20on%20the%20Tesla%20to%20Mars%20podcast%20%F0%9F%8E%99%EF%B8%8F%F0%9F%9A%80%20Here%27s%20my%20robotaxi%20fleet%20story%3A%20%40fminderop%20%40KRoelandschap" target="_blank" rel="noopener">Be a podcast guest</a></li><li><a href="/austin-trip.html">Austin trip</a></li><li><a href="/#partners">Partner with us</a></li><li><a href="/#contact">Contact</a></li></ul></li><li class="dd"><button type="button" aria-expanded="false" aria-controls="cfm4">Data</button><ul id="cfm4"><li><a href="/#miles">Robotaxi miles</a></li><li><a href="/#cities">Driverless share</a></li><li><a href="/#eu-fsd">FSD in Europe</a></li><li><a href="/#europe">Europe</a></li><li><a href="/#semi">Semi</a></li><li><a href="/#energy">Energy</a></li><li><a href="/#megapod">Megapod</a></li></ul></li></ul><a class="cta" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Join the community</a></div></nav>
+<div class="ftabs-wrap"><nav class="ftabs" aria-label="Forum">
+<a href="#community" data-tab="community">Community</a><a href="#classroom" data-tab="classroom">Classroom</a><a href="#calendar" data-tab="calendar">Calendar</a><a href="#members" data-tab="members">Members</a><a href="#map" data-tab="map">Map</a><a href="#leaderboards" data-tab="leaderboards">Leaderboards</a><a href="#about" data-tab="about">About</a>
+</nav><div class="who" id="who"></div></div>
+<div id="demo" class="demo" hidden>Preview mode : posts , likes , comments and progress are saved only in this browser until the forum is connected .</div>
+<div class="fwrap">
+<main class="fmain">
+<section id="v-community" class="view">
+ <div class="write" id="write" role="button" tabindex="0"><span class="avw" id="meav"></span><span class="ph">Write something</span></div>
+ <div class="event" id="eventline"></div>
+ <div class="pills" id="pills"></div>
+ <div id="feed" class="feed"><p class="muted">Loading…</p></div>
+</section>
+<section id="v-classroom" class="view" hidden></section>
+<section id="v-calendar" class="view" hidden></section>
+<section id="v-members" class="view" hidden></section>
+<section id="v-map" class="view" hidden><div class="vhead"><h2>Map</h2><span class="muted" id="mapcount"></span></div><div id="fmap"></div><p class="tiny">Forum members appear at city level when they add a city to their profile . Gold : fleet plans shared on X . Grey : X Community members by public home location . Full map : <a href="/fleet-map.html">fleet map</a></p></section>
+<section id="v-leaderboards" class="view" hidden></section>
+<section id="v-about" class="view" hidden></section>
+</main>
+<aside class="side">
+ <div class="card scard">
+  <img src="/img/forum-emblem.png" alt="Cybercab Fleet Owners emblem" class="emb">
+  <h3>Cybercab Fleet Owners</h3><div class="url">cybercabfleetowners.com/forum</div>
+  <p>Where future robotaxi fleet owners meet , compare plans and build together .</p>
+  <ul class="slinks"><li><a href="#start" data-go="start">Start here</a></li><li><a href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Join the X Community</a></li><li><a href="/fleet-map.html">Fleet map</a></li></ul>
+  <div class="stats"><div><b id="smembers">–</b><span>Members</span></div><div><b id="sonline">–</b><span>Online</span></div><div><b id="sadmins">–</b><span>Admins</span></div></div>
+  <div class="avs" id="savs"></div>
+  <button class="gbtn" id="sidebtn">Join the forum</button>
+ </div>
+ <p class="tiny">Independent community , not affiliated with Tesla , Inc .</p>
+</aside>
+</div>
+<div class="modal" id="modal" hidden><div class="mbox" role="dialog" aria-modal="true"><button class="x" id="mclose" aria-label="Close">×</button><div id="mbody"></div></div></div>
+<footer class="ffoot">© 2026 Tesla Cybercab Fleet Owners · Independent community , not affiliated with Tesla , Inc . · <a href="/">cybercabfleetowners.com</a></footer>
+<script src="/nav.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module" src="/forum/forum.js"></script>
+</body></html>
