@@ -28,7 +28,8 @@ export function demoStore(){
   w.img='/img/forum-emblem.png';
   const sp=mk({cat:'wins',title:'Win : picked my city and booked a meeting with a parking garage',body:'Small step , but the garage owner is open to a few charging spots for robotaxis . Next : ask about grid capacity .'},6*H,'s1');
   like(sp,'s2',4*H);like(sp,'s3',2*H);
-  db={posts,comments,profiles:[team,...S],admins:['team'],events:[],me:null};
+  const priv={};[[S[0],72,'Preparing',['insurance','charging','team']],[S[1],38,'Exploring',['permits','depot','insurance']],[S[2],55,'Planning',['charging','permits','funding']]].forEach(([p,sc,lv,wk],i)=>{p.ready=sc;p.readyLevel=lv;p.readyAt=t-(i+1)*H*5;priv[p.uid]={score:sc,level:lv,weak:wk,answers:{},at:p.readyAt}});
+  db={posts,comments,profiles:[team,...S],admins:['team'],events:[],me:null,priv,scen:[]};
   localStorage.setItem(KEY,JSON.stringify(db));
  }
  const save=()=>localStorage.setItem(KEY,JSON.stringify(db));
@@ -56,6 +57,12 @@ export function demoStore(){
   async addEvent(e){db.events.push({id:rid(),...e});save()},
   async deleteEvent(id){db.events=db.events.filter(e=>e.id!==id);save()},
   async report(){},async ban(){},
+  async saveReadiness(r){const p=me();db.priv=db.priv||{};db.priv[p.uid]={...r,at:now()};p.ready=r.score;p.readyLevel=r.level;p.readyAt=now();save()},
+  async getReadiness(){return (db.priv||{})[db.me]||null},
+  async adminReadiness(){return Object.entries(db.priv||{}).map(([uid,r])=>({uid,...r}))},
+  async listScenarios(){return (db.scen||[]).filter(x=>x.uid===db.me).sort((a,b)=>b.at-a.at)},
+  async saveScenario(o){db.scen=db.scen||[];db.scen.push({id:rid(),uid:db.me,...o,at:now()});save()},
+  async deleteScenario(id){db.scen=(db.scen||[]).filter(x=>x.id!==id);save()},
   reset(){localStorage.removeItem(KEY);location.reload()}
  };
  return api;
@@ -71,7 +78,7 @@ export async function liveStore(cfg){
  if(cfg.emulator){A.connectAuthEmulator(auth,'http://127.0.0.1:9099',{disableWarnings:true});F.connectFirestoreEmulator(db,'127.0.0.1',8080)}
  const {doc,collection,getDocs,getDoc,setDoc,updateDoc,deleteDoc,addDoc,query,orderBy,limit,writeBatch,serverTimestamp:ts,increment,deleteField,collectionGroup,arrayUnion,arrayRemove}=F;
  let user=null,cb=()=>{};
- const conv=d=>{const o={id:d.id,...d.data()};for(const k of ['created','lastCommentAt','joined','lastSeen','lastPostAt','edited','start'])if(o[k])o[k]=ms(o[k]);if(o.likes)for(const k in o.likes)o.likes[k]=ms(o.likes[k]);return o};
+ const conv=d=>{const o={id:d.id,...d.data()};for(const k of ['created','lastCommentAt','joined','lastSeen','lastPostAt','edited','start','readyAt','at'])if(o[k])o[k]=ms(o[k]);if(o.likes)for(const k in o.likes)o.likes[k]=ms(o.likes[k]);return o};
  const profRef=()=>doc(db,'profiles',user.uid);
  A.onAuthStateChanged(auth,async u=>{
   user=u;
@@ -119,6 +126,12 @@ export async function liveStore(cfg){
   async addEvent(e){await addDoc(collection(db,'events'),{...e,created:ts()})},
   async deleteEvent(id){await deleteDoc(doc(db,'events',id))},
   async report(o){await addDoc(collection(db,'reports'),{...o,by:user.uid,created:ts()})},
-  async ban(uid){await setDoc(doc(db,'banned',uid),{at:ts()})}
+  async ban(uid){await setDoc(doc(db,'banned',uid),{at:ts()})},
+  async saveReadiness(r){const b=writeBatch(db);b.set(doc(db,'profiles',user.uid,'private','readiness'),{answers:r.answers,score:r.score,level:r.level,weak:r.weak,at:ts()});b.update(profRef(),{ready:r.score,readyLevel:r.level,readyAt:ts()});await b.commit()},
+  async getReadiness(){const s=await getDoc(doc(db,'profiles',user.uid,'private','readiness'));return s.exists()?conv(s):null},
+  async adminReadiness(){const s=await getDocs(collectionGroup(db,'private'));return s.docs.filter(d=>d.id==='readiness').map(d=>({uid:d.ref.parent.parent.id,...conv(d)}))},
+  async listScenarios(){const s=await getDocs(collection(db,'profiles',user.uid,'scenarios'));return s.docs.map(d=>({...conv(d),at:ms(d.data().at)})).sort((a,b)=>b.at-a.at)},
+  async saveScenario(o){await addDoc(collection(db,'profiles',user.uid,'scenarios'),{name:o.name,currency:o.currency,inputs:o.inputs,results:o.results,at:ts()})},
+  async deleteScenario(id){await deleteDoc(doc(db,'profiles',user.uid,'scenarios',id))}
  };
 }

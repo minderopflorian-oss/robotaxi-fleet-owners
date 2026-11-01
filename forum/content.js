@@ -26,11 +26,13 @@ export const COURSES=[
  {id:'start',title:'Start here',desc:'Your first three steps in the forum .',lessons:[
   {id:'start-1',t:'Read the welcome thread and house rules',d:'Two minutes . How the forum works and what is not allowed .',go:'welcome'},
   {id:'start-2',t:'Introduce yourself',d:'Your city , your plan and your timeline . Post in Intros .',go:'intro'},
-  {id:'start-3',t:'Add your city to your profile',d:'So you show up on the map and in the member directory .',go:'profile'}]},
+  {id:'start-3',t:'Add your city to your profile',d:'So you show up on the map and in the member directory .',go:'profile'},
+  {id:'start-4',t:'Tool : take the readiness check',d:'15 questions , 5 minutes . Get your readiness score , your 3 weakest areas and your next 3 steps .',url:'#tools/readiness',tool:1}],tool:'readiness'},
  {id:'ready',title:'The 2027 Readiness Guide',desc:'The free short starter : what is known , fleet size and a checklist .',cover:'/img/guide-cover.png',lessons:[
   {id:'ready-1',t:'Download the guide',d:'9 pages , PDF , free .',url:'/files/cybercab-2027-readiness-guide.pdf'},
   {id:'ready-2',t:'Work through the readiness checklist',d:'Tick off what you already have and note what is missing .',url:'/guide.html'},
-  {id:'ready-3',t:'Share one open question in Fleet planning',d:'Members and moderators help you find the answer .',go:'planning'}]},
+  {id:'ready-3',t:'Share one open question in Fleet planning',d:'Members and moderators help you find the answer .',go:'planning'},
+  {id:'ready-4',t:'Tool : readiness check',d:'Score yourself against the checklist and see which lessons to do next .',url:'#tools/readiness',tool:1}],tool:'readiness'},
  {id:'impl',title:'The Fleet Implementation Guide',desc:'The full plan : city , depot , charging , cleaning , insurance , rules and funding routes .',lessons:[
   ['The 90-Day Fleet Plan','Six steps , ninety days .'],
   ['Why Fleets : Owning the Mile','The car becomes productive capital .'],
@@ -49,7 +51,8 @@ export const COURSES=[
  ].map((l,i)=>({id:'impl-'+(i+1),t:l[0],d:l[1]+(l[2]?' Video chapter on X .':' Request the guide by email .'),url:l[2]||REQ}))},
  {id:'econ',title:'Cybercab Economics Guide',desc:'How the cost of running one robotaxi adds up , per km and per mile .',lessons:[
   {id:'econ-1',t:'Request the Economics Guide',d:'24 pages . Credit @CernBasher and AJ @alojoh .',url:REQ},
-  {id:'econ-2',t:'Discuss your cost assumptions',d:'Share your inputs in Fleet planning and compare with others .',go:'planning'}]},
+  {id:'econ-3',t:'Tool : cost-per-km calculator',d:'Enter your own numbers and see your cost per km , per day and per month , with a breakdown .',url:'#tools/costkm',tool:1},
+  {id:'econ-2',t:'Discuss your cost assumptions',d:'Share your inputs in Fleet planning and compare with others .',go:'planning'}],tool:'costkm'},
  {id:'fund',title:'Funding & Depreciation Guide',desc:'Ways to fund a fleet and keep depreciation under control .',lessons:[
   {id:'fund-1',t:'Request the Funding & Depreciation Guide',d:'18 pages . Credit Michiel van Duijn , Tesla to Mars episode 39 .',url:REQ},
   {id:'fund-2',t:'Ask a general funding question',d:'General questions only . No financial advice in the forum .',go:'funding'}]},
@@ -85,4 +88,55 @@ export const STARTERS=[
  {cat:'charging',title:'Home charger , depot or fast charging : what is your plan ?',body:'Where will your cars charge and get cleaned ? Share what you found about grid capacity in your area .'},
  {cat:'insurance',title:'What have insurers told you so far about covering a robotaxi ?',body:'Share what you asked and what you heard back , without names or personal details .'},
  {cat:'news',title:'Cybercabs now outnumber Model Ys in the Texas fleet',body:'Since 27 October 2026 Cybercabs outnumber Model Ys in the Texas robotaxi fleet : 544 vs 507 . Source : Texas DMV registrations via @herbertong . What does this change for your timeline ?'}
+];
+
+/* ---------- Tool 1 : readiness check ---------- */
+export const AREAS={
+ city:{name:'City',lesson:['impl','impl-4','Pick Your City'],step:'Pick one launch city and write down why : demand , rules and where cars could park .'},
+ permits:{name:'Permits and licensing',lesson:['impl','impl-12','Rules of the Road'],step:'List the permits and licences your city asks for , and call the local transport office with your questions .'},
+ depot:{name:'Parking and depot',lesson:['impl','impl-8','The Depot'],step:'Shortlist two places where your cars could park , charge and get cleaned , and ask about terms .'},
+ charging:{name:'Charging',lesson:['hubs','hubs-1','Charging & Depot Hubs Guide'],step:'Ask your grid operator or landlord how much charging capacity is available and how long a connection takes .'},
+ insurance:{name:'Insurance',lesson:['impl','impl-9','The Four Pillars'],step:'Ask two insurers what they need to quote a commercial robotaxi , and note the open questions .'},
+ operations:{name:'Operations',lesson:['impl','impl-7','Built for Uptime'],step:'Write down who cleans , checks and handles a car that needs help , and how fast .'},
+ team:{name:'Team',lesson:['impl','impl-13','Start Small , Scale Smart'],step:'Name the people you need for the first car : cleaning , admin , a backup contact , and who does what .'},
+ funding:{name:'Funding route',lesson:['fund','fund-1','Funding & Depreciation Guide'],step:'Pick the general route you want to explore first , such as own funds , a loan or a lease , and list what a lender would ask .'}
+};
+const Q=(id,area,t,o)=>({id,area,t,o});
+const S4=['Not yet','Started looking','Mostly clear','Done'];
+export const READINESS=[
+ Q('q1','city','Have you chosen the city where your first car will drive ?',['No idea yet','A few options','One city , not confirmed','One city , confirmed']),
+ Q('q2','city','Do you know where demand for rides is highest in that city ?',S4),
+ Q('q3','permits','Do you know which permits or licences a robotaxi fleet needs in your city ?',S4),
+ Q('q4','permits','Have you registered a company or legal entity for the fleet ?',['No','Thinking about it','In progress','Yes']),
+ Q('q5','depot','Do you have a place where your cars can park overnight ?',['No','Looking','Options found','Secured']),
+ Q('q6','depot','Is there room to clean and check the cars at that place ?',['No','Not sure','Probably','Yes']),
+ Q('q7','charging','Do you know how and where your cars will charge ?',S4),
+ Q('q8','charging','Have you checked the grid capacity at your parking place ?',['No','Not sure how','Asked , waiting','Confirmed']),
+ Q('q9','insurance','Have you talked to an insurer about covering a robotaxi ?',['No','Planning to','Had a first talk','Have a quote or offer']),
+ Q('q10','insurance','Do you know which risks you need to cover (damage , liability , downtime) ?',S4),
+ Q('q11','operations','Do you have a plan for cleaning the cars between rides ?',S4),
+ Q('q12','operations','Do you know what happens when a car needs help on the road ?',S4),
+ Q('q13','team','Who will help you run the fleet ?',['Just me , no plan','Thinking about it','Some people lined up','A team in place']),
+ Q('q14','team','How much time per week can you give to the fleet ?',['Under 2 hours','2 to 5 hours','5 to 15 hours','More than 15 hours']),
+ Q('q15','funding','Have you chosen a general route to fund your first car ?',['Not yet','Exploring options','Route chosen','Route in place'])
+];
+export const READY_LEVELS=[{min:0,name:'Curious'},{min:25,name:'Exploring'},{min:50,name:'Planning'},{min:70,name:'Preparing'},{min:85,name:'Ready to launch'}];
+export const READY_POINTS=5;
+
+/* ---------- Tool 2 : cost-per-km calculator (inputs only , no revenue) ---------- */
+export const COST_FIELDS=[
+ {g:'Vehicle',k:'price',l:'Vehicle price',u:'cur',ex:30000},
+ {g:'Vehicle',k:'residual',l:'Value at the end of the period (optional)',u:'cur',ex:8000,opt:1},
+ {g:'Vehicle',k:'months',l:'Financing or write-off period',u:'months',ex:60},
+ {g:'Vehicle',k:'rate',l:'Interest rate (optional)',u:'% per year',ex:6,opt:1},
+ {g:'Energy',k:'kwhPrice',l:'Energy price',u:'cur/kWh',ex:0.25},
+ {g:'Energy',k:'kwhKm',l:'Energy use',u:'kWh/km',ex:0.12},
+ {g:'Running costs',k:'insurance',l:'Insurance',u:'cur/month',ex:250},
+ {g:'Running costs',k:'cleaning',l:'Cleaning',u:'cur/month',ex:300},
+ {g:'Running costs',k:'maint',l:'Maintenance and tyres',u:'cur/km',ex:0.03},
+ {g:'Running costs',k:'parking',l:'Parking or depot',u:'cur/month',ex:150},
+ {g:'Running costs',k:'software',l:'Software , platform and other fees',u:'cur/month',ex:100},
+ {g:'Use',k:'kmDay',l:'Kilometres per day',u:'km',ex:250},
+ {g:'Use',k:'days',l:'Days in operation per month',u:'days',ex:28},
+ {g:'Use',k:'util',l:'Utilisation : share of km with a passenger',u:'%',ex:60}
 ];

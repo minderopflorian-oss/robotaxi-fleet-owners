@@ -1,6 +1,8 @@
 import {firebaseConfig} from './config.js';
 import {CATS,LEVELS,WEEKLY,COURSES,WELCOME,STARTERS} from './content.js';
 import {demoStore,liveStore} from './store.js';
+import {READY_POINTS} from './content.js';
+import {renderReadiness,renderCostKm,renderLeads} from './tools.js';
 
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -23,6 +25,7 @@ function points(since=0){
  const pts={};const add=(u,n=1)=>{if(u)pts[u]=(pts[u]||0)+n};
  st.posts.forEach(p=>{if(p.hidden)return;if(p.created>=since)add(p.uid);Object.entries(p.likes||{}).forEach(([u,t])=>{if(t>=since&&u!==p.uid)add(p.uid)})});
  st.comments.forEach(c=>{if(c.created>=since)add(c.uid);Object.entries(c.likes||{}).forEach(([u,t])=>{if(t>=since&&u!==c.uid)add(c.uid)})});
+ st.profiles.forEach(p=>{if(p.readyAt&&p.readyAt>=since)add(p.uid,READY_POINTS)});
  return pts;
 }
 let PTS={};
@@ -58,14 +61,19 @@ function route(){
  const h=location.hash.slice(1)||'community',[t,arg]=h.split('/');
  if(t==='post'){showTab('community');const p=st.posts.find(x=>x.id===arg);if(p)openPost(p);return}
  if(t==='start'){location.hash='#classroom/start';return}
+ if(t==='tools'){showTab('tools',(arg||'readiness').split('?')[0]);return}
  showTab(['community','classroom','calendar','members','map','leaderboards','about'].includes(t)?t:'community',arg);
 }
-function showTab(t,arg){window.scrollTo(0,0);
+function showTab(t,arg){window.scrollTo(0,0);document.body.classList.toggle('wide',t==='tools');
  tab=t;document.querySelectorAll('.ftabs a[data-tab]').forEach(a=>a.classList.toggle('on',a.dataset.tab===t));
  document.querySelectorAll('.view').forEach(v=>v.hidden=v.id!=='v-'+t);
- ({community:renderFeed,classroom:()=>renderClassroom(arg),calendar:renderCalendar,members:renderMembers,map:renderMap,leaderboards:renderBoards,about:renderAbout})[t]();
+ ({community:renderFeed,classroom:()=>renderClassroom(arg),calendar:renderCalendar,members:renderMembers,map:renderMap,leaderboards:renderBoards,about:renderAbout,tools:()=>renderTool(arg)})[t]();
 }
 
+/* ---------- tools ---------- */
+const CTX=()=>({S,U,st,me,isAdmin,refresh,authForm,toast});
+function renderTool(id){const el=$('v-tools');document.querySelector('.ftabs a[data-tab="classroom"]').classList.add('on');
+ if(id==='costkm')renderCostKm(el,CTX());else if(id==='leads')renderLeads(el,CTX());else renderReadiness(el,CTX())}
 /* ---------- header / sidebar ---------- */
 function renderWho(){
  const m=me();
@@ -77,6 +85,7 @@ function renderWho(){
 function renderSide(){
  const on=st.profiles.filter(p=>p.lastSeen&&Date.now()-p.lastSeen<5*60e3).length;
  $('smembers').textContent=st.profiles.length;$('sonline').textContent=Math.max(on,U?1:0);$('sadmins').textContent=st.admins.length;
+ $('sadminlink').hidden=!isAdmin();
  $('savs').innerHTML=[...st.profiles].sort((a,b)=>(b.lastSeen||0)-(a.lastSeen||0)).slice(0,8).map(p=>av(p.uid,p.name,p.photo,32,false)).join('');
 }
 
@@ -173,10 +182,10 @@ function renderClassroom(id){
  const done=new Set(me()?.done||[]),el=$('v-classroom');
  const pct=c=>Math.round(100*c.lessons.filter(l=>done.has(l.id)).length/c.lessons.length);
  const c=COURSES.find(x=>x.id===id);
- if(!c){el.innerHTML=`<div class="vhead"><h2>Classroom</h2><span class="muted">${U?'Your progress is saved to your profile .':'Sign in to track your progress .'}</span></div><div class="grid">${COURSES.map(c=>`<div class="card course" data-c="${c.id}"><div class="cov">${c.cover?`<img src="${c.cover}" alt="">`:'<img src="/img/forum-emblem.png" alt="">'}</div><div class="cb"><h4>${esc(c.title)}</h4><p>${esc(c.desc)}</p><div class="bar"><i style="width:${pct(c)}%"></i></div><div class="pct">${pct(c)}% · ${c.lessons.length} lessons</div></div></div>`).join('')}</div>`;
+ if(!c){el.innerHTML=`<div class="vhead"><h2>Classroom</h2><span class="muted">${U?'Your progress is saved to your profile .':'Sign in to track your progress .'}</span></div><div class="grid">${COURSES.map(c=>`<div class="card course" data-c="${c.id}"><div class="cov">${c.cover?`<img src="${c.cover}" alt="">`:'<img src="/img/forum-emblem.png" alt="">'}</div><div class="cb">${c.tool?'<span class="tag">Includes a tool</span>':''}<h4>${esc(c.title)}</h4><p>${esc(c.desc)}</p><div class="bar"><i style="width:${pct(c)}%"></i></div><div class="pct">${pct(c)}% · ${c.lessons.length} lessons</div></div></div>`).join('')}</div>`;
   el.querySelectorAll('.course').forEach(x=>x.onclick=()=>location.hash='#classroom/'+x.dataset.c);return}
  el.innerHTML=`<p><a href="#classroom">← Classroom</a></p><div class="card" style="padding:20px"><h2>${esc(c.title)}</h2><p class="muted">${esc(c.desc)}</p><div class="bar"><i style="width:${pct(c)}%"></i></div><div class="pct">${pct(c)}% complete</div>
- <ul class="lessons">${c.lessons.map((l,i)=>`<li><button class="chk ${done.has(l.id)?'on':''}" data-l="${l.id}" aria-label="Mark as done">${done.has(l.id)?'✓':''}</button><div><div class="lt">${i+1} . ${esc(l.t)}</div><div class="ld">${esc(l.d)} ${l.url?`<a href="${esc(l.url)}" ${l.url.startsWith('http')?'target="_blank" rel="noopener"':''}>Open</a>`:l.go?`<a href="#" data-go="${l.go}">Open</a>`:''}</div></div></li>`).join('')}</ul></div>`;
+ <ul class="lessons">${c.lessons.map((l,i)=>`<li><button class="chk ${done.has(l.id)?'on':''}" data-l="${l.id}" aria-label="Mark as done">${done.has(l.id)?'✓':''}</button><div><div class="lt">${i+1} . ${esc(l.t)}${l.tool?' <span class="tag">Tool</span>':''}</div><div class="ld">${esc(l.d)} ${l.url?`<a href="${esc(l.url)}" ${l.url.startsWith('http')?'target="_blank" rel="noopener"':''}>Open</a>`:l.go?`<a href="#" data-go="${l.go}">Open</a>`:''}</div></div></li>`).join('')}</ul></div>`;
  el.querySelectorAll('.chk').forEach(b=>b.onclick=async()=>{if(!U){authForm();return}await S.setDone(b.dataset.l,!done.has(b.dataset.l));await refresh()});
  el.querySelectorAll('[data-go]').forEach(a=>a.onclick=e=>{e.preventDefault();const g=a.dataset.go;
   if(g==='welcome'){const w=st.posts.find(p=>p.pinned);location.hash=w?'#post/'+w.id:'#community'}
@@ -208,7 +217,7 @@ function renderMembers(){
  let ms=st.profiles.filter(p=>!mq||(p.name+' '+p.city+' '+p.plan).toLowerCase().includes(mq.toLowerCase()));
  ms.sort((a,b)=>(PTS[b.uid]||0)-(PTS[a.uid]||0)||(b.joined||0)-(a.joined||0));
  $('v-members').innerHTML=`<div class="vhead"><h2>Members <span class="muted" style="font-size:16px">${st.profiles.length}</span></h2><input class="search" id="mq" placeholder="Search name , city or plan" value="${esc(mq)}"></div>
- ${ms.map(p=>{const l=levelOf(p.uid);return `<div class="card mrow">${av(p.uid,p.name,p.photo,52)}<div class="mi"><div class="mn">${esc(p.name)}${teamBadge(p.uid)} <span class="muted" style="font-weight:400;font-size:13px">Level ${l.n} · ${esc(l.name)}</span></div><div class="mc">${p.city?esc(p.city)+' · ':''}Joined ${p.joined?new Date(p.joined).toLocaleDateString('en-GB',{month:'short',year:'numeric'}):''} ${on(p)?'· <span class="on">● Online</span>':''}</div>${p.plan?`<div class="mp">Fleet plan : ${esc(p.plan)}</div>`:''}${p.bio?`<div class="mc">${esc(p.bio)}</div>`:''}</div><div class="muted" style="font-size:13px;text-align:right"><b style="color:var(--g2);font-size:16px">${PTS[p.uid]||0}</b><br>points</div></div>`}).join('')}`;
+ ${ms.map(p=>{const l=levelOf(p.uid);return `<div class="card mrow">${av(p.uid,p.name,p.photo,52)}<div class="mi"><div class="mn">${esc(p.name)}${teamBadge(p.uid)}${typeof p.ready==='number'?`<span class="rbad" title="Readiness check score">Ready ${p.ready}</span>`:''} <span class="muted" style="font-weight:400;font-size:13px">Level ${l.n} · ${esc(l.name)}</span></div><div class="mc">${p.city?esc(p.city)+' · ':''}Joined ${p.joined?new Date(p.joined).toLocaleDateString('en-GB',{month:'short',year:'numeric'}):''} ${on(p)?'· <span class="on">● Online</span>':''}</div>${p.plan?`<div class="mp">Fleet plan : ${esc(p.plan)}</div>`:''}${p.bio?`<div class="mc">${esc(p.bio)}</div>`:''}</div><div class="muted" style="font-size:13px;text-align:right"><b style="color:var(--g2);font-size:16px">${PTS[p.uid]||0}</b><br>points</div></div>`}).join('')}`;
  const q=$('mq');q.oninput=()=>{mq=q.value;renderMembers();const n=$('mq');n.focus();n.setSelectionRange(n.value.length,n.value.length)};
 }
 
@@ -244,7 +253,7 @@ function renderBoards(){
  $('v-leaderboards').innerHTML=`<div class="vhead"><h2>Leaderboards</h2><span class="muted">${U?`You : level ${my.n} · ${PTS[U.uid]||0} points${nxt?` · ${nxt.min-(PTS[U.uid]||0)} to level ${nxt.n}`:''}`:'Sign in to see your level'}</span></div>
  <div class="card levels">${LEVELS.map(l=>`<div><span class="lvn ${my&&my.n===l.n?'me':''}">${l.n}</span><span>Level ${l.n} · ${esc(l.name)}<small>${l.min} points · ${Math.round(100*cnt(l)/tot)}% of members</small></span></div>`).join('')}</div>
  <div class="boards">${mk('Last 7 days',Date.now()-7*D)}${mk('Last 30 days',Date.now()-30*D)}${mk('All time',0)}</div>
- <p class="tiny" style="margin-top:14px">Points : 1 for each post , 1 for each comment and 1 for each like your posts and comments receive from other members .</p>`;
+ <p class="tiny" style="margin-top:14px">Points : 1 for each post , 1 for each comment , 1 for each like your posts and comments receive from other members , and ${READY_POINTS} for completing the readiness check .</p>`;
 }
 
 /* ---------- about ---------- */
