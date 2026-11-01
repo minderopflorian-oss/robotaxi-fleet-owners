@@ -1,13 +1,10 @@
-// Forum backend settings.
-// Leave firebaseConfig as null to run the page in preview mode (data stays in this browser).
-// To go live : paste the web app config from Firebase console > Project settings > Your apps.
-// These values are public by design ; access is protected by firestore.rules .
-export const firebaseConfig = null;
-/* example :
+// Forum backend settings (Firebase Spark plan, free). These values are public by design ;
+// access is protected by the Firestore security rules . Analytics is not used .
 export const firebaseConfig = {
-  apiKey: "AIza...",
+  apiKey: "AIzaSyB2H-ilpaH9cIedpu0FVNDmRsu2ETXWSxg",
   authDomain: "cybercab-fleet-forum.firebaseapp.com",
   projectId: "cybercab-fleet-forum",
-  appId: "1:...:web:..."
+  storageBucket: "cybercab-fleet-forum.firebasestorage.app",
+  messagingSenderId: "494939930439",
+  appId: "1:494939930439:web:3f3219b2a1be1794969662"
 };
-*/
