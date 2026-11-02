@@ -48,6 +48,12 @@
 "lon": -98.5
 },
 {
+"handle": "@AlexIljaszewicz",
+"place": "United Kingdom",
+"lat": 54.0,
+"lon": -2.0
+},
+{
 "handle": "@Ali_Farhat6",
 "place": "San Diego, United States",
 "lat": 32.72,
@@ -138,6 +144,12 @@
 "lon": -100.4
 },
 {
+"handle": "@BrentWLowe",
+"place": "Temecula, United States",
+"lat": 33.49,
+"lon": -117.15
+},
+{
 "handle": "@BrianEMr",
 "place": "Austin, United States",
 "lat": 30.26,
@@ -154,6 +166,12 @@
 "place": "Gilbert, United States",
 "lat": 33.35,
 "lon": -111.79
+},
+{
+"handle": "@CameronHunt4",
+"place": "United States",
+"lat": 39.8,
+"lon": -100.4
 },
 {
 "handle": "@Carlarainbows",
@@ -210,6 +228,12 @@
 "lon": -92.6
 },
 {
+"handle": "@CyberFleetUSA",
+"place": "Austin, United States",
+"lat": 30.27,
+"lon": -97.74
+},
+{
 "handle": "@CyberTouring",
 "place": "United States",
 "lat": 39.8,
@@ -220,6 +244,12 @@
 "place": "Canberra, Australia",
 "lat": -35.3,
 "lon": 149.1
+},
+{
+"handle": "@CyrilSuire",
+"place": "Miami Beach, United States",
+"lat": 25.79,
+"lon": -80.13
 },
 {
 "handle": "@DBLU141",
@@ -244,6 +274,12 @@
 "place": "Hallandale Beach, United States",
 "lat": 25.98,
 "lon": -80.15
+},
+{
+"handle": "@Deadshot56565",
+"place": "Chino Hills, United States",
+"lat": 33.99,
+"lon": -117.76
 },
 {
 "handle": "@DevinCPL",
@@ -396,10 +432,22 @@
 "lon": -8.79
 },
 {
+"handle": "@FredChristenhus",
+"place": "Oldenzaal, Netherlands",
+"lat": 52.31,
+"lon": 6.93
+},
+{
 "handle": "@GLOing_817",
 "place": "Texas, United States",
 "lat": 31.3,
 "lon": -98.5
+},
+{
+"handle": "@GajanNagaraj",
+"place": "San Francisco, United States",
+"lat": 37.77,
+"lon": -122.42
 },
 {
 "handle": "@GeneInvesting",
@@ -412,6 +460,12 @@
 "place": "Belgium",
 "lat": 50.6,
 "lon": 4.7
+},
+{
+"handle": "@GlennTatters",
+"place": "Wanaka, New Zealand",
+"lat": -44.7,
+"lon": 169.13
 },
 {
 "handle": "@HEEMx94",
@@ -846,6 +900,12 @@
 "lon": -90.19
 },
 {
+"handle": "@P_Varenbrink",
+"place": "Haaksbergen, Netherlands",
+"lat": 52.16,
+"lon": 6.74
+},
+{
 "handle": "@Paddy_film",
 "place": "Germany",
 "lat": 51.2,
@@ -868,6 +928,18 @@
 "place": "Damwâld, Netherlands",
 "lat": 53.29,
 "lon": 6.0
+},
+{
+"handle": "@PrecivixAI",
+"place": "United States",
+"lat": 39.8,
+"lon": -100.4
+},
+{
+"handle": "@REIAgent",
+"place": "Florida, United States",
+"lat": 27.8,
+"lon": -81.7
 },
 {
 "handle": "@Raphoooo",
@@ -924,6 +996,12 @@
 "lon": -155.4
 },
 {
+"handle": "@RossMoncur1",
+"place": "Houston, United States",
+"lat": 29.76,
+"lon": -95.37
+},
+{
 "handle": "@Rustavi",
 "place": "Amersfoort, Netherlands",
 "lat": 52.16,
@@ -934,6 +1012,12 @@
 "place": "Canada",
 "lat": 61.1,
 "lon": -108.0
+},
+{
+"handle": "@Ryaske",
+"place": "New York, United States",
+"lat": 40.71,
+"lon": -74.01
 },
 {
 "handle": "@SPR_RoboCab",
@@ -1002,6 +1086,12 @@
 "lon": -1.6
 },
 {
+"handle": "@Stoney_One",
+"place": "Northern California, United States",
+"lat": 39.5,
+"lon": -121.5
+},
+{
 "handle": "@StrobesActual",
 "place": "Austin, United States",
 "lat": 30.26,
@@ -1012,6 +1102,12 @@
 "place": "Montreal, Canada",
 "lat": 45.5,
 "lon": -73.57
+},
+{
+"handle": "@Summerz1ENG",
+"place": "Hermosa Beach, United States",
+"lat": 33.86,
+"lon": -118.4
 },
 {
 "handle": "@SvUkanic",
@@ -1086,6 +1182,24 @@
 "lon": -98.6
 },
 {
+"handle": "@ThTslaDude",
+"place": "San Francisco, United States",
+"lat": 37.77,
+"lon": -122.42
+},
+{
+"handle": "@TheGR8gv1",
+"place": "India",
+"lat": 20.6,
+"lon": 78.96
+},
+{
+"handle": "@TheMytic3",
+"place": "Texas, United States",
+"lat": 31.3,
+"lon": -98.5
+},
+{
 "handle": "@ThinkInvestBull",
 "place": "United States",
 "lat": 39.8,
@@ -1126,6 +1240,18 @@
 "place": "New Jersey, United States",
 "lat": 40.1,
 "lon": -74.4
+},
+{
+"handle": "@TurnaroundNow",
+"place": "California, United States",
+"lat": 36.78,
+"lon": -119.42
+},
+{
+"handle": "@UncleBRNDN",
+"place": "Austin, United States",
+"lat": 30.27,
+"lon": -97.74
 },
 {
 "handle": "@UnpluggedTesla",
@@ -1188,6 +1314,12 @@
 "lon": 6.57
 },
 {
+"handle": "@_cupples",
+"place": "Charlotte, United States",
+"lat": 35.23,
+"lon": -80.84
+},
+{
 "handle": "@_rudyruiz16",
 "place": "Waco, United States",
 "lat": 31.55,
@@ -1212,6 +1344,12 @@
 "lon": -98.5
 },
 {
+"handle": "@aizorr0",
+"place": "Puerto Rico",
+"lat": 18.22,
+"lon": -66.59
+},
+{
 "handle": "@alexendarah",
 "place": "Texas, United States",
 "lat": 31.3,
@@ -1228,6 +1366,12 @@
 "place": "Salt Lake City, United States",
 "lat": 40.76,
 "lon": -111.89
+},
+{
+"handle": "@anandrathi13",
+"place": "Amsterdam, Netherlands",
+"lat": 52.37,
+"lon": 4.9
 },
 {
 "handle": "@andiobi3",
@@ -1252,6 +1396,12 @@
 "place": "Austin, United States",
 "lat": 30.26,
 "lon": -97.75
+},
+{
+"handle": "@avipat_",
+"place": "New York, United States",
+"lat": 40.71,
+"lon": -74.01
 },
 {
 "handle": "@awismeijer",
@@ -1356,6 +1506,12 @@
 "lon": -90.19
 },
 {
+"handle": "@chanjin",
+"place": "Seoul, South Korea",
+"lat": 37.57,
+"lon": 126.98
+},
+{
 "handle": "@chartang_",
 "place": "Las Vegas, United States",
 "lat": 36.17,
@@ -1380,10 +1536,22 @@
 "lon": 9.0
 },
 {
+"handle": "@cmcondra",
+"place": "United States",
+"lat": 39.8,
+"lon": -100.4
+},
+{
 "handle": "@coleanderson",
 "place": "Platte, United States",
 "lat": 43.39,
 "lon": -98.84
+},
+{
+"handle": "@collinsjc22",
+"place": "Houston, United States",
+"lat": 29.76,
+"lon": -95.37
 },
 {
 "handle": "@conradpruijssen",
@@ -1432,6 +1600,12 @@
 "place": "'s-Hertogenbosch, Netherlands",
 "lat": 51.69,
 "lon": 5.3
+},
+{
+"handle": "@djenia",
+"place": "Berlin, Germany",
+"lat": 52.52,
+"lon": 13.4
 },
 {
 "handle": "@dodaliandi",
@@ -1492,6 +1666,12 @@
 "place": "Miami, United States",
 "lat": 25.77,
 "lon": -80.19
+},
+{
+"handle": "@fjmoises",
+"place": "Orlando, United States",
+"lat": 28.54,
+"lon": -81.38
 },
 {
 "handle": "@fminderop",
@@ -1560,6 +1740,18 @@
 "lon": -82.63
 },
 {
+"handle": "@hjallisnorra",
+"place": "Iceland",
+"lat": 64.96,
+"lon": -19.02
+},
+{
+"handle": "@honorbyte",
+"place": "Miami, United States",
+"lat": 25.76,
+"lon": -80.19
+},
+{
 "handle": "@hreg15",
 "place": "New York, United States",
 "lat": 40.71,
@@ -1612,6 +1804,12 @@
 "place": "Amsterdam, Netherlands",
 "lat": 52.37,
 "lon": 4.89
+},
+{
+"handle": "@jasonwpratt",
+"place": "Austin, United States",
+"lat": 30.27,
+"lon": -97.74
 },
 {
 "handle": "@jeRtybiRty",
@@ -1854,6 +2052,12 @@
 "lon": -90.19
 },
 {
+"handle": "@lopez_nomar",
+"place": "Orlando, United States",
+"lat": 28.54,
+"lon": -81.38
+},
+{
 "handle": "@luckylukeBLC",
 "place": "Amsterdam, Netherlands",
 "lat": 52.37,
@@ -1914,10 +2118,22 @@
 "lon": -83.0
 },
 {
+"handle": "@maskedoccult",
+"place": "Texas, United States",
+"lat": 31.3,
+"lon": -98.5
+},
+{
 "handle": "@mathieu_gillion",
 "place": "Belgium",
 "lat": 50.6,
 "lon": 4.7
+},
+{
+"handle": "@mecomuhammad",
+"place": "Jakarta, Indonesia",
+"lat": -6.21,
+"lon": 106.85
 },
 {
 "handle": "@mikekim",
@@ -1948,6 +2164,12 @@
 "place": "Menlo Park, United States",
 "lat": 37.45,
 "lon": -122.18
+},
+{
+"handle": "@mountain_uap",
+"place": "Colorado, United States",
+"lat": 39.0,
+"lon": -105.5
 },
 {
 "handle": "@nanunet",
@@ -2008,6 +2230,12 @@
 "place": "Edmonton, Canada",
 "lat": 53.55,
 "lon": -113.49
+},
+{
+"handle": "@patslaxmom11",
+"place": "Franklin, United States",
+"lat": 35.93,
+"lon": -86.87
 },
 {
 "handle": "@peterlemz",
@@ -2088,6 +2316,12 @@
 "lon": -83.23
 },
 {
+"handle": "@roulito80",
+"place": "France",
+"lat": 46.6,
+"lon": 2.2
+},
+{
 "handle": "@royce_james",
 "place": "South Gate, United States",
 "lat": 33.95,
@@ -2134,6 +2368,12 @@
 "place": "Greater London, United Kingdom",
 "lat": 51.51,
 "lon": -0.13
+},
+{
+"handle": "@silv3rflow",
+"place": "Jackson, United States",
+"lat": 43.48,
+"lon": -110.76
 },
 {
 "handle": "@silvio_tho",
@@ -2202,6 +2442,12 @@
 "lon": 8.2
 },
 {
+"handle": "@tcline1",
+"place": "Denver, United States",
+"lat": 39.74,
+"lon": -104.99
+},
+{
 "handle": "@techAU",
 "place": "Wodonga, Australia",
 "lat": -36.12,
@@ -2266,6 +2512,12 @@
 "place": "Atlanta, United States",
 "lat": 33.75,
 "lon": -84.39
+},
+{
+"handle": "@trabian",
+"place": "Chicago, United States",
+"lat": 41.88,
+"lon": -87.63
 },
 {
 "handle": "@trade4life88",
@@ -2392,17 +2644,5 @@
 "place": "Golden, United States",
 "lat": 39.75,
 "lon": -105.22
-},
-{
-"handle": "@GajanNagaraj",
-"place": "San Francisco, United States",
-"lat": 37.77,
-"lon": -122.42
-},
-{
-"handle": "@avipat_",
-"place": "New York, United States",
-"lat": 40.71,
-"lon": -74.01
 }
 ]
