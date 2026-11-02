@@ -295,13 +295,15 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
 d.topic='swarm-partner';d._subject='swarm-partner: '+d.partner_type+' - '+d.company;d._template='table';d._captcha='false';st.style.color='var(--m)';st.textContent='Sending...';
 try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));if(r.ok&&String(j.success)==='true'){st.style.color='var(--gold2)';st.textContent='Thanks ! We will be in touch.';f.reset()}else throw 0}catch(_){st.style.color='#e88';st.textContent='Sending failed. Please email florianminderop@mail.grokbot.com.'}})})()</script>
 
+<script src="charts-v2.js?v=1"></script>
 <section class="snap auto" id="growing">
   <div class="kicker fade">Texas tracker</div>
   <h2 class="fade">The swarm is <span class="gold">growing</span>.</h2>
-  <p class="small fade">Registered Cybercabs in Texas</p>
-  <div class="fade" style="max-width:760px;width:100%;margin:28px auto 0"><svg id="cc-chart" viewBox="0 0 700 320" width="100%" role="img" aria-label="Line chart of registered Cybercabs in Texas"></svg></div>
+  <p class="small fade">Robotaxis registered in Texas: Cybercab and Model Y</p>
+  <div class="cv2pills fade" id="cc-pills"></div>
+  <div class="fade" style="max-width:760px;width:100%;margin:22px auto 0"><svg id="cc-chart" viewBox="0 0 700 320" width="100%" role="img" aria-label="Stacked bar chart of Robotaxis registered in Texas: Cybercab and Model Y"></svg></div>
   <p class="fade" id="cc-latest" style="margin-top:14px;font-size:17px;color:#fff"></p>
-  <p class="src fade" style="margin-top:6px">Since 27 October 2026 Cybercabs outnumber Model Ys in the Texas fleet: 544 vs 507 (52%). Latest batch +81, +195 in the last 7 days. Source: Texas DMV registrations via <a href="https://x.com/herbertong" target="_blank" rel="noopener" style="color:var(--gold2)">@herbertong</a>.</p>
+  <p class="src fade" style="margin-top:6px"><span id="cc-note">On 27 October 2026 Cybercabs first outnumbered Model Ys in the Texas fleet: 544 vs 507.</span> Source: Texas DMV registrations via <a href="https://x.com/herbertong" target="_blank" rel="noopener" style="color:var(--gold2)">@herbertong</a>.</p>
   <div class="stats fade" id="mt-strip" hidden style="margin-top:36px;gap:40px"></div>
   <p class="src fade" id="mt-note" hidden style="max-width:640px">Miles cover all Tesla Robotaxi cities, fleet count is Texas registrations, so per-car figures are approximate. The Texas figure matches Texas miles to the Texas fleet.</p>
   <div class="fade" style="max-width:760px;width:100%;margin:40px auto 0">
@@ -323,13 +325,16 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
   <div class="kicker fade">Miles tracker</div>
   <h2 class="fade">Miles driven by <span class="gold">the software</span>.</h2>
   <p class="small fade">Live counters, ticking at Tesla's published fleet pace.</p>
+  <div id="mt-ticker" class="cv2tk fade" aria-label="Latest Robotaxi events"></div>
   <div class="stats fade" style="margin-top:40px;gap:48px">
     <div class="stat"><div class="n gold" id="mt-sup">–</div><div class="l">FSD (Supervised) miles</div><div class="src" id="mt-supc" style="margin-top:6px"></div></div>
     <div class="stat"><div class="n gold" id="mt-uns">–</div><div class="l">FSD (Unsupervised) Robotaxi miles</div><div class="src" id="mt-unsc" style="margin-top:6px"></div></div>
   </div>
   <div class="fade" style="max-width:760px;width:100%;margin:44px auto 0">
-    <p class="small" style="margin-bottom:6px">Robotaxi (unsupervised) miles: history and forecast to 31 Dec</p>
-    <svg id="mt-chu" viewBox="0 0 700 300" width="100%" role="img" aria-label="Unsupervised miles history and forecast"></svg>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px"><p class="small" style="margin:0;text-align:left">Robotaxi (unsupervised) miles: history and forecast to 31 Dec</p><div id="mt-range"></div></div>
+    <svg id="mt-chu" viewBox="0 0 700 340" width="100%" role="img" aria-label="Unsupervised miles history and forecast"></svg>
+    <p class="src" id="mt-fnote2" style="margin-top:8px;text-align:left"></p>
+    <div id="mt-cities" style="margin:22px 0 0"></div>
     <p class="small" style="margin:26px 0 6px">FSD (Supervised) miles: history and forecast to 31 Dec</p>
     <svg id="mt-chs" viewBox="0 0 700 300" width="100%" role="img" aria-label="Supervised miles history and forecast"></svg>
     <p class="src" id="mt-fnote" style="margin-top:8px"></p>
@@ -862,24 +867,9 @@ if(r.ok&&String(j.success)==='true'){st.style.color='var(--gold2)';st.textConten
 catch(_){st.style.color='#e88';st.innerHTML='Sorry, that didn\'t go through. Please email <a href="mailto:florianminderop@mail.grokbot.com" style="color:var(--gold2)">florianminderop@mail.grokbot.com</a> or DM @fminderop.'}b.disabled=false})})();
 </script>
 <script>
-(async()=>{const svg=document.getElementById('cc-chart');if(!svg)return;let d;try{d=await (await fetch('data/cybercab-stats.json',{cache:'no-store'})).json()}catch(e){svg.closest('section').hidden=true;return}
-const P=d.cybercabs.map(x=>({t:Date.parse(x.date),v:x.count,date:x.date})).sort((a,b)=>a.t-b.t);if(!P.length)return;
-const W=700,H=320,L=56,R=24,T=24,B=44,last=P[P.length-1],first=P[0];
-let trend=null;if(P.length>1){const rate=(last.v-first.v)/(last.t-first.t),end=Date.parse(last.date.slice(0,4)+'-12-31');if(end>last.t)trend={t:end,v:Math.round(last.v+rate*(end-last.t))}}
-const t0=first.t,t1=trend?trend.t:last.t,vmax=Math.max(...P.map(p=>p.v),trend?trend.v:0);
-const step=vmax>800?250:vmax>400?100:50,ymax=Math.ceil(vmax*1.08/step)*step;
-const x=t=>L+(t-t0)/(t1-t0||1)*(W-L-R),y=v=>T+(1-v/ymax)*(H-T-B);
-const f=t=>new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-let g='';for(let v=0;v<=ymax;v+=step)g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#222"/><text x="${L-10}" y="${y(v)+4}" fill="#777" font-size="12" text-anchor="end">${v}</text>`;
-const pts=P.map(p=>`${x(p.t)},${y(p.v)}`).join(' ');
-g+=`<polygon points="${x(first.t)},${y(0)} ${pts} ${x(last.t)},${y(0)}" fill="rgba(212,175,106,.12)"/>`;
-if(trend)g+=`<line x1="${x(last.t)}" y1="${y(last.v)}" x2="${x(trend.t)}" y2="${y(trend.v)}" stroke="#d4af6a" stroke-width="2" stroke-dasharray="3 6" opacity=".7"/><text x="${x(trend.t)}" y="${y(trend.v)-12}" fill="#aaa" font-size="12" text-anchor="end">trend if the current pace continues</text><text x="${x(trend.t)}" y="${H-B+22}" fill="#777" font-size="12" text-anchor="end">31 Dec</text>`;
-g+=`<polyline points="${pts}" fill="none" stroke="#f1d9a0" stroke-width="3" stroke-linejoin="round"/>`;
-P.forEach((p,k)=>{g+=`<circle cx="${x(p.t)}" cy="${y(p.v)}" r="5" fill="#000" stroke="#f1d9a0" stroke-width="2.5"/><text x="${x(p.t)}" y="${y(p.v)-14}" fill="#fff" font-size="14" text-anchor="middle">${p.v}</text>`;if(k===0||k===P.length-1)g+=`<text x="${x(p.t)}" y="${H-B+22}" fill="#777" font-size="12" text-anchor="${k===0?'start':'middle'}">${f(p.t)}</text>`});
-svg.innerHTML=g;
-const lp=d.cybercabs.find(c=>c.date===last.date);
-document.getElementById('cc-latest').innerHTML=`<span class="gold" style="font-size:28px;font-weight:300">${last.v}</span> registered Cybercabs on ${new Date(last.t).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`+(lp&&lp.total_robotaxis?` · ${lp.total_robotaxis} robotaxis in total`:'');
-})();
+(async()=>{let d;try{d=await (await fetch('data/cybercab-stats.json',{cache:'no-store'})).json()}catch(e){document.getElementById('growing').hidden=true;return}
+const P=(d.cybercabs||[]).slice().sort((a,b)=>a.date<b.date?-1:1);if(!P.length)return;const l=P[P.length-1];
+document.getElementById('cc-latest').innerHTML=`<span class="gold" style="font-size:28px;font-weight:300">${l.count}</span> registered Cybercabs on ${new Date(Date.parse(l.date)).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`+(l.total_robotaxis?` · ${l.total_robotaxis} robotaxis in total`:'');})();
 </script>
 <script>
 (async()=>{let d;try{d=await (await fetch('data/cybercab-stats.json',{cache:'no-store'})).json()}catch(e){return}
@@ -912,7 +902,7 @@ P.forEach((p,k)=>{if(k&&D[k]>0){const h=D[k]/dmax*bh;g+=`<rect x="${x(p.t)-bw/2}
 if(left>0){g+=`<line x1="${x(l.t)}" y1="${y(l.v)}" x2="${x(tE)}" y2="${y(1000)}" stroke="#fff" stroke-width="1.2" stroke-dasharray="7 6" opacity=".8"/><text x="${x(tE)-4}" y="${y(1000)-10}" fill="#fff" font-size="14" text-anchor="end">goal: 1,000</text>`;
 g+=`<line x1="${x(l.t)}" y1="${y(l.v)}" x2="${x(tE)}" y2="${y(proj)}" stroke="#d4af6a" stroke-width="2.5" stroke-dasharray="2 6" stroke-linecap="round"/><text x="${x(tE)-4}" y="${y(proj)+40}" fill="#d4af6a" font-size="14" text-anchor="end">~${proj} by 31 Dec</text><text x="${(x(l.t)+x(tE))/2}" y="${y((l.v+proj)/2)+24}" fill="#d4af6a" font-size="13" text-anchor="middle">trend at current pace</text>`}
 g+=`<polyline points="${P.map(p=>x(p.t)+','+y(p.v)).join(' ')}" fill="none" stroke="#f1d9a0" stroke-width="3" stroke-linejoin="round"/><circle cx="${x(l.t)}" cy="${y(l.v)}" r="4.5" fill="#000" stroke="#f1d9a0" stroke-width="2"/><text x="${x(l.t)}" y="${y(l.v)-12}" fill="#fff" font-size="15" text-anchor="middle">${l.v}</text>`;
-svg.innerHTML=g;document.getElementById('mb-latest').innerHTML=`<span class="gold" style="font-size:28px;font-weight:300">${l.v}</span> members on ${new Date(l.t).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`;
+svg.innerHTML=g;if(window.cv2Hover)cv2Hover(svg,W,H,P.map((p,k)=>({x:x(p.t),y:y(p.v),html:`<span class="d">${f(p.t)}</span><b>${p.v}</b> members`+(k&&D[k]>0?` · +${D[k]} that day`:'')})),{top:T,bottom:B});document.getElementById('mb-latest').innerHTML=`<span class="gold" style="font-size:28px;font-weight:300">${l.v}</span> members on ${new Date(l.t).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`;
 const r1=v=>(Math.round(v*10)/10).toLocaleString('en-US');const c=document.getElementById('mb-trend');if(c&&left>0){c.innerHTML=proj>=1000?`At the current pace of ${r1(pace)}/day we reach ~${proj} by 31 December, past our 1,000 goal. Invite a fleet-minded friend!`:`At the current pace of ${r1(pace)}/day we reach ~${proj} by 31 December. ${r1(more)} more per day gets us to 1,000. Invite a fleet-minded friend!`;c.hidden=false}})();
 </script>
 <script>
@@ -934,7 +924,7 @@ const S=K.supervised,U=K.unsupervised,ts=Date.parse(S.ts),tu=Date.parse(U.ts),$=
 const tick=()=>{const now=Date.now(),a=S.miles+S.rate_s*(now-ts)/1e3,c=S.city+S.city_rate_s*(now-ts)/1e3;$('mt-sup').textContent=n(a);$('mt-supc').textContent=`City ${n(c)} · Highway ${n(a-c)}`;$('mt-uns').textContent=n(U.miles+U.rate_s*(now-tu)/1e3);$('mt-unsc').textContent='Driverless, all Robotaxi cities'};tick();setInterval(tick,100);
 const day=864e5,tE=Date.parse('2026-12-31'),f=t=>new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
 const ab=v=>v>=1e9?(v/1e9).toFixed(v>=1e10?1:2)+'B':v>=1e6?(v/1e6).toFixed(v>=1e7?0:1)+'M':Math.round(v/1e3)+'K';
-function chart(svg,H0,last,fc,lab,v0){const W=700,H=300,L=62,R=20,T=30,B=40,P=H0.map(p=>({t:Date.parse(p.date),v:p.miles}));const t0=Math.min(P[0].t,last.t-60*day),t1=tE;
+function chart(svg,H0,last,fc,lab,v0){const W=700,H=300,L=62,R=20,T=30,B=40,P=H0.map(p=>({t:Date.parse(p.date),v:p.miles}));const t0=Math.min(P[0].t,last.t-10*day)-2*day,t1=tE;
 const F=[];for(let t=last.t;t<=tE+1;t+=day)F.push({t,v:fc(t)});const fe=F[F.length-1];
 const hi=Math.max(fe.v,...P.map(p=>p.v)),vmin=v0||0,vmax=vmin+(hi-vmin)*1.08;const x=t=>L+(t-t0)/(t1-t0)*(W-L-R),y=v=>T+(1-(v-vmin)/(vmax-vmin))*(H-T-B);let g='';
 for(let k=0;k<=4;k++){const v=vmin+(vmax-vmin)/4*k;g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#222"/><text x="${L-8}" y="${y(v)+4}" fill="#777" font-size="13" text-anchor="end">${v?ab(v):0}</text>`}
@@ -942,12 +932,12 @@ for(let k=0;k<=4;k++){const v=vmin+(vmax-vmin)/4*k;g+=`<line x1="${L}" x2="${W-R
 g+=`<polyline points="${F.map(p=>x(p.t)+','+y(p.v)).join(' ')}" fill="none" stroke="#d4af6a" stroke-width="2.5" stroke-dasharray="3 6" stroke-linecap="round"/>`;
 if(P.length>1)g+=`<polyline points="${P.map(p=>x(p.t)+','+y(p.v)).join(' ')}" fill="none" stroke="#f1d9a0" stroke-width="3" stroke-linejoin="round"/>`;
 P.forEach(p=>g+=`<circle cx="${x(p.t)}" cy="${y(p.v)}" r="3.5" fill="#000" stroke="#f1d9a0" stroke-width="2"/>`);
-g+=`<text x="${x(last.t)+8}" y="${y(last.v)-12}" fill="#fff" font-size="14">${ab(last.v)} now</text><text x="${W-R-4}" y="${y(fe.v)-12}" fill="#d4af6a" font-size="14" text-anchor="end">~${ab(fe.v)} by 31 Dec</text><text x="${W-R-4}" y="${y(fe.v)+22}" fill="#d4af6a" font-size="12" text-anchor="end">${lab}</text>`;svg.innerHTML=g;return fe.v}
+g+=`<text x="${x(last.t)+8}" y="${y(last.v)-12}" fill="#fff" font-size="14">${ab(last.v)} now</text><text x="${W-R-4}" y="${y(fe.v)-12}" fill="#d4af6a" font-size="14" text-anchor="end">~${ab(fe.v)} by 31 Dec</text><text x="${W-R-4}" y="${y(fe.v)+22}" fill="#d4af6a" font-size="12" text-anchor="end">${lab}</text>`;svg.innerHTML=g;if(window.cv2Hover)cv2Hover(svg,W,H,P.map(p=>({x:x(p.t),y:y(p.v),html:`<span class="d">${new Date(p.t).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</span><b>${n(p.v)}</b> miles`})).concat(F.filter((p,i)=>i%7==0).map(p=>({x:x(p.t),y:y(p.v),html:`<span class="d">${f(p.t)} · forecast</span><b>~${ab(p.v)}</b> miles`}))),{top:T,bottom:B});return fe.v}
 const now=Date.now(),uNow={t:now,v:U.miles+U.rate_s*(now-tu)/1e3},sNow={t:now,v:S.miles+S.rate_s*(now-ts)/1e3};
 const uH=K.unsup_history.filter(p=>Date.parse(p.date)<now).concat([{date:new Date(now).toISOString(),miles:uNow.v}]);
-const wk=U.rate_s*7*86400;chart($('mt-chu'),uH,uNow,t=>{const w=(t-now)/(7*day);return uNow.v+wk*(Math.pow(1+U.wow,w)-1)/U.wow},'forecast: +'+Math.round(U.wow*100)+'%/week');
-const sH=K.sup_history.concat([{date:new Date(now).toISOString(),miles:sNow.v}]);chart($('mt-chs'),sH,sNow,t=>sNow.v+S.rate_s*(t-now)/1e3,'forecast: current pace',Math.floor(sNow.v*0.98/1e8)*1e8);
-$('mt-fnote').textContent='Dashed = forecast. Supervised held at the current Tesla counter pace; unsupervised compounding at '+U.wow_note+'. History: '+K.unsup_history.slice(0,-1).map(p=>p.date+' '+p.note).join('; ')+'.';
+/* unsupervised chart now drawn by charts-v2.js */
+const sH=K.sup_history.concat([{date:new Date(now).toISOString(),miles:sNow.v}]);chart($('mt-chs'),sH,sNow,t=>sNow.v+S.rate_s*(t-now)/1e3,'forecast: current pace',Math.floor(Math.min(...sH.map(p=>p.miles))*0.995/1e8)*1e8);
+$('mt-fnote').textContent='Dashed = forecast at the current Tesla counter pace. Robotaxi history points: '+K.unsup_history.filter(p=>!/counter/.test(p.note||'')).map(p=>p.date+' '+p.note).join('; ')+'; daily points after that from the Tesla Robotaxi safety report counter.';
 const th='padding:9px 6px;border-bottom:1px solid #333',c=v=>v==null?'–':v>=1e6?(v/1e6).toFixed(1)+'M':Math.round(v/1e3)+'K';
 $('mt-tab').innerHTML=`<tr style="color:#9a9a9a;font-size:10px;letter-spacing:.08em;text-transform:uppercase"><th style="${th};text-align:left">Week to</th><th style="${th}">Supervised<br>mi/wk</th><th style="${th}">of which<br>city</th><th style="${th}">Unsupervised<br>mi/wk</th></tr>`+K.weekly.slice().reverse().map(r=>`<tr><td style="${th};text-align:left">${f(Date.parse(r.date))}</td><td style="${th}">${c(r.sup_wk)}</td><td style="${th}">${c(r.city_wk)}</td><td style="${th};color:#f1d9a0">${c(r.unsup_wk)}</td></tr>`).join('');
 })();
@@ -958,7 +948,7 @@ const W=700,H=260,L=44,R=20,T=34,B=36,t0=P[0].t,t1=P[P.length-1].t,vmax=Math.cei
 for(let v=0;v<=vmax;v+=25)g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#222"/><text x="${L-8}" y="${y(v)+4}" fill="#777" font-size="13" text-anchor="end">${v}</text>`;
 const f=t=>new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'short'});[0,Math.floor(P.length/2),P.length-1].forEach((k,i)=>g+=`<text x="${x(P[k].t)}" y="${H-B+22}" fill="#777" font-size="13" text-anchor="${['start','middle','end'][i]}">${f(P[k].t)}</text>`);
 g+=`<polyline points="${P.map(p=>x(p.t)+','+y(p.v)).join(' ')}" fill="none" stroke="#f1d9a0" stroke-width="3" stroke-linejoin="round"/>`;P.forEach(p=>g+=`<circle cx="${x(p.t)}" cy="${y(p.v)}" r="3" fill="#000" stroke="#f1d9a0" stroke-width="2"/>`);
-const l=P[P.length-1],s=P.find(p=>p.t>=Date.parse('2026-09-01'));g+=`<text x="${x(l.t)}" y="${y(l.v)-12}" fill="#fff" font-size="15" text-anchor="end">${l.v}</text>`;if(s)g+=`<text x="${x(s.t)}" y="${y(s.v)+24}" fill="#aaa" font-size="13" text-anchor="middle">${s.v}</text>`;svg.innerHTML=g;
+const l=P[P.length-1],s=P.find(p=>p.t>=Date.parse('2026-09-01'));g+=`<text x="${x(l.t)}" y="${y(l.v)-12}" fill="#fff" font-size="15" text-anchor="end">${l.v}</text>`;if(s)g+=`<text x="${x(s.t)}" y="${y(s.v)+24}" fill="#aaa" font-size="13" text-anchor="middle">${s.v}</text>`;svg.innerHTML=g;if(window.cv2Hover)cv2Hover(svg,W,H,P.map(p=>({x:x(p.t),y:y(p.v),html:`<span class="d">Week to ${f(p.t)}</span><b>${p.v}</b> miles per Robotaxi per day`})),{top:T,bottom:B});
 document.getElementById('tx-latest').innerHTML=`<span class="gold" style="font-size:28px;font-weight:300">${l.v}</span> driverless miles per Texas Robotaxi per day, week to ${f(l.t)}`+(s?` · up from ${s.v} in early September`:'');
 const S=d.texas_mpd_source||{},TM=(d.texas_miles||[]).slice(-1)[0];document.getElementById('tx-src').innerHTML=(TM?`Texas-city driverless miles (Austin, Dallas, Houston): ${TM.miles.toLocaleString('en-US')} as of ${f(Date.parse(TM.date))}. `:'')+`Source: <a href="${S.url}" target="_blank" rel="noopener" style="color:var(--gold2)">@teslayoda</a>, from Tesla's Robotaxi safety report and Texas DMV registrations. Points between start and end read from the published chart (approx.). Registered is not the same as in service.`;
 const st=document.getElementById('mt-strip');if(st){st.insertAdjacentHTML('beforeend',`<div class="stat"><div class="n gold">${l.v}</div><div class="l">Miles per Robotaxi per day (Texas)</div><div class="src" style="margin-top:4px">Texas-only, week to ${f(l.t)}</div></div>`);st.hidden=false}})();
