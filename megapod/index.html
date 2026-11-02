@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Megapod as a Service : a power and cooling pod for fleet hubs · Cybercab Fleet Owners</title>
+<meta name="description" content="A community concept : a power and cooling pod for a robotaxi fleet hub or a small AI compute site, delivered as a service . Storage, liquid cooling and load balancing in one unit . Not a Tesla product .">
+<link rel="canonical" href="https://cybercabfleetowners.com/megapod/"><meta name="theme-color" content="#000000">
+<meta property="og:title" content="Megapod as a Service : a concept for fleet hubs"><meta property="og:type" content="article"><meta property="og:url" content="https://cybercabfleetowners.com/megapod/"><meta property="og:site_name" content="Cybercab Fleet Owners"><meta property="og:description" content="Storage, liquid cooling and load balancing in one pod, delivered as a service for fleet hubs . A community concept, not a Tesla product ."><meta property="og:image" content="https://cybercabfleetowners.com/og.png"><meta name="twitter:site" content="@fminderop"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Megapod as a Service : a concept for fleet hubs"><meta name="twitter:description" content="Storage, liquid cooling and load balancing in one pod, delivered as a service for fleet hubs . A community concept, not a Tesla product ."><meta name="twitter:image" content="https://cybercabfleetowners.com/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d4af6a;--gold2:#f1d9a0;--w:#fff;--m:#9a9a9a;--line:rgba(212,175,106,.35)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#000;color:var(--w);font-family:Inter,system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+section[id]{scroll-margin-top:60px}
+.sec{display:flex;flex-direction:column;align-items:center;text-align:center;padding:96px 24px;position:relative;overflow:hidden}
+.kicker{font-size:12px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:22px}
+h1{font-size:clamp(42px,8vw,104px);font-weight:200;letter-spacing:-.035em;line-height:1}
+h2{font-size:clamp(34px,5.5vw,64px);font-weight:200;letter-spacing:-.03em;line-height:1.05}
+.gold{background:linear-gradient(100deg,var(--gold2),var(--gold) 55%,#a8823e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin-top:22px;font-size:clamp(16px,1.6vw,19px);color:#c9c9c9;max-width:640px;line-height:1.6}
+.btns{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;justify-content:center}
+.pill{display:inline-block;min-width:220px;padding:12px 28px;border-radius:999px;font-size:14px;font-weight:500;letter-spacing:.02em;transition:.25s;text-align:center}
+.pill.g{background:var(--gold);color:#000}.pill.g:hover{background:var(--gold2);box-shadow:0 0 30px rgba(212,175,106,.35)}
+.pill.o{border:1px solid rgba(255,255,255,.55)}.pill.o:hover{border-color:var(--gold);color:var(--gold2)}
+.white{background:#f5f5f3;color:#111}.white .sub{color:#555}.white .kicker{color:#a8823e}
+.hero{min-height:92vh;min-height:92svh;justify-content:center;padding-top:120px;background:radial-gradient(ellipse 60% 45% at 50% 105%,rgba(212,175,106,.28),transparent 70%),#000}
+.hero svg{width:min(520px,90%);height:auto;margin-top:44px;opacity:.95}
+.badge{display:inline-block;margin-top:26px;padding:7px 16px;border:1px dashed var(--line);border-radius:999px;font-size:12px;color:var(--gold2);letter-spacing:.06em}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:52px;max-width:1040px;width:100%;text-align:left}
+.grid.two{grid-template-columns:repeat(2,1fr);max-width:900px}.grid.four{grid-template-columns:repeat(4,1fr)}
+.grid div{background:#0b0b0b;padding:26px 24px}.grid h3{font-size:19px;font-weight:400;margin-bottom:8px}.grid p{font-size:14px;color:var(--m);line-height:1.55}
+.white .grid div{background:#f5f5f3}.white .grid p{color:#666}
+.grid .n{display:block;font-size:12px;letter-spacing:.3em;color:var(--gold);font-weight:500;margin-bottom:10px}.white .grid .n{color:#a8823e}
+.faq{max-width:780px;width:100%;margin-top:44px;text-align:left}
+.faq details{border-top:1px solid #1d1d1d;padding:18px 4px}.faq details:last-child{border-bottom:1px solid #1d1d1d}
+.faq summary{cursor:pointer;font-size:17px;font-weight:400;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";color:var(--gold);font-size:20px;line-height:1}
+.faq details[open] summary::after{content:"–"}.faq p{margin-top:10px;color:#aaa;line-height:1.6;font-size:15px}.faq a{color:var(--gold2);border-bottom:1px solid var(--line)}
+.cta{background:radial-gradient(ellipse 50% 35% at 50% 0%,rgba(212,175,106,.16),transparent 70%),#000}
+form#mp{max-width:460px;width:100%;text-align:left;margin-top:32px}
+#mp label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--m);margin:14px 0 6px}
+#mp input:not([type=checkbox]),#mp select{width:100%;background:#000;border:1px solid #333;border-radius:10px;color:#fff;font:inherit;font-size:16px;padding:12px}
+#mp input:focus,#mp select:focus{outline:none;border-color:var(--gold)}
+#mp .ck{display:flex;gap:10px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:13px;color:#bbb}#mp .ck input{margin-top:3px}
+#mp .hp{position:absolute;left:-9999px}#mp button{border:0;cursor:pointer;margin-top:20px;width:100%;font:inherit;font-weight:500}
+#st{margin-top:12px;font-size:14px;color:var(--m)}#thanks{display:none;max-width:460px;margin-top:32px;padding:26px;border:1px solid var(--gold);border-radius:16px}
+.note{margin-top:28px;font-size:13px;color:#777;max-width:720px;line-height:1.6}.note a{color:var(--gold2);border-bottom:1px solid var(--line)}
+footer{padding:40px 24px 52px;text-align:center;font-size:12px;color:#777;border-top:1px solid #151515;line-height:1.7}footer a{color:var(--gold)}
+@media(max-width:860px){.grid,.grid.two,.grid.four{grid-template-columns:1fr}.pill{min-width:0;width:100%;max-width:320px}.sec{padding:72px 20px}}
+</style><link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon-180.png"><link rel="stylesheet" href="/nav.css"></head><body class="cfn-pad">
+<nav id="cfn" class="cfn" aria-label="Main"><a class="brand" href="/"><img src="/img/logo-mark-wide.png" alt="Cybercab Fleet Owners logo">Cybercab <b>Fleet</b> Owners</a><button class="burger" type="button" aria-expanded="false" aria-controls="cfmenu" aria-label="Menu"><span></span><span></span><span></span></button><div class="links" id="cfmenu"><ul class="mnu"><li class="top"><a href="/fleet-map.html">Fleet map</a></li><li class="top"><a href="/forum/">Forum</a></li><li class="dd"><button type="button" aria-expanded="false" aria-controls="cfm1">Guides</button><ul id="cfm1"><li><a href="/#guides">All guides</a></li><li><a href="/guide.html">Free guide : 2027 Readiness</a></li><li><a href="/timeline.html">Timeline</a></li><li><a href="/#questions-for-tesla">Questions for Tesla</a></li><li><a href="/#faq">FAQ</a></li></ul></li><li class="dd"><button type="button" aria-expanded="false" aria-controls="cfm2">Plan</button><ul id="cfm2"><li><a href="/#masterplan">90-Day Fleet Plan</a></li><li><a href="/#caas">Cybercab as a Service</a></li><li><a href="/megapod/">Megapod as a Service</a></li><li><a href="/#waitlists">Waitlist</a></li><li><a href="/#earn">Calculator : what one car could do</a></li><li><a href="/#network-revenue">Network revenue slider</a></li><li><a href="/#fund">Funding</a></li><li><a href="/#cyberfund">CyberFund</a></li><li><a href="/#stake">Own a stake</a></li><li><a href="/#bot">Fleet bot</a></li><li><a href="/#review">Fleet plan review</a></li></ul></li><li class="dd"><button type="button" aria-expanded="false" aria-controls="cfm3">Community</button><ul id="cfm3"><li><a href="/#why">Why join</a></li><li><a href="/#growing">Members</a></li><li><a href="/#invite">Invite a friend</a></li><li><a href="/#swarm">Build the Hub : the swarm</a></li><li><a href="/#join-the-swarm">Join the swarm</a></li><li><a href="/#figure">Topics</a></li><li><a href="/#rhythm">Weekly rhythm</a></li><li><a href="/#watch">Watch</a></li><li><a href="https://www.youtube.com/@CybercabFleetOwners" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://x.com/intent/post?text=I%27d%20love%20to%20be%20a%20guest%20on%20the%20Tesla%20to%20Mars%20podcast%20%F0%9F%8E%99%EF%B8%8F%F0%9F%9A%80%20Here%27s%20my%20robotaxi%20fleet%20story%3A%20%40fminderop%20%40KRoelandschap" target="_blank" rel="noopener">Be a podcast guest</a></li><li><a href="/austin-trip.html">Austin trip</a></li><li><a href="/#partners">Partner with us</a></li><li><a href="/#contact">Contact</a></li></ul></li><li class="dd"><button type="button" aria-expanded="false" aria-controls="cfm4">Data</button><ul id="cfm4"><li><a href="/#miles">Robotaxi miles</a></li><li><a href="/#cities">Driverless share</a></li><li><a href="/#eu-fsd">FSD in Europe</a></li><li><a href="/#europe">Europe</a></li><li><a href="/#semi">Semi</a></li><li><a href="/#energy">Energy</a></li><li><a href="/#megapod">Megapod</a></li></ul></li></ul><a class="cta" href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener">Join the community</a></div></nav>
+
+<section class="sec hero" id="top">
+  <div class="kicker">Concept · Fleet hubs · Energy</div>
+  <h1>Megapod <span class="gold">as a Service</span></h1>
+  <p class="sub">A power and cooling pod for a robotaxi fleet hub or a small AI compute site . Storage , liquid cooling and load-balancing software in one unit , installed , monitored and tuned for you instead of bought once and left alone .</p>
+  <span class="badge">A community concept · not a Tesla product · not for sale</span>
+  <div class="btns"><a class="pill g" href="#interest">Join the Megapod interest list</a><a class="pill o" href="#how">How it would work</a></div>
+  <svg viewBox="0 0 520 220" fill="none" aria-hidden="true">
+    <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#f1d9a0"/><stop offset=".6" stop-color="#d4af6a"/><stop offset="1" stop-color="#a8823e"/></linearGradient></defs>
+    <line x1="0" y1="196" x2="520" y2="196" stroke="#d4af6a" stroke-opacity=".35"/>
+    <rect x="150" y="54" width="220" height="142" rx="10" stroke="url(#g)" stroke-width="1.5"/>
+    <g stroke="#d4af6a" stroke-opacity=".55"><line x1="178" y1="80" x2="178" y2="176"/><line x1="206" y1="80" x2="206" y2="176"/><line x1="234" y1="80" x2="234" y2="176"/><line x1="262" y1="80" x2="262" y2="176"/></g>
+    <g stroke="#f1d9a0" stroke-opacity=".8"><path d="M300 86 q14 10 0 20 q-14 10 0 20 q14 10 0 20 q-14 10 0 20"/><path d="M330 86 q14 10 0 20 q-14 10 0 20 q14 10 0 20 q-14 10 0 20"/></g>
+    <path d="M150 140 H70 V196" stroke="#d4af6a" stroke-opacity=".7"/><rect x="40" y="150" width="60" height="30" rx="6" stroke="#d4af6a" stroke-opacity=".7"/>
+    <path d="M370 140 H450 V196" stroke="#d4af6a" stroke-opacity=".7"/><rect x="420" y="160" width="60" height="22" rx="4" stroke="#d4af6a" stroke-opacity=".7"/>
+    <circle cx="260" cy="34" r="4" fill="#d4af6a"/><path d="M260 38 V54" stroke="#d4af6a" stroke-dasharray="3 3"/>
+  </svg>
+</section>
+
+<section class="sec white" id="problem">
+  <div class="kicker">The problem</div>
+  <h2>Power is the bottleneck</h2>
+  <p class="sub">A robotaxi hub needs a lot of power at the same moments every day . Cars come back together , charge together and need to be ready together . The grid connection is often smaller than the peak , and in places like the Netherlands a bigger one can take years .</p>
+  <div class="grid">
+    <div><span class="n">PEAKS</span><h3>Depot charging peaks</h3><p>Many cars plug in at once after the morning and evening rush . The peak decides the size of the grid connection you need .</p></div>
+    <div><span class="n">GRID</span><h3>Grid limits</h3><p>Congested grids mean long waits or no new capacity at all . A hub that can't charge can't put cars on the road .</p></div>
+    <div><span class="n">BACKUP</span><h3>No power , no fleet</h3><p>An outage at the depot stops charging , cleaning and dispatch . A fleet hub needs a plan for backup power .</p></div>
+    <div><span class="n">HEAT</span><h3>Heat and cooling</h3><p>Fast chargers , batteries and any on-site compute all produce heat . Cooling is often an afterthought until it fails .</p></div>
+    <div><span class="n">COMPUTE</span><h3>AI compute wants power too</h3><p>Demand for AI compute is growing fast , and compute sites face the same grid and cooling limits as a depot .</p></div>
+    <div><span class="n">SKILLS</span><h3>Energy is a specialist job</h3><p>Most fleet owners want to run cars , not become an energy company . Sizing , permits and tuning take know-how .</p></div>
+  </div>
+</section>
+
+<section class="sec" id="what" style="background:radial-gradient(ellipse 60% 45% at 50% 100%,rgba(212,175,106,.18),transparent 70%),#000">
+  <div class="kicker">What a Megapod is</div>
+  <h2>One pod : <span class="gold">store , cool , balance</span></h2>
+  <p class="sub">The idea is a factory-built unit that sits at the edge of a fleet hub or next to a small compute room . It combines three things that are usually bought and run separately .</p>
+  <div class="grid">
+    <div><span class="n">01 · STORE</span><h3>Integrated battery storage</h3><p>Megapack-style storage that fills up slowly from the grid or solar and gives power back fast when the cars arrive . It also covers short outages .</p></div>
+    <div><span class="n">02 · COOL</span><h3>Liquid cooling</h3><p>Liquid cooling of the kind used in electric cars , sized for batteries , chargers and racks of compute in the same pod .</p></div>
+    <div><span class="n">03 · BALANCE</span><h3>Load-balancing software</h3><p>On-site software that decides second by second where power goes : cars first , then storage , then compute , within the limit of the grid connection .</p></div>
+  </div>
+  <p class="note">"Megapod" is our working name for this concept . Tesla has filed a MEGAPOD trademark for modular AI data-center hardware , but has not announced any product or service like this . <a href="/#megapod">What is known about the Megapod</a></p>
+</section>
+
+<section class="sec white" id="how">
+  <div class="kicker">How the service works</div>
+  <h2>As a service , not a one-off purchase</h2>
+  <p class="sub">Instead of buying hardware and figuring it out alone , the hub gets the pod plus the people and software that keep it right-sized over time .</p>
+  <div class="grid four">
+    <div><span class="n">STEP 1</span><h3>Site check</h3><p>Look at the grid connection , the number of cars , the charging pattern and any compute plans . Size the pod to the real peaks .</p></div>
+    <div><span class="n">STEP 2</span><h3>Install</h3><p>Deliver and connect a factory-built pod , with permits , fire safety and the link to the chargers handled by a partner .</p></div>
+    <div><span class="n">STEP 3</span><h3>Monitor</h3><p>Watch storage , cooling and charging around the clock . Spot problems before a car misses a shift .</p></div>
+    <div><span class="n">STEP 4</span><h3>Optimise</h3><p>Keep tuning the software as the fleet grows : new cars , new shifts , new compute . Add pods when the hub outgrows one .</p></div>
+  </div>
+</section>
+
+<section class="sec" id="who">
+  <div class="kicker">Who it's for</div>
+  <h2>Built around the <span class="gold">fleet hub</span></h2>
+  <p class="sub">A single car charging at home doesn't need a pod . This concept is for places where many cars , or cars and compute , share one connection .</p>
+  <div class="grid two">
+    <div><h3>Fleet hub and depot operators</h3><p>Hubs that charge , clean and park robotaxis and keep running into the limits of their grid connection .</p></div>
+    <div><h3>Growing fleet owners</h3><p>Owners planning to go from a few cars to a hub of their own , who want power sorted before the cars arrive .</p></div>
+    <div><h3>Small AI compute sites</h3><p>Edge compute rooms that need steady power , cooling and backup , possibly sharing a site with a depot .</p></div>
+    <div><h3>Site owners and partners</h3><p>Parking garages , landlords , installers and energy partners who want to host or build hubs together with the community .</p></div>
+  </div>
+  <div class="btns"><a class="pill o" href="/#caas">See Cybercab as a Service</a><a class="pill o" href="/#energy">Read about hub energy</a></div>
+</section>
+
+<section class="sec white" id="faq">
+  <div class="kicker">FAQ</div>
+  <h2>Questions</h2>
+  <div class="faq" style="color:#111">
+    <details open><summary>Is Megapod as a Service a Tesla product ?</summary><p style="color:#555">No . It's a concept discussed in our independent community . Tesla has not announced anything like it , and this site is not affiliated with Tesla, Inc.</p></details>
+    <details><summary>Can I buy or order one ?</summary><p style="color:#555">No . Nothing is for sale . The interest list helps us learn which hubs and sites would want this , so we know what to explore with partners .</p></details>
+    <details><summary>What would it cost ?</summary><p style="color:#555">There is no pricing , and we don't publish price or earnings estimates . Any real offer would come from a licensed provider with its own terms .</p></details>
+    <details><summary>Do I need a pod for one or two cars ?</summary><p style="color:#555">Probably not . Home or small-depot charging is usually enough . The concept starts to matter when many cars share one grid connection .</p></details>
+    <details><summary>How does it help with grid congestion ?</summary><p style="color:#555">Storage fills up slowly over the day and gives power back during charging peaks , so the hub can charge more cars than the grid connection alone would allow .</p></details>
+    <details><summary>Where did the idea come from ?</summary><p style="color:#555">It builds on <a href="https://x.com/grok/status/2117151063341953210" target="_blank" rel="noopener" style="color:#a8823e">an idea raised on X</a> about power modules that combine storage , liquid cooling and load-balancing software . We applied it to fleet hubs .</p></details>
+    <details><summary>Who can I talk to about it ?</summary><p style="color:#555">Join the interest list below and an expert from the community will get in touch , or discuss it in the X community .</p></details>
+  </div>
+</section>
+
+<section class="sec cta" id="interest">
+  <div class="kicker">Interest list</div>
+  <h2>Want a Megapod <span class="gold">at your hub ?</span></h2>
+  <p class="sub">Tell us about your hub or site . No commitment and nothing to buy . We'll share updates as the concept takes shape .</p>
+  <div id="formbox" style="width:100%;display:flex;justify-content:center">
+  <form id="mp" novalidate>
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+    <label for="mp-name">Name *</label><input id="mp-name" name="name" required autocomplete="name">
+    <label for="mp-email">Email *</label><input id="mp-email" name="email" type="email" required autocomplete="email">
+    <label for="mp-x">X handle (optional)</label><input id="mp-x" name="x_handle" placeholder="@yourhandle">
+    <label for="mp-city">City *</label><input id="mp-city" name="city" required placeholder="Where the hub or site would be">
+    <label for="mp-site">What kind of site ? *</label><select id="mp-site" name="site_type" required><option value="">Choose…</option><option>Fleet hub or depot</option><option>Small AI compute site</option><option>Both on one site</option><option>Site owner or partner</option><option>Just curious</option></select>
+    <label for="mp-fleet">Planned fleet size</label><select id="mp-fleet" name="fleet_size"><option value="">Choose…</option><option>1 car</option><option>2 to 5</option><option>6 to 10</option><option>11 to 25</option><option>26 to 100</option><option>100+</option><option>Not sure yet</option></select>
+    <label class="ck"><input type="checkbox" name="consent" value="yes" required> I agree that my details are used only for Megapod updates and occasional fleet news . Unsubscribe any time .</label>
+    <button type="submit" class="pill g">Join the interest list</button><div id="st" role="status"></div>
+  </form></div>
+  <div id="thanks"><div class="kicker" style="margin-bottom:10px">Thank you</div><p style="color:#ccc;line-height:1.6">You're on the Megapod interest list . Meanwhile , <a href="https://x.com/i/communities/1912893645050511710" target="_blank" rel="noopener" style="color:var(--gold2)">join the X community</a> or <a href="/fleet-map.html" style="color:var(--gold2)">put yourself on the fleet map</a> .</p></div>
+  <p class="note">Educational concept only . Not an offer , not financial advice , and no earnings are promised . Megapod as a Service is not a Tesla product and is not affiliated with Tesla, Inc.</p>
+</section>
+
+<footer>© 2026 Tesla Cybercab Fleet Owners · Independent community, not affiliated with Tesla, Inc. · <a href="/">cybercabfleetowners.com</a> · <a href="https://www.youtube.com/@CybercabFleetOwners" target="_blank" rel="noopener">YouTube : Cybercab Fleet Owners Community</a></footer>
+<script src="/ref.js"></script>
+<script>(()=>{const SHEET='https://script.google.com/macros/s/AKfycbxhYfw0kB2aZunwYvkgv-Xv-JltvO_qcbn6mvn_WROXXqHjoGz5TAffLegkTMnz2sUAAw/exec';const TO='florianminderop@mail.grokbot.com',f=document.getElementById('mp'),st=document.getElementById('st');
+const done=()=>{document.getElementById('formbox').style.display='none';document.getElementById('thanks').style.display='block'};
+function mailto(d){const b=Object.keys(d).filter(k=>k[0]!=='_'&&d[k]!=='').map(k=>k+': '+d[k]).join('\n');return 'mailto:'+TO+'?subject='+encodeURIComponent(d._subject)+'&body='+encodeURIComponent(b)}
+f.addEventListener('submit',async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d._honey)return;
+if(!d.name||!/\S+@\S+\.\S+/.test(d.email)||!d.city||!d.site_type||!f.consent.checked){st.style.color='#e88';st.textContent='Please fill in all required fields and tick consent .';return}
+let r='';try{r=new URLSearchParams(location.search).get('ref')||localStorage.getItem('cfo_ref')||''}catch(_){}
+d.ref=r;d.topic='megapod';d._subject='megapod : '+d.site_type+' - '+d.city;d._template='table';d._captcha='false';d.page=location.pathname+' | site_type: '+d.site_type;
+const b=f.querySelector('button');b.disabled=true;b.textContent='Sending ...';st.style.color='var(--m)';st.textContent='';
+try{await fetch(SHEET,{method:'POST',mode:'no-cors',body:new URLSearchParams(d)});done();return}catch(_){}
+const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);
+try{const x=await fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',signal:c.signal,headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});clearTimeout(t);const j=await x.json().catch(()=>({}));if(x.ok&&String(j.success)==='true'){done();return}throw 0}
+catch(_){clearTimeout(t);done();const p=document.createElement('p');p.className='note';p.innerHTML='Our form service is not responding , so your signup was not registered yet . <a id="ml">Send it by email</a> (prefilled) so we can keep you posted .';document.getElementById('thanks').appendChild(p);document.getElementById('ml').href=mailto(d)}})})()</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Megapod as a Service a Tesla product ?","acceptedAnswer":{"@type":"Answer","text":"No . It's a concept discussed in the independent Cybercab Fleet Owners community . Tesla has not announced anything like it , and the site is not affiliated with Tesla, Inc."}},{"@type":"Question","name":"Can I buy or order one ?","acceptedAnswer":{"@type":"Answer","text":"No . Nothing is for sale . The interest list helps the community learn which hubs and sites would want this ."}},{"@type":"Question","name":"How does it help with grid congestion ?","acceptedAnswer":{"@type":"Answer","text":"Storage fills up slowly over the day and gives power back during charging peaks , so a hub can charge more cars than the grid connection alone would allow ."}}]}</script>
+<script src="/nav.js"></script></body></html>
