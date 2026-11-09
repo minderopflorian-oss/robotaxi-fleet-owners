@@ -232,5 +232,14 @@
   "lon": -119.4,
   "fleet": "as many as possible",
   "score": 1
+ },
+ {
+  "handle": "@conradpruijssen",
+  "post": "https://x.com/conradpruijssen/status/2116563943284183273",
+  "place": "Almere, Netherlands",
+  "lat": 52.37,
+  "lon": 5.22,
+  "fleet": "10",
+  "score": 2
  }
 ]
