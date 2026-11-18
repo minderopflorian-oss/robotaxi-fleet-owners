@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-12",
- "count": 573,
- "count_date": "2026-11-12",
- "rate_per_day": 0.0,
- "rate_window": "2026-11-02 to 2026-11-12",
- "miles_per_car_day": 61.1,
- "miles_window": "2026-11-02 to 2026-11-12",
- "total_robotaxis": 1303,
+ "updated": "2026-11-18",
+ "count": 773,
+ "count_date": "2026-11-18",
+ "rate_per_day": 28.6,
+ "rate_window": "2026-11-11 to 2026-11-18",
+ "miles_per_car_day": 52.9,
+ "miles_window": "2026-11-11 to 2026-11-18",
+ "total_robotaxis": 1507,
  "fare_per_mile": 1.4,
  "fare_source": {
   "text": "Austin Robotaxi rate reported as $3.00 base + $1.40 per mile (Not a Tesla App, March 2026)",
@@ -14,7 +14,7 @@
  },
  "count_source": {
   "text": "Texas DMV registrations via @herbertong / @joehansen",
-  "url": "https://x.com/TeslaZoa/status/2120742977467470157"
+  "url": "https://x.com/TeslaZoa/status/2122832382428647577"
  },
  "miles_source": "https://www.tesla.com/robotaxi"
 }
