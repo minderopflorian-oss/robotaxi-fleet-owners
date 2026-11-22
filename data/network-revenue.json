@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-21",
+ "updated": "2026-11-22",
  "count": 773,
  "count_date": "2026-11-18",
  "rate_per_day": 28.6,
  "rate_window": "2026-11-11 to 2026-11-18",
  "miles_per_car_day": 52.9,
- "miles_window": "2026-11-12 to 2026-11-21",
+ "miles_window": "2026-11-12 to 2026-11-22",
  "total_robotaxis": 1507,
  "fare_per_mile": 1.4,
  "fare_source": {
