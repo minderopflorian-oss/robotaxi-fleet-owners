@@ -1,9 +1,9 @@
 {
  "updated": "2026-11-24",
  "count": 773,
- "count_date": "2026-11-18",
- "rate_per_day": 28.6,
- "rate_window": "2026-11-11 to 2026-11-18",
+ "count_date": "2026-11-24",
+ "rate_per_day": 0.0,
+ "rate_window": "2026-11-18 to 2026-11-24",
  "miles_per_car_day": 52.9,
  "miles_window": "2026-11-18 to 2026-11-24",
  "total_robotaxis": 1507,
@@ -14,7 +14,7 @@
  },
  "count_source": {
   "text": "Texas DMV registrations via @herbertong / @joehansen",
-  "url": "https://x.com/TeslaZoa/status/2122832382428647577"
+  "url": "https://x.com/RobotaxiRadar/status/2125316989275275596"
  },
  "miles_source": "https://www.tesla.com/robotaxi"
 }
