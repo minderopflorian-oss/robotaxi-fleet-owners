@@ -9,6 +9,7 @@
 .cfn .mnu>li>a,.cfn .mnu>li>button{display:block;background:none;border:0;color:#fff;font:inherit;padding:8px 12px;cursor:pointer}
 .cfn .dd>button::after{content:"";display:inline-block;margin-left:7px;width:5px;height:5px;border-right:1px solid var(--cfg);border-bottom:1px solid var(--cfg);transform:translateY(-3px) rotate(45deg)}
 .cfn .mnu>li>a:hover,.cfn .mnu>li>button:hover,.cfn .dd.open>button{color:var(--cfg2)}
+.cfn .mnu>li>a[aria-current="page"]{color:var(--cfg2)}
 .cfn .dd ul{display:none;position:absolute;left:0;top:100%;min-width:240px;list-style:none;margin:0;padding:10px 0;background:#000;border:1px solid var(--cfg);border-radius:12px}
 .cfn .dd.open ul{display:block}
 @media(hover:hover) and (min-width:1001px){.cfn .dd:hover ul,.cfn .dd:focus-within ul{display:block}}
