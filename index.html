@@ -78,8 +78,9 @@ footer .tag{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-
 #contact .x{position:absolute;top:12px;right:16px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}
 #contact button.pill{border:0;cursor:pointer;margin-top:22px;width:100%}#contact .msg{margin-top:14px;font-size:14px}#contact .hp{position:absolute;left:-9999px}
 </style>
-<script>/* Form fallback: 10s timeout + mailto when FormSubmit fails */
-(()=>{const TO='florianminderop@mail.grokbot.com',FS='formsubmit.co';let last=null;
+<script>/* Forms: Apps Script sheet write + FormSubmit (+leads) in parallel; mailto on the untagged address if both fail */
+(()=>{const TO='florianminderop@mail.grokbot.com',FS='formsubmit.co',FS_TO='florianminderop+leads@mail.grokbot.com';
+const FS_AJAX='https://formsubmit.co/ajax/'+encodeURIComponent(FS_TO);let last=null;
 document.addEventListener('submit',e=>{last=e.target},true);
 const skip=k=>k[0]==='_'||k==='consent';
 function mailto(d){const s=d._subject||'Website form';const body=Object.keys(d).filter(k=>!skip(k)&&d[k]!=='').map(k=>k+': '+d[k]).join('\n');return 'mailto:'+TO+'?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(body)}
@@ -95,16 +96,21 @@ let r=d.ref||'';try{r=r||localStorage.getItem('cfo_ref')||''}catch(_){}p.ref=r;p
 const ex=Object.keys(d).filter(k=>k[0]!=='_'&&!CORE.includes(k)&&!['x','handle','city_country','fleet','cars'].includes(k)&&d[k]!=='').map(k=>k+': '+d[k]).join('; ');
 if(sub)p.page=location.pathname+' | '+sub+(ex?' | '+ex:'');else p.page=location.pathname+(ex?' | '+ex:'');
 return of(SHEET,{method:'POST',mode:'no-cors',body:new URLSearchParams(p)})}
+function fsPayload(d){const p=Object.assign({},d);if(!p._captcha)p._captcha='false';if(!p._template)p._template='table';
+if(!p._subject)p._subject='Lead: site-form';
+else if(!/^(Lead:|tesla-vote:|tesla-question:)/.test(p._subject))p._subject='Lead: '+p._subject;
+return p}
+function postFs(d){const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);
+return of(FS_AJAX,{method:'POST',signal:c.signal,keepalive:true,headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(fsPayload(d))})
+.then(async r=>{clearTimeout(t);const j=await r.clone().json().catch(()=>({}));return {ok:r.ok&&String(j.success)==='true',r}},err=>{clearTimeout(t);return {ok:false,r:null,err}})}
 
 window.fetch=function(u,o){if(typeof u!=='string'||u.indexOf(FS)<0)return of(u,o);const f=last;let d={};try{d=JSON.parse(o&&o.body||'{}')}catch(_){}
-/* Primary: Google Sheet via Apps Script web app; FormSubmit + mailto stay as fallback */
-if(!toSheet._skip)return toSheet(f,d).then(()=>new Response('{"success":"true"}',{status:200,headers:{'Content-Type':'application/json'}}),()=>{toSheet._skip=1;const r=window.fetch(u,o);toSheet._skip=0;return r});
-const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);
-return of(u,Object.assign({},o,{signal:c.signal})).then(async r=>{clearTimeout(t);const j=await r.clone().json().catch(()=>({}));if(!(r.ok&&String(j.success)==='true'))show(f,d);return r},err=>{clearTimeout(t);show(f,d);throw err})};
+const fsP=postFs(d);
+return toSheet(f,d).then(()=>new Response('{"success":"true"}',{status:200,headers:{'Content-Type':'application/json'}}),()=>fsP.then(x=>{if(x.ok)return x.r;show(f,d);if(x.r)return x.r;throw x.err||new Error('formsubmit')}))};
 /* Plain HTML forms posting to FormSubmit (votes, questions): send via AJAX so failures are caught */
 document.addEventListener('submit',async e=>{const f=e.target;if(!f.action||f.action.indexOf(FS)<0||f.id)return;e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d._honey)return;
 const b=f.querySelector('button[type=submit]'),bt=b&&b.textContent;if(b){b.disabled=true;b.textContent='Sending...'}
-try{const r=await window.fetch(f.action.replace(FS+'/',FS+'/ajax/'),{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));
+try{const r=await window.fetch(FS_AJAX,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});const j=await r.json().catch(()=>({}));
 if(r.ok&&String(j.success)==='true'){location.href=d._next||'?voted=1#questions-for-tesla';return}}catch(_){}
 if(b){b.disabled=false;b.textContent=bt}})})();</script>
 
@@ -593,7 +599,7 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
 <div style="font-size:.8em;color:#aaa">Q001 &middot; Ownership &amp; caps &middot; Status: Open &middot; <span style="color:var(--gold)">Community pick</span></div>
 <h3 style="margin:8px 0 6px;font-size:1.05em;color:#fff">Will Tesla cap how many owner robotaxis can be added to the network per area/region/town to avoid oversaturation and idle cars?</h3>
 <div style="font-size:.85em;color:#aaa">Asked by <a href="https://x.com/Gillesie/status/2115372712214278517" target="_blank" rel="noopener" style="color:var(--gold)">@Gillesie</a></div>
-<form action="https://formsubmit.co/florianminderop@mail.grokbot.com" method="POST" style="margin-top:10px">
+<form action="https://formsubmit.co/florianminderop%2Bleads@mail.grokbot.com" method="POST" style="margin-top:10px">
 <input type="hidden" name="_subject" value="tesla-vote: Q001"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://cybercabfleetowners.com/?voted=1#questions-for-tesla"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none"><input type="hidden" name="question_id" value="Q001"><input type="hidden" name="question" value="Will Tesla cap how many owner robotaxis can be added to the network per area/region/town to avoid oversaturation and idle cars?">
 <label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Yes, hard cap per city" required> Yes, hard cap per city</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Soft cap via demand" required> Soft cap via demand</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="No cap, open network" required> No cap, open network</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Only in launch phase" required> Only in launch phase</label>
 <input name="x_handle" placeholder="Your X handle (optional, for leaderboard points)" style="width:100%;background:#000;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font:inherit">
@@ -604,7 +610,7 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
 <div style="font-size:.8em;color:#aaa">Q002 &middot; Cities &amp; geofence &middot; Status: Open</div>
 <h3 style="margin:8px 0 6px;font-size:1.05em;color:#fff">Will Tesla exclude areas (big cities) from owner Robotaxi ownership where Tesla operates its own fleet?</h3>
 <div style="font-size:.85em;color:#aaa">Asked by <a href="https://x.com/Gillesie/status/2115372712214278517" target="_blank" rel="noopener" style="color:var(--gold)">@Gillesie</a></div>
-<form action="https://formsubmit.co/florianminderop@mail.grokbot.com" method="POST" style="margin-top:10px">
+<form action="https://formsubmit.co/florianminderop%2Bleads@mail.grokbot.com" method="POST" style="margin-top:10px">
 <input type="hidden" name="_subject" value="tesla-vote: Q002"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://cybercabfleetowners.com/?voted=1#questions-for-tesla"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none"><input type="hidden" name="question_id" value="Q002"><input type="hidden" name="question" value="Will Tesla exclude areas (big cities) from owner Robotaxi ownership where Tesla operates its own fleet?">
 <label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Yes" required> Yes</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="No" required> No</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Not sure" required> Not sure</label>
 <input name="x_handle" placeholder="Your X handle (optional, for leaderboard points)" style="width:100%;background:#000;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font:inherit">
@@ -615,7 +621,7 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
 <div style="font-size:.8em;color:#aaa">Q003 &middot; Onboarding &amp; cleaning &middot; Status: Open</div>
 <h3 style="margin:8px 0 6px;font-size:1.05em;color:#fff">Will Tesla favour bigger fleet owners who commit to large numbers of cars and quality (cleaning) before small owners?</h3>
 <div style="font-size:.85em;color:#aaa">Asked by <a href="https://x.com/Gillesie/status/2115373552111079803" target="_blank" rel="noopener" style="color:var(--gold)">@Gillesie</a></div>
-<form action="https://formsubmit.co/florianminderop@mail.grokbot.com" method="POST" style="margin-top:10px">
+<form action="https://formsubmit.co/florianminderop%2Bleads@mail.grokbot.com" method="POST" style="margin-top:10px">
 <input type="hidden" name="_subject" value="tesla-vote: Q003"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://cybercabfleetowners.com/?voted=1#questions-for-tesla"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none"><input type="hidden" name="question_id" value="Q003"><input type="hidden" name="question" value="Will Tesla favour bigger fleet owners who commit to large numbers of cars and quality (cleaning) before small owners?">
 <label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Yes" required> Yes</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="No" required> No</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Not sure" required> Not sure</label>
 <input name="x_handle" placeholder="Your X handle (optional, for leaderboard points)" style="width:100%;background:#000;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font:inherit">
@@ -626,7 +632,7 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
 <div style="font-size:.8em;color:#aaa">Q004 &middot; Cities &amp; geofence &middot; Status: Open &middot; <span style="color:var(--gold)">Community pick</span></div>
 <h3 style="margin:8px 0 6px;font-size:1.05em;color:#fff">Given this is a disruptive product (for other taxi firms), is it desirable to be a first mover in a city or best to wait for any noise to quieten down?</h3>
 <div style="font-size:.85em;color:#aaa">Asked by <a href="https://x.com/brad47004137/status/2115124783327097216" target="_blank" rel="noopener" style="color:var(--gold)">@brad47004137</a></div>
-<form action="https://formsubmit.co/florianminderop@mail.grokbot.com" method="POST" style="margin-top:10px">
+<form action="https://formsubmit.co/florianminderop%2Bleads@mail.grokbot.com" method="POST" style="margin-top:10px">
 <input type="hidden" name="_subject" value="tesla-vote: Q004"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://cybercabfleetowners.com/?voted=1#questions-for-tesla"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none"><input type="hidden" name="question_id" value="Q004"><input type="hidden" name="question" value="Given this is a disruptive product (for other taxi firms), is it desirable to be a first mover in a city or best to wait for any noise to quieten down?">
 <label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Go first, grab demand" required> Go first, grab demand</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Wait 6-12 months" required> Wait 6-12 months</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Join once Tesla scales" required> Join once Tesla scales</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Depends on the city" required> Depends on the city</label>
 <input name="x_handle" placeholder="Your X handle (optional, for leaderboard points)" style="width:100%;background:#000;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font:inherit">
@@ -637,7 +643,7 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
 <div style="font-size:.8em;color:#aaa">Q005 &middot; Cities &amp; geofence &middot; Status: Open</div>
 <h3 style="margin:8px 0 6px;font-size:1.05em;color:#fff">Is the bottleneck for new cities now validation miles per city, or depot and charging capacity?</h3>
 <div style="font-size:.85em;color:#aaa">Asked by <a href="https://x.com/hquake0519/status/2115073336921526317" target="_blank" rel="noopener" style="color:var(--gold)">@hquake0519</a></div>
-<form action="https://formsubmit.co/florianminderop@mail.grokbot.com" method="POST" style="margin-top:10px">
+<form action="https://formsubmit.co/florianminderop%2Bleads@mail.grokbot.com" method="POST" style="margin-top:10px">
 <input type="hidden" name="_subject" value="tesla-vote: Q005"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://cybercabfleetowners.com/?voted=1#questions-for-tesla"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none"><input type="hidden" name="question_id" value="Q005"><input type="hidden" name="question" value="Is the bottleneck for new cities now validation miles per city, or depot and charging capacity?">
 <label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Yes" required> Yes</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="No" required> No</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Not sure" required> Not sure</label>
 <input name="x_handle" placeholder="Your X handle (optional, for leaderboard points)" style="width:100%;background:#000;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font:inherit">
@@ -648,7 +654,7 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
 <div style="font-size:.8em;color:#aaa">Q006 &middot; Ownership &amp; caps &middot; Status: Open</div>
 <h3 style="margin:8px 0 6px;font-size:1.05em;color:#fff">How will the owner model (owning a piece of the fleet) actually work in practice?</h3>
 <div style="font-size:.85em;color:#aaa">Asked by <a href="https://x.com/milaniqlab/status/2114702127998075070" target="_blank" rel="noopener" style="color:var(--gold)">@milaniqlab</a></div>
-<form action="https://formsubmit.co/florianminderop@mail.grokbot.com" method="POST" style="margin-top:10px">
+<form action="https://formsubmit.co/florianminderop%2Bleads@mail.grokbot.com" method="POST" style="margin-top:10px">
 <input type="hidden" name="_subject" value="tesla-vote: Q006"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://cybercabfleetowners.com/?voted=1#questions-for-tesla"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none"><input type="hidden" name="question_id" value="Q006"><input type="hidden" name="question" value="How will the owner model (owning a piece of the fleet) actually work in practice?">
 <label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Yes" required> Yes</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="No" required> No</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Not sure" required> Not sure</label>
 <input name="x_handle" placeholder="Your X handle (optional, for leaderboard points)" style="width:100%;background:#000;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font:inherit">
@@ -659,7 +665,7 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
 <div style="font-size:.8em;color:#aaa">Q007 &middot; Earnings split &middot; Status: Open &middot; <span style="color:var(--gold)">Community pick</span></div>
 <h3 style="margin:8px 0 6px;font-size:1.05em;color:#fff">What will the revenue split between owner and Tesla be — 50/50 or skewed towards the asset owner?</h3>
 <div style="font-size:.85em;color:#aaa">Asked by <a href="https://x.com/pitreinc/status/2114069021436043403" target="_blank" rel="noopener" style="color:var(--gold)">@pitreinc</a></div>
-<form action="https://formsubmit.co/florianminderop@mail.grokbot.com" method="POST" style="margin-top:10px">
+<form action="https://formsubmit.co/florianminderop%2Bleads@mail.grokbot.com" method="POST" style="margin-top:10px">
 <input type="hidden" name="_subject" value="tesla-vote: Q007"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://cybercabfleetowners.com/?voted=1#questions-for-tesla"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none"><input type="hidden" name="question_id" value="Q007"><input type="hidden" name="question" value="What will the revenue split between owner and Tesla be — 50/50 or skewed towards the asset owner?">
 <label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Leans to owner" required> Leans to owner</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Even split" required> Even split</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Leans to Tesla" required> Leans to Tesla</label><label style="display:block;margin:4px 0"><input type="radio" name="vote" value="Varies by city" required> Varies by city</label>
 <input name="x_handle" placeholder="Your X handle (optional, for leaderboard points)" style="width:100%;background:#000;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font:inherit">
@@ -669,7 +675,7 @@ try{const r=await fetch('https://formsubmit.co/ajax/florianminderop@mail.grokbot
 </div>
 <div style="border:1px solid var(--gold);border-radius:14px;padding:18px;margin-top:20px;max-width:640px">
 <h3 style="margin:0 0 6px;color:#fff">Suggest a question</h3>
-<form action="https://formsubmit.co/florianminderop@mail.grokbot.com" method="POST">
+<form action="https://formsubmit.co/florianminderop%2Bleads@mail.grokbot.com" method="POST">
 <input type="hidden" name="_subject" value="tesla-question: new"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://cybercabfleetowners.com/?voted=1#questions-for-tesla"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none">
 <textarea name="question" rows="2" required placeholder="What should Tesla answer ?" style="width:100%;background:#000;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font:inherit"></textarea>
 <input name="x_handle" placeholder="Your X handle (optional)" style="width:100%;background:#000;color:#fff;border:1px solid #333;border-radius:8px;padding:8px;margin-top:6px;font:inherit">
