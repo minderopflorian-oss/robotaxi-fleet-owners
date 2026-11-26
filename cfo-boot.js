@@ -35,6 +35,13 @@
   document.addEventListener('click',e=>{
     const a=e.target.closest && e.target.closest('a[href*="communities/1912893645050511710"]');
     if(!a)return;
-    try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:'join-community',title:'Join the community click',event:true});}catch(_){}
-  });
+    try{
+      if(window.goatcounter&&goatcounter.count){
+        if(!a.hasAttribute('data-goatcounter-click')) goatcounter.count({path:'join-community',title:'Join the community click',event:true});
+        return;
+      }
+      const u='https://cybercabfleetowners.goatcounter.com/count?p='+encodeURIComponent('join-community')+'&t='+encodeURIComponent('Join the community click')+'&e=true';
+      if(navigator.sendBeacon) navigator.sendBeacon(u); else (new Image()).src=u;
+    }catch(_){}
+  },true);
 })();
