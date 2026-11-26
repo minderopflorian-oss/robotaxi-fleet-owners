@@ -161,7 +161,8 @@ function fleet(d){const svg=document.getElementById('cc-chart');if(!svg)return;
  const note=document.getElementById('cc-note'),cx=P.find(p=>p.my!=null&&p.cc>p.my);if(note&&lt){const lead=lt.cc>=lt.my;
   note.textContent=`Latest (${fd(lt.t,1)}): ${nf(lt.cc)} Cybercab vs ${nf(lt.my)} Model Y, ${Math.round(lt.cc/lt.tot*100)}% Cybercab.`+(cx?(lead?` Cybercabs have led since ${fd(cx.t)}.`:` Cybercabs first passed Model Y on ${fd(cx.t)} (${nf(cx.cc)} vs ${nf(cx.my)}); new Model Y registrations put Model Y back ahead.`):'')}}
 
-function go(){fetch('data/cybercab-stats.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{window.CV2_DATA=d;
+function go(){window.CFO_STATS=window.CFO_STATS||fetch('data/cybercab-stats.json',{cache:'no-store'}).then(r=>r.json());
+ window.CFO_STATS.then(d=>{window.CV2_DATA=d;
  [milesChart,ticker,cities,fleet].forEach(f=>{try{f(d)}catch(e){console.error('charts-v2',f.name,e)}})}).catch(()=>{})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
 })();
