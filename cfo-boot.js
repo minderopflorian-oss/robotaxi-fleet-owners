@@ -25,6 +25,7 @@
     '#proof':'/',
     '#growing':'/',
     '#miles':'/',
+    '#map':'/#top',
     '#europe':'/#watch',
     '#timeline':'/fleet.html',
     '#milestones':'/fleet.html',
