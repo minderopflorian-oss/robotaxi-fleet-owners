@@ -14,6 +14,8 @@
     '#caas':'/',
     '#swarm':'/',
     '#join-the-swarm':'/',
+    '#join':'/#join',
+    '#invite':'/#join',
     '#waitlists':'/#watch',
     '#cyberfund':'/',
     '#stake':'/',
