@@ -46,6 +46,17 @@
   </div>
 </section>
 
+<section class="snap auto" id="map">
+  <div class="kicker fade">Fleet map</div>
+  <h2 class="fade">Where future fleets <span class="gold">will be built</span>.</h2>
+  <p class="small fade"><b id="n">0</b> future fleet owners pinned in <b id="p">0</b> places · <b id="cm">0</b> community members in <b id="cp">0</b> places</p>
+  <div id="map-wrap"><div id="fleetmap" style="height:100%;min-height:380px;border-radius:12px"></div></div>
+  <div class="map-legend fade"><span><i class="dot" style="background:#c9a54c"></i>Concrete plan</span><span><i class="dot" style="background:#fff"></i>Clear wish</span><span><i class="dot" style="background:#666"></i>Casual remark</span><span><i class="dot" style="background:#4a7fa8;width:8px;height:8px"></i>Community member (home location)</span></div>
+  <div class="btns fade">
+    <a class="pill g" href="https://x.com/fminderop/status/2115888380357890242" target="_blank" rel="noopener">Add your pin : reply with your city</a>
+  </div>
+  <p class="src fade">Based on public posts on X. Pins are placed at city or region level, not a private address. Community member dots show the home location from public X profiles, not a fleet plan. Want your pin removed? Reply on the post above.</p>
+</section>
 <section class="snap auto" id="cities">
   <div class="kicker fade">Where the swarm drives</div>
   <h2 class="fade">Share of driverless miles <span class="gold">by city</span>.</h2>
@@ -69,17 +80,6 @@
   <p class="src fade" id="eu-src" style="margin-top:14px"></p>
 </section>
 
-<section class="snap auto" id="map">
-  <div class="kicker fade">Fleet map</div>
-  <h2 class="fade">Where future fleets <span class="gold">will be built</span>.</h2>
-  <p class="small fade"><b id="n">0</b> future fleet owners pinned in <b id="p">0</b> places · <b id="cm">0</b> community members in <b id="cp">0</b> places</p>
-  <div id="map-wrap"><div id="fleetmap" style="height:100%;min-height:380px;border-radius:12px"></div></div>
-  <div class="map-legend fade"><span><i class="dot" style="background:#c9a54c"></i>Concrete plan</span><span><i class="dot" style="background:#fff"></i>Clear wish</span><span><i class="dot" style="background:#666"></i>Casual remark</span><span><i class="dot" style="background:#4a7fa8;width:8px;height:8px"></i>Community member (home location)</span></div>
-  <div class="btns fade">
-    <a class="pill g" href="https://x.com/fminderop/status/2115888380357890242" target="_blank" rel="noopener">Add your pin : reply with your city</a>
-  </div>
-  <p class="src fade">Based on public posts on X. Pins are placed at city or region level, not a private address. Community member dots show the home location from public X profiles, not a fleet plan. Want your pin removed? Reply on the post above.</p>
-</section>
 
 <section class="snap auto" id="watch">
   <div class="kicker fade">Podcast</div>
@@ -122,6 +122,8 @@ if(document.getElementById('fleetmap')){
 const C={3:'#c9a54c',2:'#ffffff',1:'#666666'},L3={3:'Concrete plan',2:'Clear wish',1:'Casual remark'};
 const mapEl=document.getElementById('fleetmap');
 const m=L.map(mapEl,{worldCopyJump:true}).setView([35,-40],2);
+setTimeout(()=>m.invalidateSize(),0);
+addEventListener('load',()=>m.invalidateSize());
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(m);
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const F=L.layerGroup().addTo(m),M=L.layerGroup().addTo(m);
