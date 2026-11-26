@@ -152,35 +152,6 @@
     · <a href="https://3fisac-jy.myshopify.com/products/podcast-seat-waitlist?utm_source=cybercabfleetowners&amp;utm_medium=website&amp;utm_campaign=waitlists" target="_blank" rel="noopener">Podcast seat waitlist</a></p>
 </section>
 
-<section class="snap auto" id="austin">
-  <div class="kicker fade">Community trip</div>
-  <h2 class="fade">Fleet Owners Trip : <span class="gold">Austin</span></h2>
-  <p class="sub fade" style="margin-left:auto;margin-right:auto">In 2027 we go to Austin with members of the community: the first Robotaxi city, and where the Cybercab is built. Leave your details and we will share the date with you first.</p>
-  <form class="form" id="austin-form" novalidate style="max-width:460px">
-<label for="a-name">Name</label><input id="a-name" name="name" required autocomplete="name">
-<label for="a-email">Email</label><input id="a-email" name="email" type="email" required autocomplete="email">
-<label for="a-x">X handle (optional)</label><input id="a-x" name="x_handle" placeholder="@">
-<label for="a-city">City and country</label><input id="a-city" name="city" required>
-<label for="a-n">How many people ?</label><select id="a-n" name="people"><option>1</option><option>2</option><option>3+</option></select>
-<label class="ck"><input type="checkbox" name="consent" value="yes" required> I agree that my details are stored to contact me about the Austin trip .</label>
-<input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-<button class="pill g" type="submit">I want to join the Austin trip</button><p id="a-st" role="status" style="margin-top:12px;font-size:14px"></p></form>
-  <script>(()=>{const SHEET='https://script.google.com/macros/s/AKfycbxhYfw0kB2aZunwYvkgv-Xv-JltvO_qcbn6mvn_WROXXqHjoGz5TAffLegkTMnz2sUAAw/exec',TO='florianminderop@mail.grokbot.com',FS_TO='florianminderop+leads@mail.grokbot.com';
-const f=document.getElementById('austin-form'),st=document.getElementById('a-st');
-function postSheet(p){return fetch(SHEET,{method:'POST',mode:'no-cors',body:new URLSearchParams(p)})}
-function postFs(p){const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);const body=Object.assign({},p,{_subject:'Lead: austin-trip',_template:'table',_captcha:'false'});
-return fetch('https://formsubmit.co/ajax/'+encodeURIComponent(FS_TO),{method:'POST',signal:c.signal,keepalive:true,headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)}).then(async r=>{clearTimeout(t);const j=await r.json().catch(()=>({}));if(r.ok&&String(j.success)==='true')return true;throw 0},e=>{clearTimeout(t);throw e})}
-f.addEventListener('submit',async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d._honey)return;
-if(!d.name||!/\S+@\S+\.\S+/.test(d.email)||!d.city||!f.consent.checked){st.style.color='#e88';st.textContent='Please fill in name , email , city and tick consent .';return}
-let ref='';try{ref=localStorage.getItem('cfo_ref')||''}catch(_){}
-const p={topic:'austin-trip',source:'austin trip page',name:d.name,email:d.email,x_handle:d.x_handle||'',city:d.city,fleet_size:'',ref:ref,consent:'yes',page:location.pathname+' | source: austin trip page | people: '+d.people};
-const b=f.querySelector('button');b.disabled=true;b.textContent='Sending...';
-const ok=()=>{f.innerHTML='<p style="color:#f1d9a0;font-size:18px">Thanks , you are on the Austin trip list . We will share the date and details with you first .</p>'};
-const sheetOk=postSheet(p).then(()=>true,()=>false);const fsOk=postFs(p).then(()=>true,()=>false);
-if(await sheetOk){ok();return}if(await fsOk){ok();return}
-b.disabled=false;b.textContent='I want to join the Austin trip';const body=Object.keys(p).map(k=>k+': '+p[k]).join('\n');
-st.innerHTML='Our form service is not responding right now . <a style="color:#d4af6a" href="mailto:'+TO+'?subject='+encodeURIComponent('Austin trip interest')+'&body='+encodeURIComponent(body)+'">Send it by email instead</a> .'})})();</script>
-</section>
 
 <section class="snap auto join" id="join">
   <div id="invite"></div>

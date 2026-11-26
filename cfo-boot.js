@@ -25,7 +25,8 @@
     '#semi':'https://semiasaservice.eu',
     '#energy':'https://semiasaservice.eu',
     '#megapod':'https://semiasaservice.eu',
-    '#austin-trip':'/#austin'
+    '#austin':'/',
+    '#austin-trip':'/'
   };
   const h=location.hash;
   if(map[h] && !(here.startsWith('/fleet') && map[h].startsWith('/fleet'))){
